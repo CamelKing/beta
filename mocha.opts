@@ -1,0 +1,13 @@
+test/**/*.spec.* 
+
+--full-trace
+--bail
+--recursive
+--reporter spec
+--slow 1
+--compilers ts-node/register
+--log-timer-events
+--prof
+--check-leaks
+--ui bdd
+--colors
