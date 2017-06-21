@@ -1,0 +1,16 @@
+import { expect, should } from 'chai';
+import { __function__ } from '../src/__function__';
+
+should();
+
+describe(`${__function__.name}() - @category Object`, () => {
+
+  describe(`should ...`, () => {
+
+    it(`__the_test_description_here`, () => {
+
+    });
+
+  });
+
+});
