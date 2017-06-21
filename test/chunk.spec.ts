@@ -21,7 +21,6 @@ describe('chunk()', () => {
 
   });
 
-
   describe(`should handle 'not evenly split' chunk size,`, () => {
 
     it(`([true,false,true], 2) => [[true,false], [true]]`, () => {

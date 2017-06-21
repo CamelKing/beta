@@ -5,9 +5,15 @@ test/**/*.spec.*
 --recursive
 --reporter spec
 --slow 1
---compilers ts-node/register
+--compilers ts:ts-node/register tsx:ts-node/register
 --log-timer-events
 --prof
 --check-leaks
 --ui bdd
 --colors
+
+--watch-extensions tsx,ts 
+test/**/*.spec.tsx
+test/**/*.spec.ts
+src/**/*.ts
+src/**/*.tsx
