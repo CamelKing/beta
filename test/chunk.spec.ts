@@ -5,7 +5,7 @@ should();
 
 describe('chunk()', () => {
 
-  describe(`should handle 'whole' chunk size,`, () => {
+  describe(`should handle 'whole' chunk size`, () => {
 
     it(`(['a','b','c','d'], 4) => [['a','b','c','d']]`, () => {
       const orig: string[] = ['a', 'b', 'c', 'd'];
@@ -21,7 +21,7 @@ describe('chunk()', () => {
 
   });
 
-  describe(`should handle 'not evenly split' chunk size,`, () => {
+  describe(`should handle 'not evenly split' chunk size`, () => {
 
     it(`([true,false,true], 2) => [[true,false], [true]]`, () => {
       const orig: boolean[] = [true, false, true];
@@ -70,7 +70,7 @@ describe('chunk()', () => {
 
   });
 
-  describe(`should handle 'evenly split' chunk size,`, () => {
+  describe(`should handle 'evenly split' chunk size`, () => {
 
     it(`([true,false], 2) => [[true,false]]`, () => {
       const orig: boolean[] = [true, false];
@@ -116,7 +116,7 @@ describe('chunk()', () => {
 
   });
 
-  describe(`should return [] with invalid parameters,`, () => {
+  describe(`should return [] with invalid parameters`, () => {
 
     it(`(['1','2'],-1)=>[]`, () => {
       const input: string[] = ['1', '2'];
