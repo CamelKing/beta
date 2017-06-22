@@ -1,6 +1,8 @@
 /**
  * Creates a slice of array with n elements dropped from the end.
  *
+ * @category Array
+ *
  * First version: June 22, 2017
  * Last updated : June 22, 2017
  *
