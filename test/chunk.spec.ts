@@ -116,6 +116,31 @@ describe('chunk() - @category Array', () => {
 
   });
 
+  describe(`should use 1 as default chunk size`, () => {
+
+    it(`(['a','b','c','d']) => [['a'],['b'],['c'],['d']]`, () => {
+      const orig: string[] = ['a', 'b', 'c', 'd'];
+      const input: string[] = orig.slice(0);
+      const output: string[][] = chunk(input);
+      output.should.have.lengthOf(4);
+      output.should.not.equal(input);
+      input.should.deep.equal(orig);
+      output[0].should.have.lengthOf(1);
+      output[0].should.not.equal(input);
+      output[0].should.deep.equal(['a']);
+      output[1].should.have.lengthOf(1);
+      output[1].should.not.equal(input);
+      output[1].should.deep.equal(['b']);
+      output[2].should.have.lengthOf(1);
+      output[2].should.not.equal(input);
+      output[2].should.deep.equal(['c']);
+      output[3].should.have.lengthOf(1);
+      output[3].should.not.equal(input);
+      output[3].should.deep.equal(['d']);
+    });
+
+  });
+
   describe(`should return [] with invalid parameters`, () => {
 
     it(`(['1','2'],-1)=>[]`, () => {
