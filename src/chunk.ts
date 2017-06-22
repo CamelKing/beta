@@ -3,6 +3,8 @@
  * If array can't be split evenly, the final chunk will be the
  * remaining elements.
  *
+ * @category Array
+ *
  * First version: June 21, 2017
  * Last updated : June 21, 2017
  *

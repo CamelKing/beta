@@ -1,6 +1,8 @@
 /**
  * Casts value as an array if it's not one.
  *
+ * @category Language
+ *
  * First version: June 23, 2017
  * Last updated : June 23, 2017
  *
