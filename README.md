@@ -1,6 +1,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/CamelKing/beta/badge.svg?branch=master)](https://coveralls.io/github/CamelKing/beta?branch=master)
 
-# beta - Typescript Functional Toolkits I - Array Handling
+# BETA - Typescript Functional Toolkits I - Array Handling
 
 ###### Last revision: June 22, 2017.  This date: June 20, 2017.  Author: Camel King.
 
