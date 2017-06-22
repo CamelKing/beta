@@ -3,7 +3,7 @@ import { chunk } from '../src/chunk';
 
 should();
 
-describe('chunk()', () => {
+describe('chunk() - @category Array', () => {
 
   describe(`should handle 'whole' chunk size`, () => {
 

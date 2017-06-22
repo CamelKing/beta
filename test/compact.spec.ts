@@ -3,7 +3,7 @@ import { compact } from '../src/compact';
 
 should();
 
-describe(`compact()`, () => {
+describe(`compact() - @category Array`, () => {
 
   describe(`should return an array with all falsey values removed`, () => {
 
