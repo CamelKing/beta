@@ -141,6 +141,22 @@ describe('chunk() - @category Array', () => {
 
   });
 
+  describe(`should return original array if chunk size too big`, () => {
+
+    it(`(['a','b'], 3) => [['a','b']]`, () => {
+      const orig: string[] = ['a', 'b'];
+      const input: string[] = orig.slice(0);
+      const output: string[][] = chunk(input, 3);
+      output.should.have.lengthOf(1);
+      output.should.not.equal(input);
+      input.should.deep.equal(orig);
+      output[0].should.have.lengthOf(2);
+      output[0].should.not.equal(input);
+      output[0].should.deep.equal(['a', 'b']);
+    });
+
+  });
+
   describe(`should return [] with invalid parameters`, () => {
 
     it(`(['1','2'],-1)=>[]`, () => {
