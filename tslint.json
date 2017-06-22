@@ -111,8 +111,6 @@
 
     "no-unused-expression": true,
 
-    "no-unused-new": true,
-
     "no-use-before-declare": true,
 
     "no-var-keyword": true,

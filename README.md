@@ -24,3 +24,6 @@ This is a compilation of common utilities dealing with Arrays currently exist wi
 
 6. ***Elegant*** Code
 > We believe coding is an act of art. As such, all solutions should be as elegant as possible.
+
+7. ***Vanilla javascript*** and ***minimum dependency***
+> The library is coded in vanilla javascrip (ES6+), no external library dependencies, and minimum dependency on other modules within the BETA library as well.
