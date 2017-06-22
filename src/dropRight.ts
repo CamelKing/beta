@@ -1,6 +1,9 @@
 /**
  * Creates a slice of array with n elements dropped from the end.
  *
+ * First version: June 22, 2017
+ * Last updated : June 22, 2017
+ *
  * @export
  * @template T
  * @param {T[]} input
