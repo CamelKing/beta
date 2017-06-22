@@ -3,9 +3,9 @@ test/**/*.spec.*
 --full-trace
 --bail
 --recursive
---reporter spec
+--reporter progress
 --slow 1
---compilers ts:ts-node/register
+--compilers ts:ts-node/register 
 --log-timer-events
 --prof
 --check-leaks
