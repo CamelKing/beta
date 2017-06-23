@@ -3,7 +3,7 @@ import { __function__ } from '../src/__function__';
 
 should();
 
-describe(`${__function__.name}() - @category Array`, () => {
+describe(`__function__() - @category __category__`, () => {
 
   describe(`should ...`, () => {
 
