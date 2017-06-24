@@ -13,11 +13,11 @@
  * @returns {number}
  */
 
-import { theTypeOf } from './theTypeOf';
+import { typeOf } from './typeOf';
 
 export function toNumber(input: any): number {
 
-  const type: string = theTypeOf(input);
+  const type: string = typeOf(input);
 
   if (type === 'symbol') return NaN;
 

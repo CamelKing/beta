@@ -1,11 +1,252 @@
 // tslint:disable:max-file-line-count
 
 import { expect, should } from 'chai';
-import { theTypeOf } from '../src/theTypeOf';
+import { typeOf } from '../src/typeOf';
 
 should();
 
 describe(`is() - @category Language`, () => {
+
+  describe(`should check the types correctly using .isxxx method`, () => {
+
+    it(`.isFloat64Array(new Float64Array()) => true`, () => {
+      typeOf.isFloat64Array(new Float64Array(2)).should.equal(true);
+    });
+
+    it(`.isFloat32Array(new Float32Array()) => true`, () => {
+      typeOf.isFloat32Array(new Float32Array(2)).should.equal(true);
+    });
+
+    it(`.isUint32Array(new Uint32Array()) => true`, () => {
+      typeOf.isUint32Array(new Uint32Array(2)).should.equal(true);
+    });
+
+    it(`.isInt32Array(new Int32Array()) => true`, () => {
+      typeOf.isInt32Array(new Int32Array(2)).should.equal(true);
+    });
+
+    it(`.isUint16Array(new Uint16Array()) => true`, () => {
+      typeOf.isUint16Array(new Uint16Array(2)).should.equal(true);
+    });
+
+    it(`.isInt16Array(new Int16Array()) => true`, () => {
+      typeOf.isInt16Array(new Int16Array(2)).should.equal(true);
+    });
+
+    it(`.isUint8ClampedArray(new Uint8ClampedArray()) => true`, () => {
+      typeOf.isUint8ClampedArray(new Uint8ClampedArray(2)).should.equal(true);
+    });
+
+    it(`.isUint8Array(new Uint8Array()) => true`, () => {
+      typeOf.isUint8Array(new Uint8Array(2)).should.equal(true);
+    });
+
+    it(`.isInt8Array(new Int8Array()) => true`, () => {
+      typeOf.isInt8Array(new Int8Array(2)).should.equal(true);
+    });
+
+    it(`.isRegExp(/abc/) => true`, () => {
+      typeOf.isRegExp(/abc/).should.equal(true);
+    });
+
+    it(`.isBuffer(new Buffer()) => true`, () => {
+      typeOf.isBuffer(new Buffer(2)).should.equal(true);
+    });
+
+    it(`.isArrayBuffer(new ArrayBuffer()) => true`, () => {
+      typeOf.isArrayBuffer(new ArrayBuffer(2)).should.equal(true);
+    });
+
+    it(`.isMap(new Map()) => true`, () => {
+      typeOf.isMap(new Map()).should.equal(true);
+    });
+
+    it(`.isWeakMap(new WeakMap()) => true`, () => {
+      typeOf.isWeakMap(new WeakMap()).should.equal(true);
+    });
+
+    it(`.isPromise(Promise.resolve(123)) => true`, () => {
+      typeOf.isPromise(Promise.resolve(123)).should.equal(true);
+    });
+
+    it(`.isFunction(()=>123) => true`, () => {
+      typeOf.isFunction(() => 123).should.equal(true);
+    });
+
+    it(`.isError(new Error()) => true`, () => {
+      typeOf.isError(new Error()).should.equal(true);
+    });
+
+    it(`.isSet(new Set()) => true`, () => {
+      typeOf.isSet(new Set()).should.equal(true);
+    });
+
+    it(`.isWeakSet(new WeakSet()) => true`, () => {
+      typeOf.isWeakSet(new WeakSet()).should.equal(true);
+    });
+
+    it(`.isDate(new Date()) => true`, () => {
+      typeOf.isDate(new Date()).should.equal(true);
+    });
+
+    it(`.isObject({a:1}) => true`, () => {
+      typeOf.isObject({ a: 1 }).should.equal(true);
+    });
+
+    it(`.isArray([1,2,3]) => true`, () => {
+      typeOf.isArray([1, 2, 3]).should.equal(true);
+    });
+
+    it(`.isSymbol(Symbol()) => true`, () => {
+      typeOf.isSymbol(Symbol()).should.equal(true);
+    });
+
+    it(`.isNumber(123) => true`, () => {
+      typeOf.isNumber(123).should.equal(true);
+    });
+
+    it(`.isString('hello') => true`, () => {
+      typeOf.isString('hello').should.equal(true);
+    });
+
+    it(`.isBoolean(true) => true`, () => {
+      typeOf.isBoolean(true).should.equal(true);
+    });
+
+    it(`.isNaN(NaN) => true`, () => {
+      typeOf.isNaN(NaN).should.equal(true);
+    });
+
+    it(`.isNull(null) => true`, () => {
+      typeOf.isNull(null).should.equal(true);
+    });
+
+    it(`.isUndefined(undefined) => true`, () => {
+      typeOf.isUndefined(undefined).should.equal(true);
+    });
+
+  });
+
+  describe(`should check the types correctly by second param.`, () => {
+
+    it(`(new Float64Array(),'float64array') => true`, () => {
+      typeOf(new Float64Array(2), 'float64array').should.equal(true);
+    });
+
+    it(`(new Float32Array(),'float32array') => true`, () => {
+      typeOf(new Float32Array(2), 'float32array').should.equal(true);
+    });
+
+    it(`(new Uint32Array(),'uint32array') => true`, () => {
+      typeOf(new Uint32Array(2), 'uint32array').should.equal(true);
+    });
+
+    it(`(new Int32Array(),'int32array') => true`, () => {
+      typeOf(new Int32Array(2), 'int32array').should.equal(true);
+    });
+
+    it(`(new Uint16Array(),'uint16array') => true`, () => {
+      typeOf(new Uint16Array(2), 'uint16array').should.equal(true);
+    });
+
+    it(`(new Int16Array(),'int16array') => true`, () => {
+      typeOf(new Int16Array(2), 'int16array').should.equal(true);
+    });
+
+    it(`(new Uint8ClampedArray(),'uint8clampedarray') => true`, () => {
+      typeOf(new Uint8ClampedArray(2), 'uint8clampedarray').should.equal(true);
+    });
+
+    it(`(new Uint8Array(),'uint8array') => true`, () => {
+      typeOf(new Uint8Array(2), 'uint8array').should.equal(true);
+    });
+
+    it(`(new Int8Array(),'int8array') => true`, () => {
+      typeOf(new Int8Array(2), 'int8array').should.equal(true);
+    });
+
+    it(`(/abc/,'regexp') => true`, () => {
+      typeOf(/abc/, 'regexp').should.equal(true);
+    });
+
+    it(`(new Buffer(),'buffer') => true`, () => {
+      typeOf(new Buffer(2), 'buffer').should.equal(true);
+    });
+
+    it(`(new ArrayBuffer(),'arraybuffer') => true`, () => {
+      typeOf(new ArrayBuffer(2), 'arraybuffer').should.equal(true);
+    });
+
+    it(`(new Map(),'map') => true`, () => {
+      typeOf(new Map(), 'map').should.equal(true);
+    });
+
+    it(`(new WeakMap(),'weakmap') => true`, () => {
+      typeOf(new WeakMap(), 'weakmap').should.equal(true);
+    });
+
+    it(`(Promise.resolve(123),'promise') => true`, () => {
+      typeOf(Promise.resolve(123), 'promise').should.equal(true);
+    });
+
+    it(`(()=>123,'function') => true`, () => {
+      typeOf(() => 123, 'function').should.equal(true);
+    });
+
+    it(`(new Error(),'error') => true`, () => {
+      typeOf(new Error(), 'error').should.equal(true);
+    });
+
+    it(`(new Set(),'set') => true`, () => {
+      typeOf(new Set(), 'set').should.equal(true);
+    });
+
+    it(`(new WeakSet(),'weakset') => true`, () => {
+      typeOf(new WeakSet(), 'weakset').should.equal(true);
+    });
+
+    it(`(new Date(),'date') => true`, () => {
+      typeOf(new Date(), 'date').should.equal(true);
+    });
+
+    it(`({a:1},'object') => true`, () => {
+      typeOf({ a: 1 }, 'object').should.equal(true);
+    });
+
+    it(`([1,2,3],'array') => true`, () => {
+      typeOf([1, 2, 3], 'array').should.equal(true);
+    });
+
+    it(`(Symbol(),'symbol') => true`, () => {
+      typeOf(Symbol(), 'symbol').should.equal(true);
+    });
+
+    it(`(123,'number') => true`, () => {
+      typeOf(123, 'number').should.equal(true);
+    });
+
+    it(`('hello','string') => true`, () => {
+      typeOf('hello', 'string').should.equal(true);
+    });
+
+    it(`(true,'boolean') => true`, () => {
+      typeOf(true, 'boolean').should.equal(true);
+    });
+
+    it(`(NaN,'nan') => true`, () => {
+      typeOf(NaN, 'nan').should.equal(true);
+    });
+
+    it(`(null,'null') => true`, () => {
+      typeOf(null, 'null').should.equal(true);
+    });
+
+    it(`(undefined,'undefined') => true`, () => {
+      typeOf(undefined, 'undefined').should.equal(true);
+    });
+
+
+  });
 
   describe(`should return the type of Float64Array`, () => {
 
@@ -13,7 +254,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: Float64Array = new Float64Array(1);
       const input: Float64Array = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('float64array');
@@ -28,7 +269,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: Float32Array = new Float32Array(1);
       const input: Float32Array = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('float32array');
@@ -43,7 +284,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: Uint32Array = new Uint32Array(1);
       const input: Uint32Array = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('uint32array');
@@ -58,7 +299,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: Int32Array = new Int32Array(1);
       const input: Int32Array = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('int32array');
@@ -73,7 +314,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: Uint16Array = new Uint16Array(1);
       const input: Uint16Array = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('uint16array');
@@ -88,7 +329,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: Int16Array = new Int16Array(1);
       const input: Int16Array = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('int16array');
@@ -103,7 +344,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: Uint8ClampedArray = new Uint8ClampedArray(1);
       const input: Uint8ClampedArray = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('uint8clampedarray');
@@ -118,7 +359,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: Uint8Array = new Uint8Array(1);
       const input: Uint8Array = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('uint8array');
@@ -133,7 +374,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: Int8Array = new Int8Array(1);
       const input: Int8Array = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('int8array');
@@ -144,22 +385,11 @@ describe(`is() - @category Language`, () => {
 
   describe(`should return the type of Reg Exp`, () => {
 
-    it(`Object(/abc/) => regexp`, () => {
-
-      const orig: RegExp = Object(/123/);
-      const input: RegExp = orig;
-      const output: string = theTypeOf(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('regexp');
-
-    });
-
     it(`/abc/ => regexp`, () => {
 
       const orig: RegExp = /123/;
       const input: RegExp = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('regexp');
@@ -170,22 +400,11 @@ describe(`is() - @category Language`, () => {
 
   describe(`should return the type of Buffer`, () => {
 
-    it(`Object(new Buffer()) => buffer`, () => {
-
-      const orig: Buffer = Object(new Buffer(2));
-      const input: Buffer = orig;
-      const output: string = theTypeOf(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('buffer');
-
-    });
-
     it(`new Buffer() => buffer`, () => {
 
       const orig: Buffer = new Buffer(2);
       const input: Buffer = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('buffer');
@@ -196,22 +415,11 @@ describe(`is() - @category Language`, () => {
 
   describe(`should return the type of ArrayBuffer`, () => {
 
-    it(`Object(new ArrayBuffer()) => arraybuffer`, () => {
-
-      const orig: ArrayBuffer = Object(new ArrayBuffer(2));
-      const input: ArrayBuffer = orig;
-      const output: string = theTypeOf(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('arraybuffer');
-
-    });
-
     it(`new ArrayBuffer() => arraybuffer`, () => {
 
       const orig: ArrayBuffer = new ArrayBuffer(2);
       const input: ArrayBuffer = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('arraybuffer');
@@ -222,22 +430,11 @@ describe(`is() - @category Language`, () => {
 
   describe(`should return the type of map`, () => {
 
-    it(`Object(new Map()) => map`, () => {
-
-      const orig: Map<any, any> = Object(new Map());
-      const input: Map<any, any> = orig;
-      const output: string = theTypeOf(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('map');
-
-    });
-
     it(`new Map() => map`, () => {
 
       const orig: Map<any, any> = new Map();
       const input: Map<any, any> = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('map');
@@ -248,22 +445,11 @@ describe(`is() - @category Language`, () => {
 
   describe(`should return the type of weak map`, () => {
 
-    it(`Object(new WeakMap()) => weakmap`, () => {
-
-      const orig: WeakMap<any, any> = Object(new WeakMap());
-      const input: WeakMap<any, any> = orig;
-      const output: string = theTypeOf(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('weakmap');
-
-    });
-
     it(`new WeakMap() => weakmap`, () => {
 
       const orig: WeakMap<any, any> = new WeakMap();
       const input: WeakMap<any, any> = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('weakmap');
@@ -280,22 +466,11 @@ describe(`is() - @category Language`, () => {
         resolve(123);
       });
 
-    it(`Object(pm) => promise`, () => {
-
-      const orig: pmNumber = Object(pm);
-      const input: pmNumber = orig;
-      const output: string = theTypeOf(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('promise');
-
-    });
-
     it(`pm => promise`, () => {
 
       const orig: pmNumber = pm;
       const input: pmNumber = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('promise');
@@ -306,7 +481,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: pmNumber = Promise.resolve(123);
       const input: pmNumber = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('promise');
@@ -320,22 +495,11 @@ describe(`is() - @category Language`, () => {
     const fn: () => number = () => 123;
     type fnNumber = () => number;
 
-    it(`Object(fn) => function`, () => {
-
-      const orig: fnNumber = Object(fn);
-      const input: fnNumber = orig;
-      const output: string = theTypeOf(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('function');
-
-    });
-
     it(`fn => function`, () => {
 
       const orig: fnNumber = fn;
       const input: fnNumber = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('function');
@@ -346,7 +510,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number = fn();
       const input: number = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('number');
@@ -358,22 +522,11 @@ describe(`is() - @category Language`, () => {
 
   describe(`should return the type of error`, () => {
 
-    it(`Object(new Error()) => error`, () => {
-
-      const orig: Error = Object(new Error());
-      const input: Error = orig;
-      const output: string = theTypeOf(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('error');
-
-    });
-
     it(`Error() => error`, () => {
 
       const orig: Error = Error();
       const input: Error = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('error');
@@ -384,7 +537,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: Error = new Error();
       const input: Error = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('error');
@@ -395,7 +548,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: Error = new Error('test');
       const input: Error = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('error');
@@ -406,22 +559,11 @@ describe(`is() - @category Language`, () => {
 
   describe(`should return the type of set`, () => {
 
-    it(`Object(new Set([1,2,3])) => set`, () => {
-
-      const orig: Set<number> = Object(new Set([1, 2, 3]));
-      const input: Set<number> = orig;
-      const output: string = theTypeOf(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('set');
-
-    });
-
     it(`new Set([1,2,3]) => set`, () => {
 
       const orig: Set<number> = new Set([1, 2, 3]);
       const input: Set<number> = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('set');
@@ -432,22 +574,11 @@ describe(`is() - @category Language`, () => {
 
   describe(`should return the type of weak set`, () => {
 
-    it(`Object(new WeakSet()) => weakset`, () => {
-
-      const orig: WeakSet<object> = Object(new WeakSet());
-      const input: WeakSet<object> = orig;
-      const output: string = theTypeOf(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('weakset');
-
-    });
-
     it(`new WeakSet() => weakset`, () => {
 
       const orig: WeakSet<object> = new WeakSet();
       const input: WeakSet<object> = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('weakset');
@@ -462,7 +593,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: Date = new Date();
       const input: Date = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('date');
@@ -473,7 +604,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number = Date.now();
       const input: number = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('number');
@@ -484,7 +615,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: string = Date();
       const input: string = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('string');
@@ -499,7 +630,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: object = {};
       const input: object = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('object');
@@ -510,7 +641,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: object = { a: 1 };
       const input: object = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('object');
@@ -521,7 +652,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: object = Object({ a: 1 });
       const input: object = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('object');
@@ -532,7 +663,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: object = Object({});
       const input: object = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('object');
@@ -543,7 +674,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: object = Object(undefined);
       const input: object = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('object');
@@ -554,7 +685,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: object = Object(null);
       const input: object = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('object');
@@ -569,7 +700,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number[] = [1, 2, 3];
       const input: number[] = orig.slice(0);
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('array');
@@ -580,7 +711,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: any[] = [1, 'a', true];
       const input: any[] = orig.slice(0);
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('array');
@@ -591,7 +722,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: any[] = [{ a: 1 }, Symbol(), [1, 2, 3]];
       const input: any[] = orig.slice(0);
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('array');
@@ -602,22 +733,11 @@ describe(`is() - @category Language`, () => {
 
   describe(`should return the type of number`, () => {
 
-    it(`Object(123) => number`, () => {
-
-      const orig: object = Object(123);
-      const input: object = orig;
-      const output: string = theTypeOf(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('number');
-
-    });
-
     it(`-Infinity => number`, () => {
 
       const orig: number = -Infinity;
       const input: number = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('number');
@@ -628,7 +748,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number = Infinity;
       const input: number = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('number');
@@ -639,7 +759,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number = -0;
       const input: number = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('number');
@@ -650,7 +770,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number = +0;
       const input: number = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('number');
@@ -661,7 +781,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number = 0;
       const input: number = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('number');
@@ -672,7 +792,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number = 123;
       const input: number = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('number');
@@ -683,7 +803,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number = 123.456;
       const input: number = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('number');
@@ -694,7 +814,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number = -123;
       const input: number = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('number');
@@ -705,7 +825,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number = -123.456;
       const input: number = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('number');
@@ -716,7 +836,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number = Number.MAX_SAFE_INTEGER;
       const input: number = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('number');
@@ -727,22 +847,11 @@ describe(`is() - @category Language`, () => {
 
   describe(`should return the type of string`, () => {
 
-    it(`Object('hello') => string`, () => {
-
-      const orig: string = Object('hello');
-      const input: string = orig;
-      const output: string = theTypeOf(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('string');
-
-    });
-
     it(`"hello" => string`, () => {
 
       const orig: string = 'hello';
       const input: string = orig.slice(0);
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('string');
@@ -753,7 +862,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: string = 'true';
       const input: string = orig.slice(0);
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('string');
@@ -764,7 +873,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: string = '123';
       const input: string = orig.slice(0);
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('string');
@@ -775,7 +884,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: string = 'null';
       const input: string = orig.slice(0);
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('string');
@@ -786,7 +895,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: string = '';
       const input: string = orig.slice(0);
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('string');
@@ -797,22 +906,11 @@ describe(`is() - @category Language`, () => {
 
   describe(`should return the type of symbol`, () => {
 
-    it(`Object(Symbol()) => symbol`, () => {
-
-      const orig: symbol = Object(Symbol());
-      const input: symbol = orig;
-      const output: string = theTypeOf(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('symbol');
-
-    });
-
     it(`Symbol() => symbol`, () => {
 
       const orig: symbol = Symbol();
       const input: symbol = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       should().equal(input, orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('symbol');
@@ -823,22 +921,11 @@ describe(`is() - @category Language`, () => {
 
   describe(`should return the type of boolean`, () => {
 
-    it(`Object(true) => boolean`, () => {
-
-      const orig: boolean = Object(true);
-      const input: boolean = orig;
-      const output: string = theTypeOf(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal('boolean');
-
-    });
-
     it(`true => boolean`, () => {
 
       const orig: boolean = true;
       const input: boolean = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
       output.should.deep.equal('boolean');
@@ -853,7 +940,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: number = NaN;
       const input: number = NaN;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       should().not.equal(input, input);
       should().not.equal(orig, orig);
       should().not.equal(input, orig);
@@ -866,7 +953,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: boolean = null;
       const input: boolean = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       should().not.exist(input);
       should().equal(input, orig);
       output.should.not.be.equal(input);
@@ -878,7 +965,7 @@ describe(`is() - @category Language`, () => {
 
       const orig: boolean = undefined;
       const input: boolean = orig;
-      const output: string = theTypeOf(input);
+      const output: string = typeOf(input);
       should().not.exist(input);
       should().equal(input, orig);
       output.should.not.be.equal(input);
