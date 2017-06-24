@@ -4,7 +4,7 @@
  * @category Language
  *
  * First version: June 23, 2017
- * Last updated : June 23, 2017
+ * Last updated : June 24, 2017
  *
  * @export
  * @param {*} input
@@ -14,5 +14,4 @@
 import { FnPredicate } from './constant';
 import { theTypeOf } from './theTypeOf';
 
-export const isArrayBuffer: FnPredicate
-  = (input: any) => (theTypeOf(input) === 'arraybuffer');
+export const isArrayBuffer: FnPredicate = (input: any) => theTypeOf(input, 'arraybuffer');

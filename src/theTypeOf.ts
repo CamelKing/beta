@@ -1,22 +1,28 @@
 /**
- * Return the type of the parameter passed in, in a lowercase string.
+ * Return the type of the variable passed in, in a lowercase string.
  *
- * @category Language
+ * optional one can pass in a check to see if the variable matches
+ * the type, in which case the function will return a boolean instead.
+ *
+ * Note: in the past, the version of this function without type checking is
+ *       named theTypeOf(), it is now changed to this name, is().
  *
  * First version: June 23, 2017
- * Last updated : June 23, 2017
+ * Last updated : June 24, 2017
  *
- * @export
  * @param {*} input
- * @returns {string}
+ * @param {string} [check]
+ * @returns {(string | boolean)}
  */
 
-export function theTypeOf(input: any): string {
-    // if (Number.isNaN(input)) return 'nan';
-    // return ({}).toString.call(input).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+export function theTypeOf(input: any): string;
+export function theTypeOf(input: any, check: string): boolean;
+export function theTypeOf(input: any, check?: string): string | boolean {
 
-    const type: string = ({}).toString.call(input).match(/\s([a-zA-Z0-9]+)/)[1].toLowerCase();
+  const type: string = input !== input ? 'nan'
+    : Buffer.isBuffer(input) ? 'buffer'
+      : ({}).toString.call(input).match(/\s([a-zA-Z0-9]+)/)[1].toLowerCase();
 
-    return input !== input ? 'nan'
-        : Buffer.isBuffer(input) ? 'buffer' : type;
+  return !check ? type : type === check;
+
 }
