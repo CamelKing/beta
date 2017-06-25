@@ -14,11 +14,6 @@
  */
 export function drop<T>(input: T[], toDrop: number = 1): T[] {
 
-  if (input == null || input.length <= 0) return [];
-  return input.slice(toDrop);
-
-  // const start: number = toDrop > 0 ? toDrop : 0;
-  // const end: number = input.length + (toDrop < 0 ? toDrop : 0);
-  // return input.slice(start, end);
+  return (input == null || input.length <= 0) ? [] : input.slice(toDrop);
 
 }

@@ -5,7 +5,44 @@ import { typeOf } from '../src/typeOf';
 
 should();
 
-describe(`is() - @category Language`, () => {
+describe(`typeOf() - @category Language`, () => {
+
+  describe(`should be able to check for finite number`, () => {
+
+    it(`3 => true`, () => {
+      typeOf.isFinite(3).should.equal(true);
+    });
+
+    it(`Number.MIN_VALUE => true`, () => {
+      typeOf.isFinite(Number.MIN_VALUE).should.equal(true);
+    });
+
+    it(`Infinity => false`, () => {
+      typeOf.isFinite(Infinity).should.equal(false);
+    });
+
+    it(`-Infinity => false`, () => {
+      typeOf.isFinite(-Infinity).should.equal(false);
+    });
+
+    it(`'3' => false`, () => {
+      typeOf.isFinite('3').should.equal(false);
+    });
+
+    it(`null => false`, () => {
+      typeOf.isFinite(null).should.equal(false);
+    });
+
+    it(`NaN => false`, () => {
+      typeOf.isFinite(NaN).should.equal(false);
+    });
+
+    it(`undefined => false`, () => {
+      typeOf.isFinite(undefined).should.equal(false);
+    });
+
+  });
+
 
   describe(`should check the types correctly using .isxxx method`, () => {
 

@@ -63,4 +63,5 @@ export namespace typeOf {
   export const isNaN: FnPredicate = (i: any) => (typeOf(i) === 'nan');
   export const isNull: FnPredicate = (i: any) => (typeOf(i) === 'null');
   export const isUndefined: FnPredicate = (i: any) => (typeOf(i) === 'undefined');
+  export const isFinite: FnPredicate = (i: any) => (typeOf(i) === 'number' && Number.isFinite(i));
 }

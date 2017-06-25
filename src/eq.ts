@@ -14,5 +14,7 @@
  */
 
 export function eq(input1: any, input2: any): boolean {
+
   return (input1 === input2) || (input1 !== input1 && input2 !== input2);
+
 }

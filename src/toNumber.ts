@@ -17,17 +17,6 @@ import { typeOf } from './typeOf';
 
 export function toNumber(input: any): number {
 
-  const type: string = typeOf(input);
+  return (typeOf.isSymbol(input)) ? NaN : +input;
 
-  if (type === 'symbol') return NaN;
-
-  // if (type === 'object') {
-  //   const valueOf: any = theTypeOf(input.valueof) === 'function' ? input.valueOf() : input;
-  //   const
-  // }
-
-  // if (typeof input === 'number') {
-  //     return input;
-  // }
-  return +input;
 }
