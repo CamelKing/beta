@@ -1,6 +1,7 @@
 /**
- * Performs a SameValueZero comparison between two values
- * to determine if they are equivalent.
+ * Perform a SameValueZero comparison between two values
+ * to determine if they are equivalent. Return the result as 
+ * true or false.
  *
  * @category Language
  *

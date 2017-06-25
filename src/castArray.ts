@@ -1,5 +1,5 @@
 /**
- * Casts value as an array if it's not one.
+ * Casts value as an (new) array if it's not one.
  *
  * @category Language
  *

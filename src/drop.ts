@@ -1,5 +1,5 @@
 /**
- * Creates a slice of array with n elements dropped from the beginning.
+ * Creates a new slice of array with n elements dropped from the beginning.
  *
  * @category Array
  *

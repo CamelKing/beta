@@ -1,7 +1,7 @@
-
 /**
+ * Return the value as a number.
  *
- * Converts value to a number.
+ * Non Numeric value will result in NaN.
  *
  * @category Language
  *

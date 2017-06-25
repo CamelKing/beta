@@ -1,3 +1,16 @@
+/**
+ * Return the value passed in as a finite number.
+ *
+ * Any non numerical input will result in 0.
+ *
+ * First version: June 25, 2017
+ * Last updated : June 25, 2017
+ *
+ * @export
+ * @param {*} input
+ * @returns {number}
+ */
+
 import { toNumber } from './toNumber';
 
 export function toFinite(input: any): number {

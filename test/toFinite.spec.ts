@@ -59,13 +59,33 @@ describe(`toFinite() - @category Language`, () => {
 
     });
 
-    it(`Number.Infinity => Infinity`, () => {
+    it(`Infinity => Infinity`, () => {
 
       const orig: number = Infinity;
       const input: number = orig;
       const output: number = toFinite(input);
       input.should.be.deep.equal(orig);
       output.should.deep.equal(1.7976931348623157e+308);
+
+    });
+
+    it(`+Infinity => Infinity`, () => {
+
+      const orig: number = +Infinity;
+      const input: number = orig;
+      const output: number = toFinite(input);
+      input.should.be.deep.equal(orig);
+      output.should.deep.equal(1.7976931348623157e+308);
+
+    });
+
+    it(`-Infinity => Infinity`, () => {
+
+      const orig: number = -Infinity;
+      const input: number = orig;
+      const output: number = toFinite(input);
+      input.should.be.deep.equal(orig);
+      output.should.deep.equal(-1.7976931348623157e+308);
 
     });
 
