@@ -7,13 +7,53 @@ should();
 
 describe(`typeOf() - @category Language`, () => {
 
-  describe(`should be able to check for integer number`, () => {
+  describe(`.isNil() should be able to check for nil`, () => {
+
+    it(`null => true`, () => {
+      typeOf.isNil(null).should.equal(true);
+    });
+
+    it(`undefined => true`, () => {
+      typeOf.isNil(undefined).should.equal(true);
+    });
+
+    it(`void 0 => true`, () => {
+      typeOf.isNil(void 0).should.equal(true);
+    });
+
+    it(`123 => false`, () => {
+      typeOf.isNil(123).should.equal(false);
+    });
+
+    it(`0 => false`, () => {
+      typeOf.isNil(0).should.equal(false);
+    });
+
+    it(`"hello" => false`, () => {
+      typeOf.isNil('hello').should.equal(false);
+    });
+
+    it(`"" => false`, () => {
+      typeOf.isNil('').should.equal(false);
+    });
+
+    it(`Infinity => false`, () => {
+      typeOf.isNil(Infinity).should.equal(false);
+    });
+
+    it(`NaN => false`, () => {
+      typeOf.isNil(NaN).should.equal(false);
+    });
+
+  });
+
+  describe(`.isInteger() should be able to check for integer number`, () => {
 
     it(`3 => true`, () => {
       typeOf.isInteger(3).should.equal(true);
     });
 
-    it(`Number.MIN_VALUE => true`, () => {
+    it(`Number.MIN_VALUE => false`, () => {
       typeOf.isInteger(Number.MIN_VALUE).should.equal(false);
     });
 
@@ -43,8 +83,7 @@ describe(`typeOf() - @category Language`, () => {
 
   });
 
-
-  describe(`should be able to check for finite number`, () => {
+  describe(`.isFinite() should be able to check for finite number`, () => {
 
     it(`3 => true`, () => {
       typeOf.isFinite(3).should.equal(true);
@@ -80,7 +119,7 @@ describe(`typeOf() - @category Language`, () => {
 
   });
 
-  describe(`should check the types correctly using .isxxx method`, () => {
+  describe(`.is<data type> should check the types correctly`, () => {
 
     it(`.isFloat64Array(new Float64Array()) => true`, () => {
       typeOf.isFloat64Array(new Float64Array(2)).should.equal(true);
