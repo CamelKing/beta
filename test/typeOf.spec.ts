@@ -7,6 +7,43 @@ should();
 
 describe(`typeOf() - @category Language`, () => {
 
+  describe(`should be able to check for integer number`, () => {
+
+    it(`3 => true`, () => {
+      typeOf.isInteger(3).should.equal(true);
+    });
+
+    it(`Number.MIN_VALUE => true`, () => {
+      typeOf.isInteger(Number.MIN_VALUE).should.equal(false);
+    });
+
+    it(`Infinity => false`, () => {
+      typeOf.isInteger(Infinity).should.equal(false);
+    });
+
+    it(`-Infinity => false`, () => {
+      typeOf.isInteger(-Infinity).should.equal(false);
+    });
+
+    it(`'3' => false`, () => {
+      typeOf.isInteger('3').should.equal(false);
+    });
+
+    it(`null => false`, () => {
+      typeOf.isInteger(null).should.equal(false);
+    });
+
+    it(`NaN => false`, () => {
+      typeOf.isInteger(NaN).should.equal(false);
+    });
+
+    it(`undefined => false`, () => {
+      typeOf.isInteger(undefined).should.equal(false);
+    });
+
+  });
+
+
   describe(`should be able to check for finite number`, () => {
 
     it(`3 => true`, () => {
@@ -42,7 +79,6 @@ describe(`typeOf() - @category Language`, () => {
     });
 
   });
-
 
   describe(`should check the types correctly using .isxxx method`, () => {
 

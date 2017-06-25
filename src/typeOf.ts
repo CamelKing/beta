@@ -19,6 +19,7 @@
  */
 
 import { FnPredicate } from './constant';
+import { toInteger } from './toInteger';
 
 export function typeOf(input: any): string;
 export function typeOf(input: any, check: string): boolean;
@@ -64,4 +65,5 @@ export namespace typeOf {
   export const isNull: FnPredicate = (i: any) => (typeOf(i) === 'null');
   export const isUndefined: FnPredicate = (i: any) => (typeOf(i) === 'undefined');
   export const isFinite: FnPredicate = (i: any) => (typeOf(i) === 'number' && Number.isFinite(i));
+  export const isInteger: FnPredicate = (i: any) => typeOf.isNumber(i) && i === toInteger(i);
 }
