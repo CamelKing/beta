@@ -1,10 +1,20 @@
+/**
+ * Checks if value is a valid array- like length.
+ *
+ * Valid length value is 0 - Number.MAX_SAFE_INTEGER
+ *
+ * @export
+ * @param {*} input
+ * @returns {boolean}
+ */
+
 import { typeOf } from '../src/typeOf';
 
-export function isLength(i: any): boolean {
+export function isLength(input: any): boolean {
 
-  return typeOf.isNumber(i)
-    && i >= 0
-    && i % 1 === 0
-    && i <= Number.MAX_SAFE_INTEGER;
+  return typeOf.isNumber(input)
+    && input >= 0
+    && input % 1 === 0
+    && input <= Number.MAX_SAFE_INTEGER;
 
 }
