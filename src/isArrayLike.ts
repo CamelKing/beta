@@ -1,6 +1,3 @@
-import { isLength } from './isLength';
-import { typeOf } from './typeOf';
-
 /**
  * Checks if value is array-like.
  *
@@ -14,10 +11,18 @@ import { typeOf } from './typeOf';
  * take note that this check for 'array like',
  * as such a null or undefined array variable will result in false.
  *
+ * @category Language
+ *
+ * First version: June 25, 2017
+ * Last updated : July 01, 2017
+ *
  * @export
  * @param {*} input
  * @returns {boolean}
  */
+
+import { isLength } from './isLength';
+import { typeOf } from './typeOf';
 
 export function isArrayLike(input: any): boolean {
 

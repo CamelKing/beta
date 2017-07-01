@@ -3,6 +3,11 @@
  * An empty string is returned for null and undefined values.
  * The sign of -0 is preserved.
  *
+ * @category Language
+ *
+ * First version: June 25, 2017
+ * Last updated : June 25, 2017
+ *
  * @export
  * @param {*} input
  * @returns {string}

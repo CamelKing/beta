@@ -3,6 +3,11 @@
  *
  * Non numerical value will result in 0.
  *
+ * @category Language
+ *
+ * First version: June 23, 2017
+ * Last updated : June 23, 2017
+ *
  * @export
  * @param {*} input
  * @returns {number}

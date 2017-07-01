@@ -10,6 +10,8 @@
  * Note: in the past, the version of this function without type checking is
  *       named theTypeOf(), it is now changed to this name, typeOf().
  *
+ * @category Language
+ *
  * First version: June 23, 2017
  * Last updated : June 25, 2017
  *

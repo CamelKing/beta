@@ -3,6 +3,8 @@
  *
  * Any non numerical input will result in 0.
  *
+ * @category Language
+ *
  * First version: June 25, 2017
  * Last updated : June 25, 2017
  *
