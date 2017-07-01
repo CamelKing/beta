@@ -123,12 +123,4 @@ export namespace typeOf {
   export const isUndefined: FnPredicate
     = (i: any) => typeOf(i, 'undefined');
 
-  export const isFinite: FnPredicate
-    = (i: any) => typeOf(i, 'number') && Number.isFinite(i);
-
-  export const isInteger: FnPredicate
-    = (i: any) => typeOf.isNumber(i) && i === toInteger(i);
-
-  export const isNil: FnPredicate
-    = (i: any) => i == null;
 }
