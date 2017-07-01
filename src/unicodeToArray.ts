@@ -9,6 +9,11 @@
  *       string, it is not high performance. Best to test and
  *       use string.split() for ASCII string.
  *
+ * @category Language
+ *
+ * First version: July 01, 2017
+ * Last updated : July 01, 2017
+ *
  * @export
  * @param {string} input
  * @returns {string[]}
