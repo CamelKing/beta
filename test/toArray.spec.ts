@@ -7,7 +7,7 @@ describe(`toArray() - @category Language`, () => {
 
   describe(`should convert an object (values) into an array`, () => {
 
-    it(`({a:1, b:2})[Symbol.iterator]=>[1,2]`, () => {
+    it(`{a:1, b:2}=>[1,2]`, () => {
 
       const orig: object = { a: 1, b: 2 };
       const input: object = orig;
@@ -16,6 +16,18 @@ describe(`toArray() - @category Language`, () => {
       output.should.not.be.equal(input);
       output.should.have.lengthOf(2);
       output.should.deep.equal([1, 2]);
+
+    });
+
+    it(`{}=>[]`, () => {
+
+      const orig: object = {};
+      const input: object = orig;
+      const output: number[] = toArray(input);
+      orig.should.be.deep.equal(input);
+      output.should.not.be.equal(input);
+      output.should.have.lengthOf(0);
+      output.should.deep.equal([]);
 
     });
 
