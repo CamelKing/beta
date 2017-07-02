@@ -158,6 +158,26 @@ describe(`toArray() - @category Language`, () => {
 
   });
 
+  describe(`should return empty array for no iterable non array non object`, () => {
+
+    it(`1 => []`, () => {
+
+      const output: string[] = toArray(1);
+      output.should.have.lengthOf(0);
+      output.should.deep.equal([]);
+
+    });
+
+    it(`true => []`, () => {
+
+      const output: string[] = toArray(true);
+      output.should.have.lengthOf(0);
+      output.should.deep.equal([]);
+
+    });
+
+  });
+
   describe(`should return empty array for null and undefined input`, () => {
 
     it(`null => []`, () => {
