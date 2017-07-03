@@ -43,24 +43,11 @@ export function isEmpty(input: any): boolean {
     return !input.size;
   }
 
-  // for (const key in input) {
-  //   if (input.hasOwnProperty(key) && key !== 'constructor') {
-  //     // for object, check the property chain (constructor does not count)
-  //     return false;
-  //   }
-  // }
-
-  // try {
+  // for everything else, check the property chain (constructor does not count)
 
   const keys: string[]
     = Object.keys(input).filter((key: string) => key !== 'constructor');
 
   return !keys.length;
-
-  // tslint:disable-next-line:no-empty
-  // } catch (e) { }
-
-  // anything else will result in true (empty)
-  // return true;
 
 }
