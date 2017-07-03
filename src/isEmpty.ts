@@ -35,19 +35,20 @@ export function isEmpty(input: any): boolean {
     // for array like data, check if the length is zero
     return !input.length;
 
-  } else if (type.search(/(map|set)/) !== -1) {
+  }
+
+  if (type.search(/(map|set)/) !== -1) {
 
     // for map and set, check if size is zero
     return !input.size;
 
-  } else {
-    for (const key in input) {
-      if (input.hasOwnProperty(key) && key !== 'constructor') {
-        // for object, check the property chain (constructor does not count)
-        return false;
-      }
-    }
+  }
 
+  for (const key in input) {
+    if (input.hasOwnProperty(key) && key !== 'constructor') {
+      // for object, check the property chain (constructor does not count)
+      return false;
+    }
   }
 
   // anything else will result in true (empty)
