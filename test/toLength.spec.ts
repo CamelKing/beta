@@ -51,7 +51,11 @@ describe(`toLength() - @category Language`, () => {
 
     });
 
-    it(`"hello" => 3`, () => {
+  });
+
+  describe(`should return 0 for invalid input`, () => {
+
+    it(`"hello" => 0`, () => {
 
       const orig: string = 'hello';
       const input: string = orig.slice(0);
@@ -73,6 +77,32 @@ describe(`toLength() - @category Language`, () => {
       output.should.deep.equal(0);
 
     });
+
+    it(`null => 0`, () => {
+
+      const orig: number = null;
+      const input: number = orig;
+      const output: number = toLength(input);
+      should().equal(input, orig);
+      output.should.not.be.equal(input);
+      output.should.deep.equal(0);
+
+    });
+
+    it(`undefined => 0`, () => {
+
+      const orig: number = undefined;
+      const input: number = orig;
+      const output: number = toLength(input);
+      should().equal(input, orig);
+      output.should.not.be.equal(input);
+      output.should.deep.equal(0);
+
+    });
+
+  });
+
+  describe(`should handle extreme boundaries`, () => {
 
     it(`Number.MIN_VALUE => 0`, () => {
 
