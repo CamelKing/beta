@@ -11,7 +11,7 @@
  * @returns {boolean}
  */
 
-import { typeOf } from '../src/typeOf';
+import { typeOf } from './typeOf';
 
 export function isFinite(input: any): boolean {
 

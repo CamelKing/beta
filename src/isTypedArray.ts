@@ -1,4 +1,17 @@
-import { typeOf } from '../src/typeOf';
+/**
+ * Checks if value is classified as a typed array.
+ *
+ * @category Language
+ *
+ * First version: July 03, 2017
+ * Last updated : July 03, 2017
+ *
+ * @export
+ * @param {*} input
+ * @returns {boolean}
+ */
+
+import { typeOf } from './typeOf';
 
 export function isTypedArray(input: any): boolean {
 

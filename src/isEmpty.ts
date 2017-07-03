@@ -1,6 +1,3 @@
-import { isArrayLike } from './isArrayLike';
-import { typeOf } from './typeOf';
-
 /**
  * Checks if value is an empty object, collection, map, or set.
  *
@@ -16,10 +13,18 @@ import { typeOf } from './typeOf';
  *
  * Any other type of value will always result in true (empty)
  *
+ * @category Language
+ *
+ * First version: July 03, 2017
+ * Last updated : July 03, 2017
+ *
  * @export
  * @param {*} input
  * @returns {boolean}
  */
+
+import { isArrayLike } from './isArrayLike';
+import { typeOf } from './typeOf';
 
 export function isEmpty(input: any): boolean {
 

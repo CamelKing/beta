@@ -12,8 +12,8 @@
  * @returns {number}
  */
 
-import { toInteger } from '../src/toInteger';
-import { clamp } from '../src/clamp';
+import { toInteger } from './toInteger';
+import { clamp } from './clamp';
 import { MAX_ARRAY_LENGTH } from './constant';
 
 export function toLength(input: string | number): number {

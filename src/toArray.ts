@@ -16,8 +16,8 @@
  * @returns {any[]}
  */
 
-import { isArrayLike } from '../src/isArrayLike';
-import { typeOf } from '../src/typeOf';
+import { isArrayLike } from './isArrayLike';
+import { typeOf } from './typeOf';
 
 export function toArray(input: any): any[] {
 

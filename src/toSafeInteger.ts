@@ -12,9 +12,9 @@
  * @returns {number}
  */
 
-import { toInteger } from '../src/toInteger';
-import { clamp } from '../src/clamp';
+import { toInteger } from './toInteger';
+import { clamp } from './clamp';
 
 export function toSafeInteger(input: string | number): number {
-    return clamp(toInteger(input), Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
+  return clamp(toInteger(input), Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
 }

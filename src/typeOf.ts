@@ -20,8 +20,7 @@
  * @returns {(string | boolean)}
  */
 
-import { FnPredicate, objToString } from '../src/constant';
-import { toInteger } from '../src/toInteger';
+import { FnPredicate, objToString } from './constant';
 
 export function typeOf(input: any): string;
 export function typeOf(input: any, check: string): boolean;

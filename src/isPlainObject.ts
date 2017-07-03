@@ -13,9 +13,9 @@
  * @returns {boolean}
  */
 
-import { funcToString } from '../src/constant';
-import { isObjectLike } from '../src/isObjectLike';
-import { typeOf } from '../src/typeOf';
+import { funcToString } from './constant';
+import { isObjectLike } from './isObjectLike';
+import { typeOf } from './typeOf';
 
 export function isPlainObject(input: any): boolean {
 

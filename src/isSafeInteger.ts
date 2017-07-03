@@ -18,7 +18,7 @@
  * @returns {boolean}
  */
 
-import { isInteger } from '../src/isInteger';
+import { isInteger } from './isInteger';
 
 export function isSafeInteger(input: any): boolean {
   return isInteger(input)
