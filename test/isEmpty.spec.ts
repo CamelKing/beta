@@ -217,6 +217,80 @@ describe(`isEmpty() - @category Language`, () => {
 
     });
 
+    class TestObj {
+      constructor() {
+        return this;
+      }
+    }
+
+    class NewObj extends TestObj {
+      constructor() {
+        super();
+        return this;
+      }
+    }
+
+    it(`Empty Class Object => true`, () => {
+
+      const orig: any = new TestObj;
+      const input: any = orig;
+      const output: any = isEmpty(input);
+      input.should.be.deep.equal(orig);
+      output.should.not.be.equal(input);
+      output.should.deep.equal(true);
+
+    });
+
+    it(`Non-Empty Class Object => false`, () => {
+
+      const orig: any = new TestObj;
+      orig.a = 1;
+      const input: any = orig;
+      const output: any = isEmpty(input);
+      input.should.be.deep.equal(orig);
+      output.should.not.be.equal(input);
+      output.should.deep.equal(false);
+
+    });
+
+    it(`Empty Extended Class Object => true`, () => {
+
+      const orig: any = new NewObj;
+      const input: any = orig;
+      const output: any = isEmpty(input);
+      input.should.be.deep.equal(orig);
+      output.should.not.be.equal(input);
+      output.should.deep.equal(true);
+
+    });
+
+    it(`Empty Extended Class Object => true`, () => {
+
+      const orig0: any = new NewObj;
+      orig0.a = 1;
+      const orig: any = Object.create(orig0);
+      const input: any = orig;
+      const output: any = isEmpty(input);
+      input.should.be.deep.equal(orig);
+      output.should.not.be.equal(input);
+      output.should.deep.equal(true);
+
+    });
+
+    it(`Nob-Empty Extended Class Object => false`, () => {
+
+      const orig0: any = new NewObj;
+      orig0.a = 1;
+      const orig: any = Object.create(orig0);
+      orig.b = 1;
+      const input: any = orig;
+      const output: any = isEmpty(input);
+      input.should.be.deep.equal(orig);
+      output.should.not.be.equal(input);
+      output.should.deep.equal(false);
+
+    });
+
   });
 
 });

@@ -23,35 +23,39 @@ import { typeOf } from './typeOf';
 
 export function isEmpty(input: any): boolean {
 
-  // null and undefined => true
   if (input == null) return true;
 
   const type: string = typeOf(input);
 
   if (isArrayLike(input)
-    && (type.search(/(float(32|64)|(int|uint)(8|16|32)|uint8clamped|string|array|buffer|arguments)/) !== -1
-      || typeOf(input.slice) === 'function')) {
-
+    && (type.search(/(float(32|64)|(int|uint)(8|16|32)|uint8clamped|string|array|buffer|arguments)/) !== -1)) {
     // for array like data, check if the length is zero
     return !input.length;
-
   }
 
   if (type.search(/(map|set)/) !== -1) {
-
     // for map and set, check if size is zero
     return !input.size;
-
   }
 
-  for (const key in input) {
-    if (input.hasOwnProperty(key) && key !== 'constructor') {
-      // for object, check the property chain (constructor does not count)
-      return false;
-    }
-  }
+  // for (const key in input) {
+  //   if (input.hasOwnProperty(key) && key !== 'constructor') {
+  //     // for object, check the property chain (constructor does not count)
+  //     return false;
+  //   }
+  // }
+
+  // try {
+
+  const keys: string[]
+    = Object.keys(input).filter((key: string) => key !== 'constructor');
+
+  return !keys.length;
+
+  // tslint:disable-next-line:no-empty
+  // } catch (e) { }
 
   // anything else will result in true (empty)
-  return true;
+  // return true;
 
 }
