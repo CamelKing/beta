@@ -275,6 +275,22 @@ describe(`clamp() - @category Math`, () => {
 
   });
 
+  describe(`should return NaN is that was passed in`, () => {
+
+    it(`(NaN, -Infinity, Infinity) => NaN`, () => {
+
+      const orig: number = NaN;
+      const input: number = orig;
+      const output: number = clamp(input, -Infinity, Infinity);
+      input.should.not.equal(input);
+      orig.should.not.equal(orig);
+      output.should.not.equal(output);
+
+    });
+
+
+  });
+
   describe(`.min() should clamp the low/floor boundary`, () => {
 
     it(`.min(150, 200) => 200`, () => {
