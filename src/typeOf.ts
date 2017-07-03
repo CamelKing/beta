@@ -125,4 +125,22 @@ export namespace typeOf {
   export const isUndefined: FnPredicate
     = (i: any) => typeOf(i, 'undefined');
 
+  export const isArguments: FnPredicate
+    = (i: any) => typeOf(i, 'arguments');
+
+  export const isAsyncFunction: FnPredicate
+    = (i: any) => typeOf(i, 'asyncfunction');
+
+  export const isGeneratorFunction: FnPredicate
+    = (i: any) => typeOf(i, 'generatorfunction');
+
+  export const isDomException: FnPredicate
+    = (i: any) => typeOf(i, 'domexception');
+
+  export const isProxy: FnPredicate
+    = (i: any) => typeOf(i, 'proxy');
+
+  export const isDateView: FnPredicate
+    = (i: any) => typeOf(i, 'dataview');
+
 }

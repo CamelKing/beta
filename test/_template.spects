@@ -9,12 +9,11 @@ describe(`__function__() - @category __category__`, () => {
 
     it(`__the_test_description_here`, () => {
 
-      const orig: number[] = __original__input__;
-      const input: number[] = orig.slice(0);
-      const output: number[] = __function__(input);
+      const orig: any = __original__input__;
+      const input: any = orig;
+      const output: any = __function__(input);
       input.should.be.deep.equal(orig);
       output.should.not.be.equal(input);
-      output.should.have.lengthOf(1);
       output.should.deep.equal(__expected__output__);
 
     });

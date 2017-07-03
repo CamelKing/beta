@@ -7,6 +7,43 @@ should();
 
 describe(`typeOf() - @category Language`, () => {
 
+  describe(`.isArguments() should determine an Arguments object correctly`, () => {
+
+    it(`function arguments => true`, () => {
+
+      const orig: any = () => arguments;
+      const input: any = orig;
+      const output: boolean = typeOf.isArguments(input());
+      input.should.be.deep.equal(orig);
+      output.should.not.be.equal(input);
+      output.should.deep.equal(true);
+
+    });
+
+    it(`{a:1} => false`, () => {
+
+      const orig: any = { a: 1 };
+      const input: any = orig;
+      const output: boolean = typeOf.isArguments(input);
+      input.should.be.deep.equal(orig);
+      output.should.not.be.equal(input);
+      output.should.deep.equal(false);
+
+    });
+
+    it(`[1,2,3] => false`, () => {
+
+      const orig: any = [1, 2, 3];
+      const input: any = orig.slice(0);
+      const output: boolean = typeOf.isArguments(input);
+      input.should.be.deep.equal(orig);
+      output.should.not.be.equal(input);
+      output.should.deep.equal(false);
+
+    });
+
+  });
+
   describe(`.is<data type> should check the types correctly`, () => {
 
     it(`.isFloat64Array(new Float64Array()) => true`, () => {
