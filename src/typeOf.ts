@@ -20,16 +20,20 @@
  * @returns {(string | boolean)}
  */
 
-import { FnPredicate } from './constant';
-import { toInteger } from './toInteger';
+import { FnPredicate, objToString } from '../src/constant';
+import { toInteger } from '../src/toInteger';
 
 export function typeOf(input: any): string;
 export function typeOf(input: any, check: string): boolean;
 export function typeOf(input: any, check?: string): string | boolean {
 
+  // const type: string = input !== input ? 'nan'
+  //   : Buffer.isBuffer(input) ? 'buffer'
+  //     : ({}).toString.call(input).match(/\s([a-zA-Z0-9]+)/)[1].toLowerCase();
+
   const type: string = input !== input ? 'nan'
     : Buffer.isBuffer(input) ? 'buffer'
-      : ({}).toString.call(input).match(/\s([a-zA-Z0-9]+)/)[1].toLowerCase();
+      : objToString.call(input).match(/\s([a-zA-Z0-9]+)/)[1].toLowerCase();
 
   return !check ? type : type === check;
 
