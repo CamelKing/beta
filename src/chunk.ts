@@ -6,7 +6,7 @@
  * @category Array
  *
  * First version: June 21, 2017
- * Last updated : June 21, 2017
+ * Last updated : July 07, 2017
  *
  * @export
  * @template T
@@ -23,9 +23,10 @@ export function chunk<T>(input: T[], chunkSize: number = 1, whole: boolean = fal
 
   const output: T[][] = Array(chunkCount);
 
+  let pos: number = 0;
+
   for (let i: number = 0; i < chunkCount; i++) {
-    const start: number = i * chunkSize;
-    output[i] = input.slice(start, start + chunkSize);
+    output[i] = input.slice(pos, pos += chunkSize);
   }
 
   if (whole) output[chunkCount - 1].length = chunkSize;
