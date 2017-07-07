@@ -5,7 +5,7 @@
  * @category Array
  *
  * First version: June 21, 2017
- * Last updated : June 21, 2017
+ * Last updated : July 07, 2017
  *
  * @export
  * @template T
@@ -14,9 +14,5 @@
  */
 
 export function compact<T>(input: T[]): T[] {
-  const output: T[] = [];
-  if (input != null) {
-    input.forEach((item: T) => { if (item) output.push(item); });
-  }
-  return output;
+  return input == null ? [] : input.filter((item: any) => item || false);
 }
