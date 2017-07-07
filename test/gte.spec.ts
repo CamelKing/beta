@@ -5,7 +5,7 @@ should();
 
 describe(`gte() - @category Language`, () => {
 
-  describe(`should perform GTE comparison on numeric values`, () => {
+  describe(`should return true if a >= b (number)`, () => {
 
     it(`(3,1) => true`, () => {
       gte(3, 1).should.equal(true);
@@ -25,7 +25,7 @@ describe(`gte() - @category Language`, () => {
 
   });
 
-  describe(`should perform GTE comparison on numerical strings`, () => {
+  describe(`should return true if a >= b (numerical strings)`, () => {
 
     it(`('3','1') => true`, () => {
       gte('3', '1').should.equal(true);
@@ -45,7 +45,7 @@ describe(`gte() - @category Language`, () => {
 
   });
 
-  describe(`should perform GTE comparison on strings on alphabetical order`, () => {
+  describe(`should return true if a >= b (string - alphabetical order)`, () => {
 
     it(`('z','a') => true`, () => {
       gte('z', 'a').should.equal(true);
@@ -63,6 +63,10 @@ describe(`gte() - @category Language`, () => {
       gte('a', 'A').should.equal(true);
     });
 
+    it(`('a','a') => true`, () => {
+      gte('a', 'a').should.equal(true);
+    });
+
     it(`('a',' ') => true`, () => {
       gte('a', ' ').should.equal(true);
     });
@@ -73,7 +77,7 @@ describe(`gte() - @category Language`, () => {
 
   });
 
-  describe(`should perform GTE comparison on mix number/strings`, () => {
+  describe(`should return true if a >= b (mix number/strings)`, () => {
 
     it(`(3,'1') => true`, () => {
       gte(3, '1').should.equal(true);
@@ -93,6 +97,18 @@ describe(`gte() - @category Language`, () => {
 
   });
 
+  describe(`should return false for different types`, () => {
+
+    it(`(3,'hello') => false`, () => {
+      gte(3, 'hello').should.equal(false);
+    });
+
+    it(`('hello',3) => false`, () => {
+      gte('hello', 3).should.equal(false);
+    });
+
+  });
+
   describe(`should always treat null input as 0`, () => {
 
     it(`(null,3) => false`, () => {
@@ -103,9 +119,13 @@ describe(`gte() - @category Language`, () => {
       gte(3, null).should.equal(true);
     });
 
+    it(`(null,null) => true`, () => {
+      gte(null, null).should.equal(true);
+    });
+
   });
 
-  describe(`should always treat undefined input as not comparable`, () => {
+  describe(`should return false when one/both is undefined/NaN`, () => {
 
     it(`(undefined,3) => false`, () => {
       gte(undefined, 3).should.equal(false);
@@ -115,16 +135,20 @@ describe(`gte() - @category Language`, () => {
       gte(3, undefined).should.equal(false);
     });
 
-  });
-
-  describe(`should always return false on invalid input`, () => {
-
-    it(`(3,'hello') => false`, () => {
-      gte(3, 'hello').should.equal(false);
+    it(`(undefined,undefined) => false`, () => {
+      gte(undefined, undefined).should.equal(false);
     });
 
-    it(`('hello',3) => false`, () => {
-      gte('hello', 3).should.equal(false);
+    it(`(NaN,3) => false`, () => {
+      gte(NaN, 3).should.equal(false);
+    });
+
+    it(`(3,NaN) => false`, () => {
+      gte(3, NaN).should.equal(false);
+    });
+
+    it(`(NaN,NaN) => false`, () => {
+      gte(NaN, NaN).should.equal(false);
     });
 
   });
