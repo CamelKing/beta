@@ -117,7 +117,7 @@ describe(`isEqual() - @category Language`, () => {
 
     });
 
-    it(`(1,1.0) => false`, () => {
+    it(`(1,1.2) => false`, () => {
 
       const orig1: any = 1;
       const orig2: any = 1.2;
@@ -220,7 +220,143 @@ describe(`isEqual() - @category Language`, () => {
 
   });
 
-  describe(`should be able to handle comparing null/undefined/NaN`, () => {
+  describe(`should compare objectified primitives`, () => {
+
+    it(`(Object(1),Object(1) => true`, () => {
+
+      const orig1: any = Object(1);
+      const orig2: any = Object(1);
+      const input1: any = Object(orig1);
+      const input2: any = Object(orig2);
+      const output: boolean = isEqual(input1, input2);
+      input1.valueOf().should.be.equal(orig1.valueOf());
+      input2.valueOf().should.be.equal(orig2.valueOf());
+      output.should.not.be.equal(input1);
+      output.should.not.be.equal(input2);
+      output.should.deep.equal(true);
+
+    });
+
+    it(`(Object(1),Object(1.0)) => true`, () => {
+
+      const orig1: any = Object(1);
+      const orig2: any = Object(1.0);
+      const input2: any = Object(orig2);
+      const input1: any = Object(orig1);
+      const output: boolean = isEqual(input1, input2);
+      input1.valueOf().should.be.equal(orig1.valueOf());
+      input2.valueOf().should.be.equal(orig2.valueOf());
+      output.should.not.be.equal(input1);
+      output.should.not.be.equal(input2);
+      output.should.deep.equal(true);
+
+    });
+
+
+    it(`(Object(1),Object(1.2)) => false`, () => {
+
+      const orig1: any = Object(1);
+      const orig2: any = Object(1.2);
+      const input1: any = Object(orig1);
+      const input2: any = Object(orig2);
+      const output: boolean = isEqual(input1, input2);
+      input1.valueOf().should.be.equal(orig1.valueOf());
+      input2.valueOf().should.be.equal(orig2.valueOf());
+      output.should.not.be.equal(input1);
+      output.should.not.be.equal(input2);
+      output.should.deep.equal(false);
+
+    });
+
+    it(`(Object(1),Object(2) => false`, () => {
+
+      const orig1: any = Object(1);
+      const orig2: any = Object(2);
+      const input1: any = Object(orig1);
+      const input2: any = Object(orig2);
+      const output: boolean = isEqual(input1, input2);
+      input1.valueOf().should.be.equal(orig1.valueOf());
+      input2.valueOf().should.be.equal(orig2.valueOf());
+      output.should.not.be.equal(input1);
+      output.should.not.be.equal(input2);
+      output.should.deep.equal(false);
+
+    });
+
+    it(`(Object('hello'),Object('hello')) => true`, () => {
+
+      const orig1: any = Object('hello');
+      const orig2: any = Object('hello');
+      const input1: any = Object(orig1);
+      const input2: any = Object(orig2);
+      const output: boolean = isEqual(input1, input2);
+      input1.valueOf().should.be.equal(orig1.valueOf());
+      input2.valueOf().should.be.equal(orig2.valueOf());
+      output.should.not.be.equal(input1);
+      output.should.not.be.equal(input2);
+      output.should.deep.equal(true);
+
+    });
+
+    it(`(Object('hello'),Object('HELLO')) => false`, () => {
+
+      const orig1: any = Object('hello');
+      const orig2: any = Object('HELLO');
+      const input1: any = Object(orig1);
+      const input2: any = Object(orig2);
+      const output: boolean = isEqual(input1, input2);
+      input1.valueOf().should.be.equal(orig1.valueOf());
+      input2.valueOf().should.be.equal(orig2.valueOf());
+      output.should.not.be.equal(input1);
+      output.should.not.be.equal(input2);
+      output.should.deep.equal(false);
+
+    });
+
+    it(`(Object('hello'),Object('')) => false`, () => {
+
+      const orig1: any = Object('hello');
+      const orig2: any = Object('');
+      const input1: any = Object(orig1);
+      const input2: any = Object(orig2);
+      const output: boolean = isEqual(input1, input2);
+      input1.valueOf().should.be.equal(orig1.valueOf());
+      input2.valueOf().should.be.equal(orig2.valueOf());
+      output.should.not.be.equal(input1);
+      output.should.not.be.equal(input2);
+      output.should.deep.equal(false);
+
+    });
+
+    it(`(Object(true),Object(true)) => true`, () => {
+
+      const orig1: any = Object(true);
+      const orig2: any = Object(true);
+      const input1: any = Object(orig1);
+      const input2: any = Object(orig2);
+      const output: boolean = isEqual(input1, input2);
+      input1.valueOf().should.be.equal(orig1.valueOf());
+      input2.valueOf().should.be.equal(orig2.valueOf());
+      output.should.deep.equal(true);
+
+    });
+
+    it(`(Object(true),Object(false)) => false`, () => {
+
+      const orig1: any = Object(true);
+      const orig2: any = Object(false);
+      const input1: any = Object(orig1);
+      const input2: any = Object(orig2);
+      const output: boolean = isEqual(input1, input2);
+      input1.valueOf().should.be.equal(orig1.valueOf());
+      input2.valueOf().should.be.equal(orig2.valueOf());
+      output.should.deep.equal(false);
+
+    });
+
+  });
+
+  describe(`should be able to handle null/undefined/NaN`, () => {
 
     it(`NaN 1 => false`, () => {
 
@@ -297,7 +433,7 @@ describe(`isEqual() - @category Language`, () => {
 
   });
 
-  describe(`should compare if 2 sets has the same items`, () => {
+  describe(`should compare 2 sets`, () => {
 
     it(`{1,2,3} {1,2,3} => true`, () => {
 
@@ -385,53 +521,7 @@ describe(`isEqual() - @category Language`, () => {
 
   });
 
-  describe(`should be able to handle comparing null/undefined arrays`, () => {
-
-    it(`null null => true`, () => {
-
-      const orig1: any = null;
-      const input1: any = orig1;
-      const orig2: any = null;
-      const input2: any = orig2;
-      const output: any = isEqual(input1, input2);
-      should().equal(input1, orig1);
-      should().equal(input2, orig2);
-      output.should.not.be.equal(input1);
-      output.should.deep.equal(true);
-
-    });
-
-    it(`undefined undefined => true`, () => {
-
-      const orig1: any = undefined;
-      const input1: any = orig1;
-      const orig2: any = undefined;
-      const input2: any = orig2;
-      const output: any = isEqual(input1, input2);
-      should().equal(input1, orig1);
-      should().equal(input2, orig2);
-      output.should.not.be.equal(input1);
-      output.should.deep.equal(true);
-
-    });
-
-    it(`null undefined => false`, () => {
-
-      const orig1: any = null;
-      const input1: any = orig1;
-      const orig2: any = undefined;
-      const input2: any = orig2;
-      const output: any = isEqual(input1, input2);
-      should().equal(input1, orig1);
-      should().equal(input2, orig2);
-      output.should.not.be.equal(input1);
-      output.should.deep.equal(false);
-
-    });
-
-  });
-
-  describe(`should compare if 2 arrays has the same items`, () => {
+  describe(`should compare 2 arrays`, () => {
 
     it(`[1,2,3] [1,2,3] => true`, () => {
 
@@ -519,7 +609,86 @@ describe(`isEqual() - @category Language`, () => {
 
   });
 
-  describe(`should compare if 2 objects has the same properties`, () => {
+  describe(`should compare nested arrays`, () => {
+
+    it(`[1,[2,3]] [1,[2,3]] => true`, () => {
+
+      const orig1: any = [1, [2, 3]];
+      const input1: any = orig1.slice(0);
+      const orig2: any = [1, [2, 3]];
+      const input2: any = orig2.slice(0);
+      const output: any = isEqual(input1, input2);
+      input1.should.be.deep.equal(orig1);
+      input2.should.be.deep.equal(orig2);
+      output.should.not.be.equal(input1);
+      output.should.deep.equal(true);
+
+    });
+
+    it(`[1,[2,3]] [1,[2,4]] => false`, () => {
+
+      const orig1: any = [1, [2, 3]];
+      const input1: any = orig1.slice(0);
+      const orig2: any = [1, [2, 4]];
+      const input2: any = orig2.slice(0);
+      const output: any = isEqual(input1, input2);
+      input1.should.be.deep.equal(orig1);
+      input2.should.be.deep.equal(orig2);
+      output.should.not.be.equal(input1);
+      output.should.deep.equal(false);
+
+    });
+
+
+  });
+
+  describe(`should be able to handle comparing null/undefined arrays`, () => {
+
+    it(`null null => true`, () => {
+
+      const orig1: any = null;
+      const input1: any = orig1;
+      const orig2: any = null;
+      const input2: any = orig2;
+      const output: any = isEqual(input1, input2);
+      should().equal(input1, orig1);
+      should().equal(input2, orig2);
+      output.should.not.be.equal(input1);
+      output.should.deep.equal(true);
+
+    });
+
+    it(`undefined undefined => true`, () => {
+
+      const orig1: any = undefined;
+      const input1: any = orig1;
+      const orig2: any = undefined;
+      const input2: any = orig2;
+      const output: any = isEqual(input1, input2);
+      should().equal(input1, orig1);
+      should().equal(input2, orig2);
+      output.should.not.be.equal(input1);
+      output.should.deep.equal(true);
+
+    });
+
+    it(`null undefined => false`, () => {
+
+      const orig1: any = null;
+      const input1: any = orig1;
+      const orig2: any = undefined;
+      const input2: any = orig2;
+      const output: any = isEqual(input1, input2);
+      should().equal(input1, orig1);
+      should().equal(input2, orig2);
+      output.should.not.be.equal(input1);
+      output.should.deep.equal(false);
+
+    });
+
+  });
+
+  describe(`should compare 2 objects`, () => {
 
     it(`{} {} => true`, () => {
 
@@ -563,6 +732,20 @@ describe(`isEqual() - @category Language`, () => {
 
     });
 
+    it(`{a:1, c:3} {a:1, b:2} => false`, () => {
+
+      const orig1: any = { a: 1, c: 3 };
+      const input1: any = Object.assign({}, orig1);
+      const orig2: any = { a: 1, b: 2 };
+      const input2: any = Object.assign({}, orig2);
+      const output: any = isEqual(input1, input2);
+      input1.should.be.deep.equal(orig1);
+      input2.should.be.deep.equal(orig2);
+      output.should.not.be.equal(input1);
+      output.should.deep.equal(false);
+
+    });
+
     it(`{a:1, b:2, c:3} {a:1, b:2} => false`, () => {
 
       const orig1: any = { a: 1, b: 2, c: 3 };
@@ -579,40 +762,7 @@ describe(`isEqual() - @category Language`, () => {
 
   });
 
-  describe(`should compare if nested arrays`, () => {
-
-    it(`[1,[2,3]] [1,[2,3]] => true`, () => {
-
-      const orig1: any = [1, [2, 3]];
-      const input1: any = orig1.slice(0);
-      const orig2: any = [1, [2, 3]];
-      const input2: any = orig2.slice(0);
-      const output: any = isEqual(input1, input2);
-      input1.should.be.deep.equal(orig1);
-      input2.should.be.deep.equal(orig2);
-      output.should.not.be.equal(input1);
-      output.should.deep.equal(true);
-
-    });
-
-    it(`[1,[2,3]] [1,[2,4]] => false`, () => {
-
-      const orig1: any = [1, [2, 3]];
-      const input1: any = orig1.slice(0);
-      const orig2: any = [1, [2, 4]];
-      const input2: any = orig2.slice(0);
-      const output: any = isEqual(input1, input2);
-      input1.should.be.deep.equal(orig1);
-      input2.should.be.deep.equal(orig2);
-      output.should.not.be.equal(input1);
-      output.should.deep.equal(false);
-
-    });
-
-
-  });
-
-  describe(`should compare date objects accordingly`, () => {
+  describe(`should compare date objects`, () => {
 
     it(`date() date() => true`, () => {
 
@@ -647,7 +797,7 @@ describe(`isEqual() - @category Language`, () => {
 
   });
 
-  describe(`should compare symbols accordingly`, () => {
+  describe(`should compare symbols`, () => {
 
     it(`symbol() symbol() => true`, () => {
 
@@ -682,7 +832,7 @@ describe(`isEqual() - @category Language`, () => {
 
   });
 
-  describe(`should return false for functions`, () => {
+  describe(`should return false for functions objects`, () => {
 
     it(`fn1() fn1() => true`, () => {
 

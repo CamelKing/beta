@@ -68,6 +68,7 @@ export function isEqual(inputA: any, inputB: any): boolean {
   // check if .valueOf() method exist, user defined objects may not have this
   const valA: any = inputA.valueOf ? inputA.valueOf() : undefined;
   const valB: any = inputB.valueOf ? inputB.valueOf() : undefined;
+
   if (['string', 'number', 'boolean', 'symbol', 'date'].includes(typeOf(inputA))
     && valA !== valB) return false;
 
