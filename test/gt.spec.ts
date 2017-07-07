@@ -5,7 +5,7 @@ should();
 
 describe(`gt() - @category Language`, () => {
 
-  describe(`should perform Greater Than comparison on numeric values`, () => {
+  describe(`should return true if a > b (number)`, () => {
 
     it(`(3,1) => true`, () => {
       gt(3, 1).should.equal(true);
@@ -25,7 +25,7 @@ describe(`gt() - @category Language`, () => {
 
   });
 
-  describe(`should perform Greater Than comparison on numerical strings`, () => {
+  describe(`should return true if a > b (numerical strings)`, () => {
 
     it(`('3','1') => true`, () => {
       gt('3', '1').should.equal(true);
@@ -46,7 +46,7 @@ describe(`gt() - @category Language`, () => {
 
   });
 
-  describe(`should perform Greater Than comparison on strings on alphabetical order`, () => {
+  describe(`should return true if a > b (string - alphabetical order)`, () => {
 
     it(`('z','a') => true`, () => {
       gt('z', 'a').should.equal(true);
@@ -60,6 +60,10 @@ describe(`gt() - @category Language`, () => {
       gt('a', 'A').should.equal(true);
     });
 
+    it(`('a','a') => false`, () => {
+      gt('a', 'a').should.equal(false);
+    });
+
     it(`('a',' ') => true`, () => {
       gt('a', ' ').should.equal(true);
     });
@@ -70,7 +74,7 @@ describe(`gt() - @category Language`, () => {
 
   });
 
-  describe(`should perform Greater Than comparison on mix number/strings`, () => {
+  describe(`should return true if a > b (mix number/strings)`, () => {
 
     it(`(3,'1') => true`, () => {
       gt(3, '1').should.equal(true);
@@ -90,7 +94,7 @@ describe(`gt() - @category Language`, () => {
 
   });
 
-  describe(`should always return false on invalid input`, () => {
+  describe(`should return false for different types`, () => {
 
     it(`(3,'hello') => false`, () => {
       gt(3, 'hello').should.equal(false);
@@ -112,9 +116,13 @@ describe(`gt() - @category Language`, () => {
       gt(3, null).should.equal(true);
     });
 
+    it(`(null,null) => false`, () => {
+      gt(null, null).should.equal(false);
+    });
+
   });
 
-  describe(`should always treat undefined input as not comparable`, () => {
+  describe(`should return false when one/both is undefined/NaN`, () => {
 
     it(`(undefined,3) => false`, () => {
       gt(undefined, 3).should.equal(false);
@@ -122,6 +130,22 @@ describe(`gt() - @category Language`, () => {
 
     it(`(3,undefined) => false`, () => {
       gt(3, undefined).should.equal(false);
+    });
+
+    it(`(undefined,undefined) => false`, () => {
+      gt(undefined, undefined).should.equal(false);
+    });
+
+    it(`(NaN,3) => false`, () => {
+      gt(NaN, 3).should.equal(false);
+    });
+
+    it(`(3,NaN) => false`, () => {
+      gt(3, NaN).should.equal(false);
+    });
+
+    it(`(NaN,NaN) => false`, () => {
+      gt(NaN, NaN).should.equal(false);
     });
 
   });
