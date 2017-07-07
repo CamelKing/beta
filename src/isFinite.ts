@@ -4,7 +4,7 @@
  * @category Language
  *
  * First version: June 25, 2017
- * Last updated : July 01, 2017
+ * Last updated : July 05, 2017
  *
  * @export
  * @param {*} input
@@ -13,7 +13,7 @@
 
 import { typeOf } from './typeOf';
 
-export function isFinite(input: any): boolean {
+export function isFinite(input: number): boolean {
 
   return Number.isFinite(input);
 
