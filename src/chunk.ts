@@ -17,7 +17,7 @@
 
 // TODO: add in third parameter so this function can be called with an iteratee such as in the case of array.map()
 
-export function chunk<T>(input: T[], chunkSize: number = 1): T[][] {
+export function chunk<T>(input: T[], chunkSize: number = 1, whole: boolean = false): T[][] {
 
   const chunkCount: number = (input == null || chunkSize < 0) ? 0 : Math.ceil(input.length / chunkSize);
 
@@ -28,5 +28,8 @@ export function chunk<T>(input: T[], chunkSize: number = 1): T[][] {
     output[i] = input.slice(start, start + chunkSize);
   }
 
+  if (whole) output[chunkCount - 1].length = chunkSize;
+
   return output;
+
 }
