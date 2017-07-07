@@ -8,88 +8,66 @@ describe(`isArrayLike() - @category Language`, () => {
   describe(`should check for array-like object`, () => {
 
     it(`[1,2,3] => true`, () => {
+      isArrayLike([1, 2, 3]).should.deep.equal(true);
+    });
 
-      const orig: number[] = [1, 2, 3];
-      const input: number[] = orig.slice(0);
-      const output: boolean = isArrayLike(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+    it(`[] => true`, () => {
+      isArrayLike([]).should.deep.equal(true);
     });
 
     it(`'hello' => true`, () => {
-
-      const orig: string = 'hello';
-      const input: string = orig.slice(0);
-      const output: boolean = isArrayLike(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+      isArrayLike('hello').should.deep.equal(true);
+    });
+    it(`'' => true`, () => {
+      isArrayLike('').should.deep.equal(true);
     });
 
     it(`123 => false`, () => {
-
-      const orig: number = 123;
-      const input: number = orig;
-      const output: boolean = isArrayLike(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
+      isArrayLike(123).should.deep.equal(false);
     });
 
     it(`true => false`, () => {
-
-      const orig: boolean = true;
-      const input: boolean = true;
-      const output: boolean = isArrayLike(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
+      isArrayLike(true).should.deep.equal(false);
     });
 
     it(`f() => false`, () => {
+      const fn: () => number = () => 123;
+      isArrayLike(fn).should.deep.equal(false);
+    });
 
-      const fn: (a: number, b: number) => number
-        = (a: number, b: number) => (a + b);
-
-      const orig: (a: number, b: number) => number = fn;
-      const input: (a: number, b: number) => number = orig;
-      const output: boolean = isArrayLike(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
+    it(`new Set([1,2]) => false`, () => {
+      isArrayLike(new Set([1, 2])).should.deep.equal(false);
     });
 
   });
 
-  describe(`should handle invalid input`, () => {
+  describe(`should return false for null/undefined/NaN`, () => {
 
     it(`null => false`, () => {
-
-      const orig: number[] = null;
-      const input: number[] = orig;
-      const output: boolean = isArrayLike(input);
-      should().equal(input, orig);
-      output.should.deep.equal(false);
-
+      isArrayLike(null).should.deep.equal(false);
     });
 
     it(`undefine => false`, () => {
+      isArrayLike(undefined).should.deep.equal(false);
+    });
 
-      const orig: number[] = undefined;
-      const input: number[] = orig;
-      const output: boolean = isArrayLike(input);
-      should().equal(input, orig);
-      output.should.deep.equal(false);
-
+    it(`NaN => false`, () => {
+      isArrayLike(NaN).should.deep.equal(false);
     });
 
   });
 
+  describe(`should be functional and not mutating any input`, () => {
+
+    it(`[1,2,3] => true`, () => {
+
+      const orig: number[] = [1, 2, 3];
+      const input: number[] = orig.slice(0);
+      isArrayLike(input).should.equal(true);
+      input.should.be.deep.equal(orig);
+
+    });
+
+  });
 
 });
