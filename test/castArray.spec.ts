@@ -45,14 +45,6 @@ describe(`castArray() - @category Language`, () => {
 
   });
 
-  describe(`should return [] if no param passed`, () => {
-
-    it(`()=>[]`, () => {
-      castArray().should.deep.equal([]);
-    });
-
-  });
-
   describe(`should cast null and undefined into an array`, () => {
 
     it(`(null)=>[null]`, () => {

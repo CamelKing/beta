@@ -13,10 +13,8 @@
  * @returns {T[]}
  */
 
-export function castArray<T>(input?: T | T[], ...others: any[]): T[] {
+export function castArray<T>(input: T | T[], ...others: any[]): T[] {
 
-  return arguments.length === 0 ? []
-    : Array.isArray(input) ? [...input, ...others]
-      : [input, ...others];
+  return Array.isArray(input) ? [...input, ...others] : [input, ...others];
 
 }
