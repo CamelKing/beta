@@ -5,7 +5,7 @@ should();
 
 describe(`isFinite() - @category Language`, () => {
 
-  describe(`.isFinite() should check for finite number`, () => {
+  describe(`should return true if number is finite`, () => {
 
     it(`3 => true`, () => {
       isFinite(3).should.equal(true);
@@ -23,9 +23,17 @@ describe(`isFinite() - @category Language`, () => {
       isFinite(-Infinity).should.equal(false);
     });
 
-    it(`'3' => false`, () => {
-      isFinite('3').should.equal(false);
+  });
+
+  describe(`should return true for date.getTime()`, () => {
+
+    it(`new Date().getTime() => true`, () => {
+      isFinite(new Date().getTime()).should.equal(true);
     });
+
+  });
+
+  describe(`should return false for null/undefined/NaN`, () => {
 
     it(`null => false`, () => {
       isFinite(null).should.equal(false);
@@ -37,6 +45,19 @@ describe(`isFinite() - @category Language`, () => {
 
     it(`undefined => false`, () => {
       isFinite(undefined).should.equal(false);
+    });
+
+  });
+
+  describe(`should be functional and not mutating any input`, () => {
+
+    it(`123 => true`, () => {
+
+      const orig: any = 123;
+      const input: any = orig;
+      isFinite(input).should.equal(true);
+      input.should.be.deep.equal(orig);
+
     });
 
   });
