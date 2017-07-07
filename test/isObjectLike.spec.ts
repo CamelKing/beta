@@ -5,127 +5,70 @@ should();
 
 describe(`isObjectLike() - @category Language`, () => {
 
-  describe(`should determine if a paramter is object-like`, () => {
+  describe(`should return true for object-like values`, () => {
 
     it(`{} => true`, () => {
-
-      const orig: any = {};
-      const input: any = orig;
-      const output: boolean = isObjectLike(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+      isObjectLike({}).should.equal(true);
     });
+
+    it(`{a:1} => true`, () => {
+      isObjectLike({ a: 1 }).should.equal(true);
+    });
+
+    it(`[1,2,3] => true`, () => {
+      isObjectLike([1, 2, 3]).should.equal(true);
+    });
+
+    it(`new Date() => true`, () => {
+      isObjectLike(new Date()).should.equal(true);
+    });
+
+  });
+
+  describe(`should return false for non object-like values`, () => {
+
+    it(`Date.now() => false`, () => {
+      isObjectLike(Date.now()).should.equal(false);
+    });
+
+    it(`123 => false`, () => {
+      isObjectLike(123).should.equal(false);
+    });
+
+    it(`true => false`, () => {
+      isObjectLike(true).should.equal(false);
+    });
+
+    it(`'hello' => false`, () => {
+      isObjectLike('hello').should.equal(false);
+    });
+
+  });
+
+  describe(`should return false for null/undefined/NaN`, () => {
+
+    it(`null => false`, () => {
+      isObjectLike(null).should.equal(false);
+    });
+
+    it(`undefined => false`, () => {
+      isObjectLike(undefined).should.equal(false);
+    });
+
+    it(`NaN => false`, () => {
+      isObjectLike(NaN).should.equal(false);
+    });
+
+  });
+
+  describe(`should be functional and not mutating any input`, () => {
 
     it(`{a:1} => true`, () => {
 
       const orig: any = { a: 1 };
-      const input: any = orig;
-      const output: boolean = isObjectLike(input);
+      const input: any = Object(orig);
+      isObjectLike(input).should.equal(true);
       input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
-    });
-
-    it(`[1,2,3] => true`, () => {
-
-      const orig: any[] = [1, 2, 3];
-      const input: any[] = orig.slice(0);
-      const output: boolean = isObjectLike(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
-    });
-
-    it(`new Date => true`, () => {
-
-      const orig: any = new Date;
-      const input: any = orig;
-      const output: boolean = isObjectLike(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
-    });
-
-    it(`Date.now() => false`, () => {
-
-      const orig: any = Date.now();
-      const input: any = orig;
-      const output: boolean = isObjectLike(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
-    });
-
-    it(`123 => false`, () => {
-
-      const orig: any = 123;
-      const input: any = orig;
-      const output: boolean = isObjectLike(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
-    });
-
-    it(`NaN => false`, () => {
-
-      const orig: any = NaN;
-      const input: any = orig;
-      const output: boolean = isObjectLike(input);
-      input.should.not.equal(input);
-      orig.should.not.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
-    });
-
-    it(`true => false`, () => {
-
-      const orig: any = true;
-      const input: any = orig;
-      const output: boolean = isObjectLike(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
-    });
-
-    it(`'hello' => false`, () => {
-
-      const orig: any = 'hello';
-      const input: any = orig.slice(0);
-      const output: boolean = isObjectLike(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
-    });
-
-    it(`null => false`, () => {
-
-      const orig: any = null;
-      const input: any = orig;
-      const output: boolean = isObjectLike(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
-    });
-
-    it(`undefined => false`, () => {
-
-      const orig: any = undefined;
-      const input: any = orig;
-      const output: boolean = isObjectLike(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
 
     });
 
