@@ -5,112 +5,70 @@ should();
 
 describe(`isPlainObject() - @category Language`, () => {
 
-  describe(`should return false for null and undefined`, () => {
+  describe(`should return true for plain object`, () => {
 
-    it(`null => false`, () => {
-
-      const orig: any = null;
-      const input: any = orig;
-      const output: any = isPlainObject(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
+    it(`{} => true`, () => {
+      isPlainObject({}).should.equal(true);
     });
 
-    it(`undefined => false`, () => {
+    it(`{a:1} => true`, () => {
+      isPlainObject({ a: 1 }).should.equal(true);
+    });
 
-      const orig: any = undefined;
-      const input: any = orig;
-      const output: any = isPlainObject(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
+    it(`Object.create(null) => true`, () => {
+      isPlainObject(Object.create(null)).should.equal(true);
+    });
 
+    it(`Object(null) => true`, () => {
+      isPlainObject(Object(null)).should.equal(true);
     });
 
   });
 
-  describe(`should correctly detect plain object`, () => {
+  describe(`should return false for non plain object`, () => {
 
-    it(`{} => true`, () => {
-
-      const orig: any = {};
-      const input: any = orig;
-      const output: any = isPlainObject(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+    it(`()=>123 => false`, () => {
+      isPlainObject(() => 123).should.equal(false);
     });
+
+    it(`new Date() => false`, () => {
+      isPlainObject(new Date()).should.equal(false);
+    });
+
+    it(`[1,2,3] => false`, () => {
+      isPlainObject([1, 2, 3]).should.equal(false);
+    });
+
+  });
+
+  describe(`should return false for null and undefined`, () => {
+
+    it(`null => false`, () => {
+      isPlainObject(null).should.equal(false);
+    });
+
+    it(`undefined => false`, () => {
+      isPlainObject(undefined).should.equal(false);
+    });
+
+    it(`NaN => false`, () => {
+      isPlainObject(NaN).should.equal(false);
+    });
+
+  });
+
+  describe(`should be functional and not mutating any input`, () => {
 
     it(`{a:1} => true`, () => {
 
       const orig: any = { a: 1 };
-      const input: any = orig;
-      const output: any = isPlainObject(input);
+      const input: any = Object(orig);
+      isPlainObject(input).should.equal(true);
       input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
 
     });
-
-    it(`Object.create(null) => true`, () => {
-
-      const orig: any = Object.create(null);
-      const input: any = orig;
-      const output: any = isPlainObject(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
-    });
-
-    it(`Object(null) => true`, () => {
-
-      const orig: any = Object(null);
-      const input: any = orig;
-      const output: any = isPlainObject(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
-    });
-
-    it(`()=>123 => false`, () => {
-
-      const orig: any = () => 123;
-      const input: any = orig;
-      const output: any = isPlainObject(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
-    });
-
-    it(`new Date() => false`, () => {
-
-      const orig: any = new Date();
-      const input: any = orig;
-      const output: any = isPlainObject(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
-    });
-
-    it(`[1,2,3] => false`, () => {
-
-      const orig: any = [1, 2, 3];
-      const input: any = orig;
-      const output: any = isPlainObject(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
-    });
-
 
   });
+
 
 });
