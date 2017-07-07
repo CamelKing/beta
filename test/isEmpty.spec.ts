@@ -4,226 +4,107 @@ import { isEmpty } from '../src/isEmpty';
 should();
 
 describe(`isEmpty() - @category Language`, () => {
-
-  describe(`should return true if not a collection object`, () => {
-
-    it(`null => true`, () => {
-
-      const orig: any = null;
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
-    });
-
-    it(`undefined => true`, () => {
-
-      const orig: any = undefined;
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
-    });
+  describe(`should return true if number and boolean`, () => {
 
     it(`123 => true`, () => {
-
-      const orig: any = 123;
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+      isEmpty(123).should.deep.equal(true);
     });
 
     it(`false => true`, () => {
+      isEmpty(false).should.deep.equal(true);
+    });
 
-      const orig: any = false;
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+    it(`true => true`, () => {
+      isEmpty(false).should.deep.equal(true);
     });
 
   });
 
-  describe(`should determine if empty array like object`, () => {
+  describe(`should return true only if empty buffer`, () => {
 
     it(`new Buffer('hello') => false`, () => {
-
-      const orig: any = new Buffer('hello');
-      const input: any = orig.slice(0);
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
+      isEmpty(new Buffer('hello')).should.deep.equal(false);
     });
 
     it(`new Buffer('') => true`, () => {
-
-      const orig: any = new Buffer('');
-      const input: any = orig.slice(0);
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+      isEmpty(new Buffer('')).should.deep.equal(true);
     });
-
-    it(`new Uint16Array(2) => false`, () => {
-
-      const orig: any = new Uint16Array(2);
-      const input: any = orig.slice(0);
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
-    });
-
-    it(`new Uint16Array(0) => true`, () => {
-
-      const orig: any = new Uint16Array(0);
-      const input: any = orig.slice(0);
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
-    });
-
-
-    it(`'hello' => false`, () => {
-
-      const orig: any = 'hello';
-      const input: any = orig.slice(0);
-      const output: any = isEmpty(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
-    });
-
-    it(`'' => true`, () => {
-
-      const orig: any = '';
-      const input: any = orig.slice(0);
-      const output: any = isEmpty(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
-    });
-
-    it(`[1,2,3] => false`, () => {
-
-      const orig: any = [1, 2, 3];
-      const input: any = orig.slice(0);
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
-    });
-
-    it(`[] => true`, () => {
-
-      const orig: any = [];
-      const input: any = orig.slice(0);
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
-    });
-
 
   });
 
-  describe(`should determine if empty object/collection/map/set`, () => {
+  describe(`should return true only if empty typed array`, () => {
 
+    it(`new Uint16Array(2) => false`, () => {
+      isEmpty(new Uint16Array(2)).should.deep.equal(false);
+    });
+
+    it(`new Uint16Array(0) => true`, () => {
+      isEmpty(new Uint16Array(0)).should.deep.equal(true);
+    });
+
+  });
+
+  describe(`should return true only if empty string`, () => {
+
+    it(`'hello' => false`, () => {
+      isEmpty('hello').should.deep.equal(false);
+    });
+
+    it(`'' => true`, () => {
+      isEmpty('').should.deep.equal(true);
+    });
+
+  });
+
+  describe(`should return true only if empty array`, () => {
+
+    it(`[1,2,3] => false`, () => {
+      isEmpty([1, 2, 3]).should.deep.equal(false);
+    });
+
+    it(`[] => true`, () => {
+      isEmpty([]).should.deep.equal(true);
+    });
+
+  });
+
+  describe(`should return true only if empty object/map/set`, () => {
 
     it(`new Map([['a', 1]]) => false`, () => {
-
-      const orig: any = new Map([['a', 1]]);
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
+      isEmpty(new Map([['a', 1]])).should.deep.equal(false);
     });
 
     it(`new Map([]) => true`, () => {
-
-      const orig: any = new Map([]);
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+      isEmpty(new Map([])).should.equal(true);
     });
 
-
     it(`new Set([1, 2, 3]) => false`, () => {
-
-      const orig: any = new Set([1, 2, 3]);
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
+      isEmpty(new Set([1, 2, 3])).should.equal(false);
     });
 
     it(`new Set([]) => false`, () => {
-
-      const orig: any = new Set([]);
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+      isEmpty(new Set([])).should.equal(true);
     });
 
     it(`{a:1} => false`, () => {
-
-      const orig: any = { a: 1 };
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
+      isEmpty({ a: 1 }).should.equal(false);
     });
 
     it(`{} => true`, () => {
-
-      const orig: any = {};
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+      isEmpty({}).should.equal(true);
     });
 
-    class TestObj {
+  });
+
+  describe(`should return true only if empty custom/extended object`, () => {
+
+    class BaseClass {
       constructor() {
         return this;
       }
     }
 
-    class NewObj extends TestObj {
+    class ExtClass extends BaseClass {
       constructor() {
         super();
         return this;
@@ -231,63 +112,59 @@ describe(`isEmpty() - @category Language`, () => {
     }
 
     it(`Empty Class Object => true`, () => {
-
-      const orig: any = new TestObj;
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+      isEmpty(new BaseClass).should.equal(true);
     });
 
-    it(`Non-Empty Class Object => false`, () => {
-
-      const orig: any = new TestObj;
+    it(`Non-Empty Base Class Object => false`, () => {
+      const orig: any = new BaseClass;
       orig.a = 1;
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
+      isEmpty(Object(orig)).should.equal(false);
+    });
 
+    it(`Empty Base Class Object => true`, () => {
+      isEmpty(new BaseClass).should.equal(true);
     });
 
     it(`Empty Extended Class Object => true`, () => {
-
-      const orig: any = new NewObj;
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
-    });
-
-    it(`Empty Extended Class Object => true`, () => {
-
-      const orig0: any = new NewObj;
-      orig0.a = 1;
-      const orig: any = Object.create(orig0);
-      const input: any = orig;
-      const output: any = isEmpty(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+      isEmpty(new ExtClass).should.equal(true);
     });
 
     it(`Nob-Empty Extended Class Object => false`, () => {
 
-      const orig0: any = new NewObj;
+      const orig0: any = new ExtClass;
       orig0.a = 1;
-      const orig: any = Object.create(orig0);
-      orig.b = 1;
-      const input: any = orig;
-      const output: any = isEmpty(input);
+      const orig1: any = Object(orig0);
+      orig1.b = 1;
+      isEmpty(Object(orig1)).should.equal(false);
+
+    });
+
+  });
+
+  describe(`should return true for null/undefined/NaN`, () => {
+
+    it(`null => true`, () => {
+      isEmpty(null).should.deep.equal(true);
+    });
+
+    it(`undefined => true`, () => {
+      isEmpty(undefined).should.deep.equal(true);
+    });
+
+    it(`NaN => true`, () => {
+      isEmpty(NaN).should.deep.equal(true);
+    });
+
+  });
+
+  describe(`should be functional and not mutating any input`, () => {
+
+    it(`{} => true`, () => {
+
+      const orig: any = {};
+      const input: any = Object(orig);
+      isEmpty(input).should.equal(true);
       input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
 
     });
 
