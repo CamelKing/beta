@@ -11,7 +11,7 @@
  * @category Language
  *
  * First version: July 03, 2017
- * Last updated : July 03, 2017
+ * Last updated : July 07, 2017
  *
  * @export
  * @param {*} input
@@ -20,7 +20,7 @@
 
 import { isInteger } from './isInteger';
 
-export function isSafeInteger(input: any): boolean {
+export function isSafeInteger(input: number): boolean {
   return isInteger(input)
     && input >= Number.MIN_SAFE_INTEGER
     && input <= Number.MAX_SAFE_INTEGER;
