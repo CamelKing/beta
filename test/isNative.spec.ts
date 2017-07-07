@@ -8,26 +8,23 @@ describe(`isNative() - @category Language`, () => {
   describe(`should detect if a function is native JS or user code`, () => {
 
     it(`Math.abs => true`, () => {
-
-      const orig: any = Math.abs;
-      const input: any = orig;
-      const output: any = isNative(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(true);
-
+      isNative(Math.abs).should.equal(true);
     });
 
     it(`()=>123 => false`, () => {
+      isNative(() => 123).should.equal(false);
+    });
 
-      const f: () => number = () => 123;
-      const orig: any = f;
-      const input: any = orig;
-      const output: any = isNative(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
+  });
 
+  describe(`should return false for promise`, () => {
+
+    it(`Promise.resolve(123) => false`, () => {
+      isNative(Promise.resolve(123)).should.equal(false);
+    });
+
+    it(`Promise.resolve(Math.abs) => false`, () => {
+      isNative(Promise.resolve(Math.abs)).should.equal(false);
     });
 
   });
@@ -35,25 +32,11 @@ describe(`isNative() - @category Language`, () => {
   describe(`should return false for non functions`, () => {
 
     it(`123 => false`, () => {
-
-      const orig: any = 123;
-      const input: any = orig;
-      const output: any = isNative(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
+      isNative(123).should.equal(false);
     });
 
     it(`'hello' => false`, () => {
-
-      const orig: any = 'hello';
-      const input: any = orig;
-      const output: any = isNative(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
+      isNative('hello').should.equal(false);
     });
 
   });
@@ -61,27 +44,27 @@ describe(`isNative() - @category Language`, () => {
   describe(`should return false for null and undefined`, () => {
 
     it(`null => false`, () => {
-
-      const orig: any = null;
-      const input: any = orig;
-      const output: any = isNative(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
-
+      isNative(null).should.equal(false);
     });
 
     it(`undefined => false`, () => {
+      isNative(undefined).should.equal(false);
+    });
 
-      const orig: any = null;
+  });
+
+  describe(`should be functional and not mutating any input`, () => {
+
+    it(`Math.abs => true`, () => {
+
+      const orig: any = Math.abs;
       const input: any = orig;
-      const output: any = isNative(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(false);
+      isNative(input).should.equal(true);
+      input.should.be.deep.equal(orig);
 
     });
 
   });
+
 
 });
