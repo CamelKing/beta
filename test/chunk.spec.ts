@@ -32,6 +32,7 @@ describe('chunk() - @category Array', () => {
   describe(`should optionally make the chunk whole`, () => {
 
     it(`([1,2,3,4], 3) => [[1,2,3],[4, , ]]`, () => {
+      // tslint:disable-next-line:whitespace
       chunk([1, 2, 3, 4], 3, true).should.deep.equal([[1, 2, 3], [4, ,]]);
     });
 
