@@ -1,7 +1,11 @@
 /**
  * Perform a SameValueZero comparison between two values
- * to determine if they are equivalent. Return the result as 
+ * to determine if they are equivalent. Return the result as
  * true or false.
+ *
+ * Note: for references (object, string, array, etc),
+ * the reference is being used for comparison rather
+ * than the contents.
  *
  * @category Language
  *
