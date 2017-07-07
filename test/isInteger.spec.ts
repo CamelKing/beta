@@ -5,7 +5,7 @@ should();
 
 describe(`isInteger() - @category Language`, () => {
 
-  describe(`should check for integer number`, () => {
+  describe(`should return true if integer number`, () => {
 
     it(`3 => true`, () => {
       isInteger(3).should.equal(true);
@@ -23,9 +23,9 @@ describe(`isInteger() - @category Language`, () => {
       isInteger(-Infinity).should.equal(false);
     });
 
-    it(`'3' => false`, () => {
-      isInteger('3').should.equal(false);
-    });
+  });
+
+  describe(`should return false for null/undefined/NaN`, () => {
 
     it(`null => false`, () => {
       isInteger(null).should.equal(false);
@@ -37,6 +37,19 @@ describe(`isInteger() - @category Language`, () => {
 
     it(`undefined => false`, () => {
       isInteger(undefined).should.equal(false);
+    });
+
+  });
+
+  describe(`should be functional and not mutating any input`, () => {
+
+    it(`123 => true`, () => {
+
+      const orig: any = 123;
+      const input: any = orig;
+      isInteger(input).should.equal(true);
+      input.should.be.deep.equal(orig);
+
     });
 
   });
