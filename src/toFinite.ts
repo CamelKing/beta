@@ -15,7 +15,7 @@
 
 import { toNumber } from './toNumber';
 
-export function toFinite(input: any): number {
+export function toFinite(input: number | string | Date): number {
 
   if (!input) return 0;
 
