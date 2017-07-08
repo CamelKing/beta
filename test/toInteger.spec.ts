@@ -5,17 +5,86 @@ should();
 
 describe(`toInteger() - @category Language`, () => {
 
-  describe(`should convert input to an integer`, () => {
+  describe(`should return number as integer`, () => {
 
     it(`3 => 3`, () => {
+      toInteger(3).should.equal(3);
+    });
 
-      const orig: number = 3;
-      const input: number = orig;
-      const output: number = toInteger(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(3);
+    it(`3.2 => 3`, () => {
+      toInteger(3.2).should.equal(3);
+    });
+
+  });
+
+  describe(`should return valid integer for numerical string`, () => {
+
+    it(`"3" => 3`, () => {
+      toInteger('3').should.equal(3);
+    });
+
+    it(`"3.2" => 3`, () => {
+      toInteger('3.2').should.equal(3);
+    });
+
+  });
+
+  describe(`should return 0 for non numerical string`, () => {
+
+    it(`"Hello" => 0`, () => {
+      toInteger('hello').should.equal(0);
+    });
+
+  });
+
+  describe(`should return between -1.7976931348623157e+308 and 1.7976931348623157e+308`, () => {
+
+    it(`Number.MIN_VALUE => 0`, () => {
+      toInteger(Number.MIN_VALUE).should.equal(0);
+    });
+
+    it(`Infinity => 1.7976931348623157e+308`, () => {
+      toInteger(Infinity).should.equal(1.7976931348623157e+308);
+    });
+
+    it(`+Infinity => +1.7976931348623157e+308`, () => {
+      toInteger(+Infinity).should.equal(+1.7976931348623157e+308);
+    });
+
+    it(`-Infinity => -1.7976931348623157e+308`, () => {
+      toInteger(-Infinity).should.equal(-1.7976931348623157e+308);
+    });
+
+  });
+
+  describe(`should return 0 for NaN`, () => {
+
+    it(`NaN => 0`, () => {
+      toInteger(NaN).should.equal(0);
+    });
+
+  });
+
+  /*
+
+    July 08 2017
+    Taken care of by StrictNullChecks
+
+    describe(`should return 0 for null/undefined`, () => {
+
+      it(`null => 0`, () => {
+       toInteger(null).should.equal(0);
+      });
+
+      it(`undefined => 0`, () => {
+        toInteger(undefined).should.equal(0);
+      });
 
     });
+
+  */
+
+  describe(`should be functional and not mutating any input`, () => {
 
     it(`3.2 => 3`, () => {
 
@@ -27,109 +96,6 @@ describe(`toInteger() - @category Language`, () => {
 
     });
 
-    it(`NaN => 0`, () => {
-
-      const orig: number = NaN;
-      const input: number = orig;
-      const output: number = toInteger(input);
-      input.should.not.equal(input);
-      input.should.not.equal(orig);
-      orig.should.not.equal(orig);
-      output.should.equal(0);
-
-    });
-
-    it(`"3.2" => 3`, () => {
-
-      const orig: string = '3.2';
-      const input: string = orig.slice(0);
-      const output: number = toInteger(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(3);
-
-    });
-
-    it(`"Hello" => 0`, () => {
-
-      const orig: string = 'Hello';
-      const input: string = orig.slice(0);
-      const output: number = toInteger(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(0);
-
-    });
-
-    it(`Number.MIN_VALUE => 5e-324`, () => {
-
-      const orig: number = Number.MIN_VALUE;
-      const input: number = orig;
-      const output: number = toInteger(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(0);
-
-    });
-
-    it(`Infinity => Infinity`, () => {
-
-      const orig: number = Infinity;
-      const input: number = orig;
-      const output: number = toInteger(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(1.7976931348623157e+308);
-
-    });
-
-    it(`+Infinity => Infinity`, () => {
-
-      const orig: number = +Infinity;
-      const input: number = orig;
-      const output: number = toInteger(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(1.7976931348623157e+308);
-
-    });
-
-    it(`-Infinity => Infinity`, () => {
-
-      const orig: number = -Infinity;
-      const input: number = orig;
-      const output: number = toInteger(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(-1.7976931348623157e+308);
-
-    });
-
-
   });
-
-  /*
-
-  describe(`should convert null and undefined to 0`, () => {
-
-    it(`Null => 0`, () => {
-
-      const orig: number = null;
-      const input: number = orig;
-      const output: number = toInteger(input);
-      should().equal(input, orig);
-      output.should.not.equal(input);
-      output.should.equal(0);
-
-    });
-
-    it(`Undefined => 0`, () => {
-
-      const orig: number = undefined;
-      const input: number = orig;
-      const output: number = toInteger(input);
-      should().equal(input, orig);
-      output.should.not.equal(input);
-      output.should.equal(0);
-
-    });
-
-  });
-
-  */
 
 });
