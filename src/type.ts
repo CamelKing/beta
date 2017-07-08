@@ -144,16 +144,23 @@ export namespace type {
   export const isAsyncFunction: FnPredicate
     = (i: any) => checkType(i, 'AsyncFunction');
 
-  export const isGeneratorFunction: FnPredicate
-    = (i: any) => checkType(i, 'GeneratorFunction');
+  export const isGenerator: FnPredicate
+    = (i: any) => checkType(i, 'Generator');
 
-  export const isDomException: FnPredicate
-    = (i: any) => checkType(i, 'DomException');
-
-  export const isProxy: FnPredicate
-    = (i: any) => checkType(i, 'Proxy');
-
-  export const isDateView: FnPredicate
+  export const isDataView: FnPredicate
     = (i: any) => checkType(i, 'DataView');
+
+  /*
+     TODO:
+     untestable for the moment.
+     will add in once a way is found to create and test these.
+
+    export const isDomException: FnPredicate
+      = (i: any) => checkType(i, 'DomException');
+
+    export const isProxy: FnPredicate
+      = (i: any) => checkType(i, 'Proxy');
+
+  */
 
 }

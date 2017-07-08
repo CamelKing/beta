@@ -7,6 +7,53 @@ should();
 
 describe(`type.of() - @category Language`, () => {
 
+  describe(`should return the type of Generator`, () => {
+
+    it(`generator() => 'Generator'`, () => {
+
+      function* idMaker(): IterableIterator<any> {
+        let index: number = 0;
+        while (true)
+          yield index++;
+      }
+
+      const gen: IterableIterator<any> = idMaker();
+
+      type.of(gen).should.deep.equal('Generator');
+
+    });
+
+  });
+
+  describe(`should return the type of AsyncFunction`, () => {
+
+    it(`async function => 'AsyncFunction'`, () => {
+
+      function resolveAfter2Seconds(x: number): Promise<number> {
+        return new Promise((resolve: (x: number) => void) => {
+          setTimeout(() => { resolve(x); }, 2000);
+        });
+      }
+
+      async function add1(x: number): Promise<number> {
+        const a: Promise<number> = resolveAfter2Seconds(20);
+        const b: Promise<number> = resolveAfter2Seconds(30);
+        return x + await a + await b;
+      }
+
+      type.of(add1).should.deep.equal('AsyncFunction');
+    });
+
+  });
+
+  describe(`should return the type of DataView`, () => {
+
+    it(`new DataView(new ArrayBuffer(1)) => 'DataView'`, () => {
+      type.of(new DataView(new ArrayBuffer(1))).should.deep.equal('DataView');
+    });
+
+  });
+
   describe(`should return the type of Float64Array`, () => {
 
     it(`new Float64Array() => Float64Array`, () => {
