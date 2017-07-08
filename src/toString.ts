@@ -29,7 +29,8 @@ export function toString(input: any): string {
       return 'Promise()';
 
     case 'error':
-      return 'Error()';
+      return `${input.message}\n${input.stack}`;
+    // return 'Error()';
 
     case 'array':
       return input.map((v: any) => toString(v)).join(',');
@@ -38,11 +39,13 @@ export function toString(input: any): string {
       return JSON.stringify(input);
 
     case 'function':
-      return toString(input());
+      return input.toString();
 
     case 'null':
+      return 'null';
+
     case 'undefined':
-      return '';
+      return 'undefined';
 
     default:
       const output: string = input + '';
