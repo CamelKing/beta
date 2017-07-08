@@ -14,5 +14,7 @@
  */
 
 export function compact<T>(input: T[]): T[] {
-  return input == null ? [] : input.filter((item: any) => item || false);
+  // --StrictNullChecks remove null array
+  // return input == null ? [] : input.filter((item: any) => item || false);
+  return input.filter((item: any) => item || false);
 }
