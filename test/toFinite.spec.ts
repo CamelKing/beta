@@ -5,121 +5,96 @@ should();
 
 describe(`toFinite() - @category Language`, () => {
 
-  describe(`should convert input to a finite number`, () => {
+  describe(`should return number as finite number`, () => {
 
-    it(`3.2 => 3.2`, () => {
-
-      const orig: number = 3.2;
-      const input: number = orig;
-      const output: number = toFinite(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(3.2);
-
+    it(`3 => 3`, () => {
+      toFinite(3).should.deep.equal(3);
     });
 
-    it(`NaN => 0`, () => {
+    it(`3.2 => 3.2`, () => {
+      toFinite(3.2).should.deep.equal(3.2);
+    });
 
-      const orig: number = NaN;
-      const input: number = orig;
-      const output: number = toFinite(input);
-      input.should.not.equal(input);
-      input.should.not.equal(orig);
-      orig.should.not.equal(orig);
-      output.should.equal(0);
+  });
 
+  describe(`should return finite number for numerical string`, () => {
+
+    it(`"3" => 3`, () => {
+      toFinite('3').should.deep.equal(3);
     });
 
     it(`"3.2" => 3.2`, () => {
-
-      const orig: string = '3.2';
-      const input: string = orig.slice(0);
-      const output: number = toFinite(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(3.2);
-
+      toFinite('3.2').should.deep.equal(3.2);
     });
+
+  });
+
+  describe(`should return 0 for non numerical string`, () => {
 
     it(`"Hello" => 0`, () => {
-
-      const orig: string = 'Hello';
-      const input: string = orig.slice(0);
-      const output: number = toFinite(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(0);
-
+      toFinite('Hello').should.deep.equal(0);
     });
+
+  });
+
+  describe(`should return between -1.7976931348623157e+308 and 1.7976931348623157e+308`, () => {
 
     it(`Number.MIN_VALUE => 5e-324`, () => {
-
-      const orig: number = Number.MIN_VALUE;
-      const input: number = orig;
-      const output: number = toFinite(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(5e-324);
-
+      toFinite(Number.MIN_VALUE).should.equal(5e-324);
     });
 
-    it(`Infinity => Infinity`, () => {
-
-      const orig: number = Infinity;
-      const input: number = orig;
-      const output: number = toFinite(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(1.7976931348623157e+308);
-
+    it(`Infinity => 1.7976931348623157e+308`, () => {
+      toFinite(Infinity).should.equal(1.7976931348623157e+308);
     });
 
-    it(`+Infinity => Infinity`, () => {
-
-      const orig: number = +Infinity;
-      const input: number = orig;
-      const output: number = toFinite(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(1.7976931348623157e+308);
-
+    it(`+Infinity => +1.7976931348623157e+308`, () => {
+      toFinite(+Infinity).should.equal(+1.7976931348623157e+308);
     });
 
-    it(`-Infinity => Infinity`, () => {
-
-      const orig: number = -Infinity;
-      const input: number = orig;
-      const output: number = toFinite(input);
-      input.should.be.deep.equal(orig);
-      output.should.deep.equal(-1.7976931348623157e+308);
-
+    it(`-Infinity => -1.7976931348623157e+308`, () => {
+      toFinite(-Infinity).should.equal(-1.7976931348623157e+308);
     });
 
+  });
+
+  describe(`should return 0 for NaN`, () => {
+
+    it(`NaN => 0`, () => {
+      toFinite(NaN).should.equal(0);
+    });
 
   });
 
   /*
 
-  describe(`should convert null and undefined to 0`, () => {
+    July 08 2017
+    Taken care of by StrictNullChecks
 
-    it(`Null => 0`, () => {
+    describe(`should return 0 for null/undefined`, () => {
 
-      const orig: number = null;
-      const input: number = orig;
-      const output: number = toFinite(input);
-      should().equal(input, orig);
-      output.should.not.equal(input);
-      output.should.equal(0);
+      it(`null => 0`, () => {
+       toFinite(null).should.equal(0);
+      });
+
+      it(`undefined => 0`, () => {
+        toFinite(undefined).should.equal(0);
+      });
 
     });
 
-    it(`Undefined => 0`, () => {
+  */
 
-      const orig: number = undefined;
+  describe(`should be functional and not mutating any input`, () => {
+
+    it(`3.2 => 3.2`, () => {
+
+      const orig: number = 3.2;
       const input: number = orig;
-      const output: number = toFinite(input);
-      should().equal(input, orig);
-      output.should.not.equal(input);
-      output.should.equal(0);
+      toFinite(input).should.equal(3.2);
+      input.should.equal(orig);
 
     });
 
   });
-
-  */
 
 });
