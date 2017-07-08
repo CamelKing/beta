@@ -19,12 +19,12 @@
 import { isArrayLike } from './isArrayLike';
 import { typeOf } from './typeOf';
 
-export function toArray(input: (any | null | undefined)): Array<any | null | undefined> {
+export function toArray<T>(input: T | Iterable<T>): T[] {
 
   return !input
     ? []
     : (isArrayLike(input) || input[Symbol.iterator])
-      ? Array.from(input)
+      ? Array.from(input as Iterable<T>)
       : typeOf.isObject(input)
         ? Object.keys(input).map((key: string) => input[key])
         : [];
