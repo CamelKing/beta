@@ -58,6 +58,24 @@ describe(`toLength() - @category Language`, () => {
 
   });
 
+  describe(`should return NaN for non number/string/Date`, () => {
+    // tslint:disable:no-unused-expression
+
+    it(`true => NaN`, () => {
+      toLength(true).should.be.NaN;
+    });
+
+    it(`{a:1} => NaN`, () => {
+      toLength({ a: 1 }).should.be.NaN;
+    });
+
+    it(`[1,2,3] => NaN`, () => {
+      toLength([1, 2, 3]).should.be.NaN;
+    });
+
+    // tslint:enable:no-unused-expression
+  });
+
   describe(`should return NaN for null/undefined/NaN`, () => {
     // tslint:disable:no-unused-expression
 
