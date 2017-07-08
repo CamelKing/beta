@@ -13,13 +13,13 @@
  * @returns {boolean}
  */
 
-import { typeOf } from './typeOf';
+import { type } from './type';
 
 export function isLength(input: any): boolean {
 
-  return typeOf.isNumber(input)
-    && input >= 0
-    && input % 1 === 0
-    && input <= Number.MAX_SAFE_INTEGER;
+    return type.isNumber(input)
+        && input >= 0
+        && input % 1 === 0
+        && input <= Number.MAX_SAFE_INTEGER;
 
 }

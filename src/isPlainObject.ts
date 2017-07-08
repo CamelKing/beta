@@ -15,25 +15,25 @@
 
 import { funcToString } from './constant';
 import { isObjectLike } from './isObjectLike';
-import { typeOf } from './typeOf';
+import { type } from './type';
 
 export function isPlainObject(input: any): boolean {
 
-  // if not even an object
-  if (!(isObjectLike(input) && typeOf.isObject(input))) return false;
+    // if not even an object
+    if (!(isObjectLike(input) && type.isObject(input))) return false;
 
-  const proto: any = Object.getPrototypeOf(input);
+    const proto: any = Object.getPrototypeOf(input);
 
-  // null from Object.create(null) => plain object
-  if (proto === null) return true;
+    // null from Object.create(null) => plain object
+    if (proto === null) return true;
 
-  const Ctor: any
-    = proto.hasOwnProperty('constructor') && proto.constructor;
+    const Ctor: any
+        = proto.hasOwnProperty('constructor') && proto.constructor;
 
-  // if constructor is a function, is an instance of itself, and
-  // has the same toString Tag as a normal Object => Plain Object
-  return typeof Ctor === 'function'
-    && Ctor instanceof Ctor
-    && (funcToString.call(Ctor) === funcToString.call(Object));
+    // if constructor is a function, is an instance of itself, and
+    // has the same toString Tag as a normal Object => Plain Object
+    return typeof Ctor === 'function'
+        && Ctor instanceof Ctor
+        && (funcToString.call(Ctor) === funcToString.call(Object));
 
 }

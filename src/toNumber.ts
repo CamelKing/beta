@@ -13,10 +13,10 @@
  * @returns {number}
  */
 
-import { typeOf } from './typeOf';
+import { type } from './type';
 
 export function toNumber(input: any): number {
 
-  return (typeOf.isSymbol(input)) ? NaN : +input;
+    return (type.isSymbol(input)) ? NaN : +input;
 
 }

@@ -13,13 +13,13 @@
  */
 
 import { toInteger } from './toInteger';
-import { typeOf } from './typeOf';
+import { type } from './type';
 import { clamp } from './clamp';
 import { MAX_ARRAY_LENGTH } from './constant';
 
 export function toLength(input: any): number {
 
-  const int: number = toInteger(input);
-  return typeOf.isNaN(int) ? NaN : clamp(int, 0, MAX_ARRAY_LENGTH);
+    const int: number = toInteger(input);
+    return type.isNaN(int) ? NaN : clamp(int, 0, MAX_ARRAY_LENGTH);
 
 }

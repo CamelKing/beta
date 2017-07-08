@@ -17,16 +17,16 @@
  */
 
 import { isArrayLike } from './isArrayLike';
-import { typeOf } from './typeOf';
+import { type } from './type';
 
 export function toArray<T>(input: T | Iterable<T>): T[] {
 
-  return !input
-    ? []
-    : (isArrayLike(input) || input[Symbol.iterator])
-      ? Array.from(input as Iterable<T>)
-      : typeOf.isObject(input)
-        ? Object.keys(input).map((key: string) => input[key])
-        : [];
+    return !input
+        ? []
+        : (isArrayLike(input) || input[Symbol.iterator])
+            ? Array.from(input as Iterable<T>)
+            : type.isObject(input)
+                ? Object.keys(input).map((key: string) => input[key])
+                : [];
 
 }

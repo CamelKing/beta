@@ -14,18 +14,18 @@
  */
 
 import { toNumber } from './toNumber';
-import { typeOf } from './typeOf';
+import { type } from './type';
 
 export function toFinite(input: any): number {
 
-  if (typeOf(input).search(/(number|string|date)/) === -1) return NaN;
-  if (!input) return 0;
+    if (type.of(input).search(/(Number|String|Date)/) === -1) return NaN;
+    if (!input) return 0;
 
-  const output: number = toNumber(input);
+    const output: number = toNumber(input);
 
-  return output === Infinity ? Number.MAX_VALUE
-    : output === -Infinity ? -Number.MAX_VALUE
-      : output !== output ? 0
-        : output;
+    return output === Infinity ? Number.MAX_VALUE
+        : output === -Infinity ? -Number.MAX_VALUE
+            : output !== output ? 0
+                : output;
 
 }

@@ -12,8 +12,8 @@
  */
 
 import { toInteger } from './toInteger';
-import { typeOf } from './typeOf';
+import { type } from './type';
 
 export function isInteger(input: any): boolean {
-  return typeOf.isNumber(input) && input === toInteger(input);
+    return type.isNumber(input) && input === toInteger(input);
 }

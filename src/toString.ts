@@ -13,42 +13,42 @@
  * @returns {string}
  */
 
-import { typeOf } from './typeOf';
+import { type } from './type';
 
 export function toString(input: any): string {
 
-  switch (typeOf(input)) {
+    switch (type.of(input)) {
 
-    case 'string':
-      return input.slice(0);
+        case 'String':
+            return input.slice(0);
 
-    case 'symbol':
-      return input.toString();
+        case 'Symbol':
+            return input.toString();
 
-    case 'promise':
-      return 'Promise()';
+        case 'Promise':
+            return 'Promise()';
 
-    case 'error':
-      return `${input.message}\n${input.stack}`;
+        case 'Error':
+            return `${input.message}\n${input.stack}`;
 
-    case 'array':
-      return input.map((v: any) => toString(v)).join(',');
+        case 'Array':
+            return input.map((v: any) => toString(v)).join(',');
 
-    case 'object':
-      return JSON.stringify(input);
+        case 'Object':
+            return JSON.stringify(input);
 
-    case 'function':
-      return input.toString();
+        case 'Function':
+            return input.toString();
 
-    case 'null':
-      return 'null';
+        case 'Null':
+            return 'null';
 
-    case 'undefined':
-      return 'undefined';
+        case 'Undefined':
+            return 'undefined';
 
-    default:
-      const output: string = input + '';
-      return (output === '0' && (1 / input) === -Infinity) ? '-0' : output;
-  }
+        default:
+            const output: string = input + '';
+            return (output === '0' && (1 / input) === -Infinity) ? '-0' : output;
+    }
 
 }

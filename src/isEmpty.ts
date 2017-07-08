@@ -24,21 +24,21 @@
  */
 
 import { isArrayLike } from './isArrayLike';
-import { typeOf } from './typeOf';
+import { type } from './type';
 
 export function isEmpty(input: any): boolean {
 
   if (input == null) return true;
 
-  const type: string = typeOf(input);
+  const inputType: string = type.of(input);
 
   if (isArrayLike(input)
-    && (type.search(/(float(32|64)|(int|uint)(8|16|32)|uint8clamped|string|array|buffer|arguments)/) !== -1)) {
+    && (inputType.search(/(Float(32|64)|(Int|Uint)(8|16|32)|Uint8Clamped|String|Array|Buffer|Arguments)/) !== -1)) {
     // for array like data, check if the length is zero
     return !input.length;
   }
 
-  if (type.search(/(map|set)/) !== -1) {
+  if (inputType.search(/(Map|Set)/) !== -1) {
     // for map and set, check if size is zero
     return !input.size;
   }

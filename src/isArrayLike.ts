@@ -22,10 +22,10 @@
  */
 
 import { isLength } from './isLength';
-import { typeOf } from './typeOf';
+import { type } from './type';
 
 export function isArrayLike(input: any): boolean {
 
-  return input != null && isLength(input.length) && !typeOf(input, 'function');
+  return input != null && isLength(input.length) && !type.isFunction(input);
 
 }
