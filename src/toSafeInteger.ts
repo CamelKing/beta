@@ -14,7 +14,11 @@
 
 import { toInteger } from './toInteger';
 import { clamp } from './clamp';
+import { typeOf } from './typeOf';
 
-export function toSafeInteger(input: string | number): number {
-  return clamp(toInteger(input), Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
+export function toSafeInteger(input: any): number {
+  const int: number = toInteger(input);
+  return typeOf.isNaN(int)
+    ? NaN
+    : clamp(int, Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
 }
