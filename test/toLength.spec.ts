@@ -58,32 +58,22 @@ describe(`toLength() - @category Language`, () => {
 
   });
 
-  describe(`should return 0 for NaN`, () => {
+  describe(`should return NaN for null/undefined/NaN`, () => {
+    // tslint:disable:no-unused-expression
 
-    it(`NaN => 0`, () => {
-      toLength(NaN).should.equal(0);
+    it(`null => NaN`, () => {
+      toLength(null).should.be.NaN;
     });
 
+    it(`undefined => NaN`, () => {
+      toLength(undefined).should.be.NaN;
+    });
+    it(`NaN => NaN`, () => {
+      toLength(NaN).should.be.NaN;
+    });
+
+    // tslint:enable:no-unused-expression
   });
-
-  /*
-
-    July 08 2017
-    Taken care of by StrictNullChecks
-
-    describe(`should return 0 for null/undefined`, () => {
-
-      it(`null => 0`, () => {
-       toLength(null).should.equal(0);
-      });
-
-      it(`undefined => 0`, () => {
-        toLength(undefined).should.equal(0);
-      });
-
-    });
-
-  */
 
   describe(`should be functional and not mutating any input`, () => {
 
