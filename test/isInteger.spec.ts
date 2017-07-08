@@ -25,25 +25,43 @@ describe(`isInteger() - @category Language`, () => {
 
   });
 
-  /*
-  July 08 2017
-  Taken care of by StrictNullChecks
+  describe(`should return false for non number`, () => {
 
-    describe(`should return false for null/undefined`, () => {
-
-      it(`null => false`, () => {
-        isInteger(null).should.equal(false);
-      });
-
-      it(`undefined => false`, () => {
-        isInteger(undefined).should.equal(false);
-      });
-
+    it(`'hello' => false`, () => {
+      isInteger('hello').should.equal(false);
     });
 
-  */
+    it(`'123' => false`, () => {
+      isInteger('123').should.equal(false);
+    });
 
-  describe(`should return false for NaN`, () => {
+    it(`true => false`, () => {
+      isInteger(true).should.equal(false);
+    });
+
+    it(`new Date() => false`, () => {
+      isInteger(new Date()).should.equal(false);
+    });
+
+    it(`{a:1} => false`, () => {
+      isInteger({ a: 1 }).should.equal(false);
+    });
+
+    it(`[1,2,3] => false`, () => {
+      isInteger([1, 2, 3]).should.equal(false);
+    });
+
+  });
+
+  describe(`should return false for null/undefined/NaN`, () => {
+
+    it(`null => false`, () => {
+      isInteger(null).should.equal(false);
+    });
+
+    it(`undefined => false`, () => {
+      isInteger(undefined).should.equal(false);
+    });
 
     it(`NaN => false`, () => {
       isInteger(NaN).should.equal(false);
