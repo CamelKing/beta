@@ -30,7 +30,6 @@ export function toString(input: any): string {
 
     case 'error':
       return `${input.message}\n${input.stack}`;
-    // return 'Error()';
 
     case 'array':
       return input.map((v: any) => toString(v)).join(',');
