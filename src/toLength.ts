@@ -20,7 +20,6 @@ import { MAX_ARRAY_LENGTH } from './constant';
 export function toLength(input: any): number {
 
   const int: number = toInteger(input);
-  return typeOf.isNaN(int)
-    ? NaN
-    : clamp(toInteger(input), 0, MAX_ARRAY_LENGTH);
+  return typeOf.isNaN(int) ? NaN : clamp(int, 0, MAX_ARRAY_LENGTH);
+
 }
