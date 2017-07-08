@@ -12,7 +12,5 @@
  */
 
 export function isFinite(input: number): boolean {
-
   return Number.isFinite(input);
-
 }
