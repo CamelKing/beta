@@ -19,7 +19,7 @@
 import { isArrayLike } from './isArrayLike';
 import { typeOf } from './typeOf';
 
-export function toArray(input: any): any[] {
+export function toArray(input: (any | null | undefined)): Array<any | null | undefined> {
 
   return !input
     ? []
