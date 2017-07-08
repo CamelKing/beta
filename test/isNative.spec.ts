@@ -51,6 +51,10 @@ describe(`isNative() - @category Language`, () => {
       isNative(undefined).should.equal(false);
     });
 
+    it(`NaN => false`, () => {
+      isNative(NaN).should.equal(false);
+    });
+
   });
 
   describe(`should be functional and not mutating any input`, () => {
