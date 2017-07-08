@@ -57,32 +57,41 @@ describe(`toInteger() - @category Language`, () => {
 
   });
 
-  describe(`should return 0 for NaN`, () => {
+  describe(`should return NaN for non number/string/Date`, () => {
+    // tslint:disable:no-unused-expression
 
-    it(`NaN => 0`, () => {
-      toInteger(NaN).should.equal(0);
+    it(`true => NaN`, () => {
+      toInteger(true).should.be.NaN;
     });
 
+    it(`{a:1} => NaN`, () => {
+      toInteger({ a: 1 }).should.be.NaN;
+    });
+
+    it(`[1,2,3] => NaN`, () => {
+      toInteger([1, 2, 3]).should.be.NaN;
+    });
+
+    // tslint:enable:no-unused-expression
   });
 
-  /*
+  describe(`should return NaN for null/undefined/NaN`, () => {
+    // tslint:disable:no-unused-expression
 
-    July 08 2017
-    Taken care of by StrictNullChecks
-
-    describe(`should return 0 for null/undefined`, () => {
-
-      it(`null => 0`, () => {
-       toInteger(null).should.equal(0);
-      });
-
-      it(`undefined => 0`, () => {
-        toInteger(undefined).should.equal(0);
-      });
-
+    it(`null => NaN`, () => {
+      toInteger(null).should.be.NaN;
     });
 
-  */
+    it(`undefined => NaN`, () => {
+      toInteger(undefined).should.be.NaN;
+    });
+
+    it(`NaN => NaN`, () => {
+      toInteger(NaN).should.be.NaN;
+    });
+
+    // tslint:enable:no-unused-expression
+  });
 
   describe(`should be functional and not mutating any input`, () => {
 
