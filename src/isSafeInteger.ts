@@ -20,7 +20,7 @@
 
 import { isInteger } from './isInteger';
 
-export function isSafeInteger(input: number): boolean {
+export function isSafeInteger(input: any): boolean {
   return isInteger(input)
     && input >= Number.MIN_SAFE_INTEGER
     && input <= Number.MAX_SAFE_INTEGER;

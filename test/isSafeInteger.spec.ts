@@ -53,25 +53,15 @@ describe(`isSafeInteger() - @category Language`, () => {
 
   });
 
-  /*
-  July 08 2017
-  Taken care of by StrichNullChecks
+  describe(`should return false for null/undefined/NaN`, () => {
 
-    describe(`should return false for null/undefined`, () => {
-
-      it(`null => false`, () => {
-        isSafeInteger(null).should.equal(false);
-      });
-
-      it(`undefined => false`, () => {
-        isSafeInteger(undefined).should.equal(false);
-      });
-
+    it(`null => false`, () => {
+      isSafeInteger(null).should.equal(false);
     });
 
-  */
-
-  describe(`should return false for NaN`, () => {
+    it(`undefined => false`, () => {
+      isSafeInteger(undefined).should.equal(false);
+    });
 
     it(`NaN => false`, () => {
       isSafeInteger(NaN).should.equal(false);
