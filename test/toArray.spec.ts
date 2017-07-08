@@ -74,7 +74,6 @@ describe(`toArray() - @category Language`, () => {
 
   });
 
-
   describe(`should return [] for empty string`, () => {
 
     it(`'' => []`, () => {
@@ -91,6 +90,10 @@ describe(`toArray() - @category Language`, () => {
 
     it(`true => []`, () => {
       toArray(true).should.deep.equal([]);
+    });
+
+    it(`false => []`, () => {
+      toArray(false).should.deep.equal([]);
     });
 
   });
