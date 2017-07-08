@@ -14,9 +14,11 @@
  */
 
 import { toNumber } from './toNumber';
+import { typeOf } from './typeOf';
 
-export function toFinite(input: number | string | Date): number {
+export function toFinite(input: any): number {
 
+  if (typeOf(input).search(/(number|string|date)/) === -1) return NaN;
   if (!input) return 0;
 
   const output: number = toNumber(input);

@@ -57,32 +57,41 @@ describe(`toFinite() - @category Language`, () => {
 
   });
 
-  describe(`should return 0 for NaN`, () => {
+  describe(`should return NaN for non number/string/Date`, () => {
+    // tslint:disable:no-unused-expression
 
-    it(`NaN => 0`, () => {
-      toFinite(NaN).should.equal(0);
+    it(`true => NaN`, () => {
+      toFinite(true).should.be.NaN;
     });
 
+    it(`{a:1} => NaN`, () => {
+      toFinite({ a: 1 }).should.be.NaN;
+    });
+
+    it(`[1,2,3] => NaN`, () => {
+      toFinite([1, 2, 3]).should.be.NaN;
+    });
+
+    // tslint:enable:no-unused-expression
   });
 
-  /*
+  describe(`should return NaN for null/undefined/NaN`, () => {
+    // tslint:disable:no-unused-expression
 
-    July 08 2017
-    Taken care of by StrictNullChecks
-
-    describe(`should return 0 for null/undefined`, () => {
-
-      it(`null => 0`, () => {
-       toFinite(null).should.equal(0);
-      });
-
-      it(`undefined => 0`, () => {
-        toFinite(undefined).should.equal(0);
-      });
-
+    it(`null => NaN`, () => {
+      toFinite(null).should.be.NaN;
     });
 
-  */
+    it(`undefined => NaN`, () => {
+      toFinite(NaN).should.be.NaN;
+    });
+
+    it(`NaN => NaN`, () => {
+      toFinite(NaN).should.be.NaN;
+    });
+
+    // tslint:enable:no-unused-expression
+  });
 
   describe(`should be functional and not mutating any input`, () => {
 
