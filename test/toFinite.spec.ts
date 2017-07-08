@@ -19,6 +19,14 @@ describe(`toFinite() - @category Language`, () => {
 
   describe(`should return finite number for numerical string`, () => {
 
+    it(`"" => 0`, () => {
+      toFinite('').should.deep.equal(0);
+    });
+
+    it(`" " => 0`, () => {
+      toFinite(' ').should.deep.equal(0);
+    });
+
     it(`"3" => 3`, () => {
       toFinite('3').should.deep.equal(3);
     });

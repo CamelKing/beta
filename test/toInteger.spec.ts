@@ -19,6 +19,14 @@ describe(`toInteger() - @category Language`, () => {
 
   describe(`should return valid integer for numerical string`, () => {
 
+    it(`"" => 0`, () => {
+      toInteger('').should.deep.equal(0);
+    });
+
+    it(`" " => 0`, () => {
+      toInteger(' ').should.deep.equal(0);
+    });
+
     it(`"3" => 3`, () => {
       toInteger('3').should.equal(3);
     });

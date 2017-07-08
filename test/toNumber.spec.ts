@@ -44,6 +44,14 @@ describe(`toNumber() - @category Language`, () => {
 
   describe(`should convert a numeric string to number`, () => {
 
+    it(`"" => 0`, () => {
+      toNumber('').should.deep.equal(0);
+    });
+
+    it(`" " => 0`, () => {
+      toNumber(' ').should.deep.equal(0);
+    });
+
     it(`'123' => 123`, () => {
       toNumber('123').should.equal(123);
     });

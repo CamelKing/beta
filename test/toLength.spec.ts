@@ -20,6 +20,14 @@ describe(`toLength() - @category Language`, () => {
 
   describe(`should return valid length integer for numerical string`, () => {
 
+    it(`"" => 0`, () => {
+      toLength('').should.deep.equal(0);
+    });
+
+    it(`" " => 0`, () => {
+      toLength(' ').should.deep.equal(0);
+    });
+
     it(`"3.2" => 3`, () => {
       toLength('3.2').should.equal(3);
     });
