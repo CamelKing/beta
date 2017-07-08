@@ -18,8 +18,6 @@
  * @returns {boolean}
  */
 
-export function eq(input1: any, input2: any): boolean {
-
+export function eq<T>(input1: T, input2: T): boolean {
   return (input1 === input2) || (input1 !== input1 && input2 !== input2);
-
 }

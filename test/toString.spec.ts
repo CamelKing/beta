@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { toString } from '../src/toString';
 
 should();
@@ -168,6 +168,8 @@ describe(`toString() - @category Language`, () => {
 
   });
 
+  /*
+
   describe(`should return '' for invalid value`, () => {
 
     it(`null => ''`, () => {
@@ -193,6 +195,7 @@ describe(`toString() - @category Language`, () => {
     });
 
   });
-
+  
+  */
 
 });

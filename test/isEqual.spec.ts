@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { isEqual } from '../src/isEqual';
 
 should();
@@ -389,11 +389,12 @@ describe(`isEqual() - @category Language`, () => {
 
     });
 
+
     it(`null null => true`, () => {
 
-      const orig1: Set<any> = null;
+      const orig1: any = null;
       const input1: any = orig1;
-      const orig2: Set<any> = null;
+      const orig2: any = null;
       const input2: any = orig2;
       const output: any = isEqual(input1, input2);
       should().equal(input1, orig1);
@@ -405,9 +406,9 @@ describe(`isEqual() - @category Language`, () => {
 
     it(`undefined undefined => true`, () => {
 
-      const orig1: Set<any> = undefined;
+      const orig1: any = undefined;
       const input1: any = orig1;
-      const orig2: Set<any> = undefined;
+      const orig2: any = undefined;
       const input2: any = orig2;
       const output: any = isEqual(input1, input2);
       should().equal(input1, orig1);
@@ -419,9 +420,9 @@ describe(`isEqual() - @category Language`, () => {
 
     it(`null undefined => false`, () => {
 
-      const orig1: Set<any> = null;
+      const orig1: any = null;
       const input1: any = orig1;
-      const orig2: Set<any> = undefined;
+      const orig2: any = undefined;
       const input2: any = orig2;
       const output: any = isEqual(input1, input2);
       should().equal(input1, orig1);

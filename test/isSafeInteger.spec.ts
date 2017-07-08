@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { isSafeInteger } from '../src/isSafeInteger';
 
 should();
@@ -53,18 +53,28 @@ describe(`isSafeInteger() - @category Language`, () => {
 
   });
 
-  describe(`should return false for null/undefined/NaN`, () => {
+  /*
+  July 08 2017
+  Taken care of by StrichNullChecks
 
-    it(`null => false`, () => {
-      isSafeInteger(null).should.equal(false);
+    describe(`should return false for null/undefined`, () => {
+
+      it(`null => false`, () => {
+        isSafeInteger(null).should.equal(false);
+      });
+
+      it(`undefined => false`, () => {
+        isSafeInteger(undefined).should.equal(false);
+      });
+
     });
+
+  */
+
+  describe(`should return false for NaN`, () => {
 
     it(`NaN => false`, () => {
       isSafeInteger(NaN).should.equal(false);
-    });
-
-    it(`undefined => false`, () => {
-      isSafeInteger(undefined).should.equal(false);
     });
 
   });

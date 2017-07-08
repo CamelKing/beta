@@ -11,8 +11,6 @@
  * @returns {boolean}
  */
 
-import { typeOf } from './typeOf';
-
 export function isFinite(input: number): boolean {
 
   return Number.isFinite(input);

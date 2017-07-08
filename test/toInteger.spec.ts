@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { toInteger } from '../src/toInteger';
 
 should();
@@ -102,6 +102,8 @@ describe(`toInteger() - @category Language`, () => {
 
   });
 
+  /*
+
   describe(`should convert null and undefined to 0`, () => {
 
     it(`Null => 0`, () => {
@@ -128,6 +130,6 @@ describe(`toInteger() - @category Language`, () => {
 
   });
 
-
+  */
 
 });

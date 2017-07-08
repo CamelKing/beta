@@ -1,6 +1,6 @@
 // tslint:disable:max-file-line-count
 
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { typeOf } from '../src/typeOf';
 
 should();
@@ -498,10 +498,7 @@ describe(`typeOf() - @category Language`, () => {
   describe(`should return the type of promise`, () => {
 
     type pmNumber = Promise<number>;
-    const pm: pmNumber
-      = new Promise((resolve: any, reject: any) => {
-        resolve(123);
-      });
+    const pm: pmNumber = Promise.resolve(123);
 
     it(`pm => promise`, () => {
 
@@ -988,8 +985,8 @@ describe(`typeOf() - @category Language`, () => {
 
     it(`null => null`, () => {
 
-      const orig: boolean = null;
-      const input: boolean = orig;
+      const orig: null = null;
+      const input: null = orig;
       const output: string = typeOf(input);
       should().not.exist(input);
       should().equal(input, orig);
@@ -1000,8 +997,8 @@ describe(`typeOf() - @category Language`, () => {
 
     it(`undefined => undefined`, () => {
 
-      const orig: boolean = undefined;
-      const input: boolean = orig;
+      const orig: undefined = undefined;
+      const input: undefined = orig;
       const output: string = typeOf(input);
       should().not.exist(input);
       should().equal(input, orig);

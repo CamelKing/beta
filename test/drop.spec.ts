@@ -1,5 +1,4 @@
-import { expect, should } from 'chai';
-import { log } from 'util';
+import { should } from 'chai';
 import { drop } from '../src/drop';
 
 should();
@@ -62,6 +61,11 @@ describe(`drop() - @category Array`, () => {
 
   });
 
+  /*
+
+  July 08 2017 -
+  Taken care of by --StrictNullChecks
+
   describe(`should return [] for null/undefined`, () => {
 
     it(`undefined=>[]`, () => {
@@ -73,6 +77,8 @@ describe(`drop() - @category Array`, () => {
     });
 
   });
+
+  */
 
   describe(`should be functional and not mutating any input`, () => {
 

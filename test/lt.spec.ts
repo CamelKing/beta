@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { lt } from '../src/lt';
 
 should();
@@ -93,6 +93,11 @@ describe(`lt() - @category Language`, () => {
 
   });
 
+  /*
+
+    July 08 2017
+    Taken care of by StrickNullChecks
+
   describe(`should treat null as 0`, () => {
 
     it(`(null,3) => true`, () => {
@@ -109,7 +114,7 @@ describe(`lt() - @category Language`, () => {
 
   });
 
-  describe(`should return false when one/both is undefined/NaN`, () => {
+  describe(`should return false when one/both is undefined`, () => {
 
     it(`(undefined,3) => false`, () => {
       lt(undefined, 3).should.equal(false);
@@ -122,6 +127,12 @@ describe(`lt() - @category Language`, () => {
     it(`(undefined, undefined) => false`, () => {
       lt(undefined, undefined).should.equal(false);
     });
+
+  });
+
+  */
+
+  describe(`should return false when one/both is NaN`, () => {
 
     it(`(NaN,3) => false`, () => {
       lt(NaN, 3).should.equal(false);

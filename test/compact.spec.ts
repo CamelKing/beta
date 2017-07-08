@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { compact } from '../src/compact';
 
 should();
@@ -37,6 +37,11 @@ describe(`compact() - @category Array`, () => {
 
   });
 
+  /*
+
+  July 08 2017:
+  Taken care of by --StrictNullChecks
+
   describe(`should return [] with null/undefined`, () => {
 
     it(`null=>[]`, () => {
@@ -48,6 +53,8 @@ describe(`compact() - @category Array`, () => {
     });
 
   });
+
+  */
 
   describe(`should be functional and not mutating any input`, () => {
 

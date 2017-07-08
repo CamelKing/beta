@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { isInteger } from '../src/isInteger';
 
 should();
@@ -25,18 +25,28 @@ describe(`isInteger() - @category Language`, () => {
 
   });
 
-  describe(`should return false for null/undefined/NaN`, () => {
+  /*
+  July 08 2017
+  Taken care of by StrictNullChecks
 
-    it(`null => false`, () => {
-      isInteger(null).should.equal(false);
+    describe(`should return false for null/undefined`, () => {
+
+      it(`null => false`, () => {
+        isInteger(null).should.equal(false);
+      });
+
+      it(`undefined => false`, () => {
+        isInteger(undefined).should.equal(false);
+      });
+
     });
+
+  */
+
+  describe(`should return false for NaN`, () => {
 
     it(`NaN => false`, () => {
       isInteger(NaN).should.equal(false);
-    });
-
-    it(`undefined => false`, () => {
-      isInteger(undefined).should.equal(false);
     });
 
   });

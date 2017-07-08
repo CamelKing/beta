@@ -22,9 +22,9 @@
 
 import { FnPredicate, objToString } from './constant';
 
-export function typeOf(input: any): string;
-export function typeOf(input: any, check: string): boolean;
-export function typeOf(input: any, check?: string): string | boolean {
+export function typeOf(input: any | null | undefined): string;
+export function typeOf(input: any | null | undefined, check: string): boolean;
+export function typeOf(input: any | null | undefined, check?: string): string | boolean {
 
   // const type: string = input !== input ? 'nan'
   //   : Buffer.isBuffer(input) ? 'buffer'

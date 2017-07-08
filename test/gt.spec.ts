@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { gt } from '../src/gt';
 
 should();
@@ -106,35 +106,46 @@ describe(`gt() - @category Language`, () => {
 
   });
 
-  describe(`should always treat null input as 0`, () => {
+  /*
 
-    it(`(null,3) => false`, () => {
-      gt(null, 3).should.equal(false);
+    July 08 2017 -
+    Taken care of by --StrictNullChecks
+
+    describe(`should always treat null input as 0`, () => {
+
+      it(`(null,3) => false`, () => {
+        gt(null, 3).should.equal(false);
+      });
+
+      it(`(3,null) => true`, () => {
+        gt(3, null).should.equal(true);
+      });
+
+      it(`(null,null) => false`, () => {
+        gt(null, null).should.equal(false);
+      });
+
     });
 
-    it(`(3,null) => true`, () => {
-      gt(3, null).should.equal(true);
+    describe(`should return false when one/both is undefined`, () => {
+
+      it(`(undefined,3) => false`, () => {
+        gt(undefined, 3).should.equal(false);
+      });
+
+      it(`(3,undefined) => false`, () => {
+        gt(3, undefined).should.equal(false);
+      });
+
+      it(`(undefined,undefined) => false`, () => {
+        gt(undefined, undefined).should.equal(false);
+      });
+
     });
 
-    it(`(null,null) => false`, () => {
-      gt(null, null).should.equal(false);
-    });
+  */
 
-  });
-
-  describe(`should return false when one/both is undefined/NaN`, () => {
-
-    it(`(undefined,3) => false`, () => {
-      gt(undefined, 3).should.equal(false);
-    });
-
-    it(`(3,undefined) => false`, () => {
-      gt(3, undefined).should.equal(false);
-    });
-
-    it(`(undefined,undefined) => false`, () => {
-      gt(undefined, undefined).should.equal(false);
-    });
+  describe(`should return false when one/both is NaN`, () => {
 
     it(`(NaN,3) => false`, () => {
       gt(NaN, 3).should.equal(false);

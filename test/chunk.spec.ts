@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { chunk } from '../src/chunk';
 
 should();
@@ -82,6 +82,15 @@ describe('chunk() - @category Array', () => {
       chunk([], 2).should.deep.equal([]);
     });
 
+  });
+
+  /*
+
+  July 08 2017:
+  taken care of by --StrictNullChecks
+
+  describe(`should return [] with null/undefined`, () => {
+
     it(`null=>[]`, () => {
       chunk(null, 2).should.deep.equal([]);
     });
@@ -91,6 +100,8 @@ describe('chunk() - @category Array', () => {
     });
 
   });
+
+  */
 
   describe(`should be functional and not mutating any input`, () => {
 

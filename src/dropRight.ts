@@ -13,8 +13,6 @@
  * @returns {T[]}
  */
 
-import { drop } from './drop';
-
 export function dropRight<T>(input: T[], toDrop: number = 1): T[] {
 
   return (input == null || input.length - toDrop <= 0)

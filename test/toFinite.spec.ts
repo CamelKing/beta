@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { toFinite } from '../src/toFinite';
 
 should();
@@ -92,6 +92,8 @@ describe(`toFinite() - @category Language`, () => {
 
   });
 
+  /*
+
   describe(`should convert null and undefined to 0`, () => {
 
     it(`Null => 0`, () => {
@@ -118,6 +120,6 @@ describe(`toFinite() - @category Language`, () => {
 
   });
 
-
+  */
 
 });

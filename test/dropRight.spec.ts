@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { dropRight } from '../src/dropRight';
 
 should();
@@ -61,6 +61,11 @@ describe(`dropRight() - @category Array`, () => {
 
   });
 
+  /*
+
+  July 08 2017 -
+  Taken care of by --StrictNullChecks
+
   describe(`should return [] for null/undefined`, () => {
 
     it(`undefined=>[]`, () => {
@@ -72,6 +77,8 @@ describe(`dropRight() - @category Array`, () => {
     });
 
   });
+
+  */
 
   describe(`should be functional and not mutating any input`, () => {
 

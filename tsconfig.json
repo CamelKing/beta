@@ -1,18 +1,53 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
+    // basic
+    "target": "es2017",
+    "module": "commonjs",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "allowJs": false,
+    "checkJs": false,
     "declaration": true,
     "declarationDir": "./typings",
-    "lib": ["es2017", "dom"],
-    "module": "commonjs",
-    "moduleResolution": "node",
+    // strict type check
+    "strict": true,
     "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+    // additional check
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": false,
+    "suppressImplicitAnyIndexErrors": true,
+    // module resolutions
+    "moduleResolution": "node",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "isolatedModules": false,
+    // output emit
     "outDir": "./lib",
     "removeComments": true,
+    "noEmit": false,
+    "noEmitHelpers": true,
+    "noEmitOnError": true,
+    // sourcemap
     "sourceMap": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "target": "es2017",
-    "typeRoots": ["./node_modules/@types"],
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    // misc.
+    "charset": "utf8",
+    "diagnostics": false,
+    "emitBOM": false,
+    "forceConsistentCasingInFileNames": true,
+    "pretty": true,
+    // run mode
     "watch": false
   },
   "include": [

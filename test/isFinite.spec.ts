@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { isFinite } from '../src/isFinite';
 
 should();
@@ -33,18 +33,29 @@ describe(`isFinite() - @category Language`, () => {
 
   });
 
-  describe(`should return false for null/undefined/NaN`, () => {
+  /*
+  July 08 2017
+  Taken care of by --StrictNullChecks
 
-    it(`null => false`, () => {
-      isFinite(null).should.equal(false);
+    describe(`should return false for null/undefined`, () => {
+
+      it(`null => false`, () => {
+        isFinite(null).should.equal(false);
+      });
+
+
+      it(`undefined => false`, () => {
+        isFinite(undefined).should.equal(false);
+      });
+
     });
+
+  */
+
+  describe(`should return false for NaN`, () => {
 
     it(`NaN => false`, () => {
       isFinite(NaN).should.equal(false);
-    });
-
-    it(`undefined => false`, () => {
-      isFinite(undefined).should.equal(false);
     });
 
   });

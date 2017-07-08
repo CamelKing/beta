@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { clamp } from '../src/clamp';
 
 should();
@@ -79,24 +79,9 @@ describe(`clamp() - @category Math`, () => {
       clamp(150, 1, NaN).should.equal(150);
     });
 
-    it(`(150, 1, null) => 150`, () => {
-      clamp(150, 1, null).should.equal(150);
-    });
-
-    it(`(150, 1, undefined) => 150`, () => {
-      clamp(150, 1, undefined).should.equal(150);
-    });
 
     it(`(150, NaN, 100) => 100`, () => {
       clamp(150, NaN, 100).should.equal(100);
-    });
-
-    it(`(150, null, 100) => 100`, () => {
-      clamp(150, null, 100).should.equal(100);
-    });
-
-    it(`(150, undefined, 100) => 100`, () => {
-      clamp(150, undefined, 100).should.equal(100);
     });
 
     it(`(150) => 150`, () => {
@@ -107,6 +92,28 @@ describe(`clamp() - @category Math`, () => {
       clamp(150, NaN, NaN).should.equal(150);
     });
 
+
+    /*
+
+    July 08 2017:
+    Taken care of by --StrictNullChecks
+
+    it(`(150, 1, null) => 150`, () => {
+      clamp(150, 1, null).should.equal(150);
+    });
+
+    it(`(150, 1, undefined) => 150`, () => {
+      clamp(150, 1, undefined).should.equal(150);
+    });
+
+    it(`(150, null, 100) => 100`, () => {
+      clamp(150, null, 100).should.equal(100);
+    });
+
+    it(`(150, undefined, 100) => 100`, () => {
+      clamp(150, undefined, 100).should.equal(100);
+    });
+
     it(`(150, null, null) => 150`, () => {
       clamp(150, null, null).should.equal(150);
     });
@@ -114,6 +121,8 @@ describe(`clamp() - @category Math`, () => {
     it(`(150, undefined, undefined) => 150`, () => {
       clamp(150, undefined, undefined).should.equal(150);
     });
+
+    */
 
   });
 
@@ -131,6 +140,15 @@ describe(`clamp() - @category Math`, () => {
       clamp.min(150).should.equal(150);
     });
 
+    it(`.min(150, NaN) => 150`, () => {
+      clamp.min(150, NaN).should.equal(150);
+    });
+
+    /*
+
+    July 08 2017:
+    Taken care of by --StrictNullChecks
+
     it(`.min(150, null) => 150`, () => {
       clamp.min(150, null).should.equal(150);
     });
@@ -139,9 +157,7 @@ describe(`clamp() - @category Math`, () => {
       clamp.min(150, undefined).should.equal(150);
     });
 
-    it(`.min(150, NaN) => 150`, () => {
-      clamp.min(150, NaN).should.equal(150);
-    });
+    */
 
   });
 
@@ -159,6 +175,15 @@ describe(`clamp() - @category Math`, () => {
       clamp.max(150).should.equal(150);
     });
 
+    it(`.max(150, NaN) => 150`, () => {
+      clamp.max(150, NaN).should.equal(150);
+    });
+
+    /*
+
+    July 08 2017:
+    Taken care of by --StrictNullChecks
+
     it(`.max(150, null) => 150`, () => {
       clamp.max(150, null).should.equal(150);
     });
@@ -167,9 +192,7 @@ describe(`clamp() - @category Math`, () => {
       clamp.max(150, undefined).should.equal(150);
     });
 
-    it(`.max(150, NaN) => 150`, () => {
-      clamp.max(150, NaN).should.equal(150);
-    });
+    */
 
   });
 
@@ -179,6 +202,11 @@ describe(`clamp() - @category Math`, () => {
       Number.isNaN(clamp(NaN, -1000, 1000)).should.equal(true);
     });
 
+    /*
+
+    July 08 2017:
+    Taken care of by --StrictNullChecks
+
     it(`(null, -1000, 1000) => null`, () => {
       should().equal(clamp(null, -1000, 1000), null);
     });
@@ -186,6 +214,8 @@ describe(`clamp() - @category Math`, () => {
     it(`(undefined, -1000, 1000) => undefined`, () => {
       should().equal(clamp(undefined, -1000, 1000), undefined);
     });
+
+    */
 
   });
 

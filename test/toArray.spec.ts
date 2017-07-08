@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { toArray } from '../src/toArray';
 
 should();
@@ -8,200 +8,119 @@ describe(`toArray() - @category Language`, () => {
   describe(`should convert an object (values) into an array`, () => {
 
     it(`{a:1, b:2}=>[1,2]`, () => {
-
-      const orig: object = { a: 1, b: 2 };
-      const input: object = orig;
-      const output: number[] = toArray(input);
-      orig.should.be.deep.equal(input);
-      output.should.not.be.equal(input);
-      output.should.have.lengthOf(2);
-      output.should.deep.equal([1, 2]);
-
+      toArray({ a: 1, b: 2 }).should.deep.equal([1, 2]);
     });
 
     it(`{}=>[]`, () => {
-
-      const orig: object = {};
-      const input: object = orig;
-      const output: number[] = toArray(input);
-      orig.should.be.deep.equal(input);
-      output.should.not.be.equal(input);
-      output.should.have.lengthOf(0);
-      output.should.deep.equal([]);
-
+      toArray({}).should.deep.equal([]);
     });
 
   });
 
-  describe(`should convert iterator into an array`, () => {
+  describe(` should convert iterator into an array`, () => {
 
     it(`[1,2,3][Symbol.iterator]=>[1,2,3]`, () => {
+      toArray([1, 2, 3][Symbol.iterator]())
+        .should.deep.equal([1, 2, 3]);
+    });
 
-      const array: number[] = [1, 2, 3];
-      const orig: number[] = array.slice(0);
-      const input: IterableIterator<number> = orig[Symbol.iterator]();
-      const output: number[] = toArray(input);
-      orig.should.be.deep.equal(array);
-      output.should.not.be.equal(input);
-      output.should.have.lengthOf(3);
-      output.should.deep.equal([1, 2, 3]);
+    it(`('hello')[Symbol.iterator]=>['h','e','l','l','o']`, () => {
+      toArray(('hello')[Symbol.iterator]())
+        .should.deep.equal(['h', 'e', 'l', 'l', 'o']);
 
     });
 
-    it(`'hello'[Symbol.iterator]=>['h','e','l','l','o']`, () => {
-
-      const array: string = 'hello';
-      const orig: string = array.slice(0);
-      const input: IterableIterator<string> = orig[Symbol.iterator]();
-      const output: string[] = toArray(input);
-      orig.should.be.deep.equal(array);
-      output.should.not.be.equal(input);
-      output.should.have.lengthOf(5);
-      output.should.deep.equal(['h', 'e', 'l', 'l', 'o']);
-
-    });
-
-    it(`Set([1,2,3])[Symbol.iterator]=>['h','e','l','l','o']`, () => {
-
-      const array: Set<number> = new Set([1, 2, 3]);
-      const orig: Set<number> = array;
-      const input: IterableIterator<number> = orig[Symbol.iterator]();
-      const output: number[] = toArray(input);
-      orig.should.be.deep.equal(array);
-      output.should.not.be.equal(input);
-      output.should.have.lengthOf(3);
-      output.should.deep.equal([1, 2, 3]);
-
+    it(`Set([1,2,3])[Symbol.iterator]=>[1,2,3]`, () => {
+      toArray((new Set([1, 2, 3]))[Symbol.iterator]())
+        .should.deep.equal([1, 2, 3]);
     });
 
     it(`Map()[Symbol.iterator]=>[1,2,3]`, () => {
-
-      const array: Map<string, number> = new Map([['a', 1], ['b', 2], ['c', 3]]);
-      const orig: Map<string, number> = array;
-      const input: IterableIterator<[string, number]> = orig[Symbol.iterator]();
-      const output: Array<[string, number]> = toArray(input);
-      orig.should.be.deep.equal(array);
-      output.should.not.be.equal(input);
-      output.should.have.lengthOf(3);
-      output.should.deep.equal([['a', 1], ['b', 2], ['c', 3]]);
-
+      toArray((new Map([['a', 1], ['b', 2], ['c', 3]]))[Symbol.iterator]())
+        .should.deep.equal([['a', 1], ['b', 2], ['c', 3]]);
     });
 
     it(`[][Symbol.iterator]=>[]`, () => {
-
-      const array: number[] = [];
-      const orig: number[] = array.slice(0);
-      const input: IterableIterator<number> = orig[Symbol.iterator]();
-      const output: number[] = toArray(input);
-      orig.should.be.deep.equal(array);
-      output.should.not.be.equal(input);
-      output.should.have.lengthOf(0);
-      output.should.deep.equal([]);
-
+      toArray([][Symbol.iterator]()).should.deep.equal([]);
     });
 
   });
 
-  describe(`should convert a string containing unicode to an array`, () => {
+  describe(`should convert unicode string to array`, () => {
 
     it(`'💣💣💣' => ['💣','💣','💣']`, () => {
-
-      const orig: string = '💣💣💣';
-      const input: string = orig.slice(0);
-      const output: string[] = toArray(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.have.lengthOf(3);
-      output.should.deep.equal(['💣', '💣', '💣']);
-
-    });
-
-    it(`'' => []`, () => {
-
-      const orig: string = '';
-      const input: string = orig.slice(0);
-      const output: string[] = toArray(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.have.lengthOf(0);
-      output.should.deep.equal([]);
-
+      toArray('💣💣💣').should.deep.equal(['💣', '💣', '💣']);
     });
 
   });
 
-  describe(`should handle non unicode string just fine`, () => {
+  describe(`should convert non unicode string to array`, () => {
 
     it(`'hello' => ['h','e','l','l','o']`, () => {
-
-      const orig: string = 'hello';
-      const input: string = orig.slice(0);
-      const output: string[] = toArray(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.have.lengthOf(5);
-      output.should.deep.equal(['h', 'e', 'l', 'l', 'o']);
-
+      toArray('hello').should.deep.equal(['h', 'e', 'l', 'l', 'o']);
     });
 
     it(`'  ' => [' ',' ']`, () => {
-
-      const orig: string = '  ';
-      const input: string = orig.slice(0);
-      const output: string[] = toArray(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.have.lengthOf(2);
-      output.should.deep.equal([' ', ' ']);
-
+      toArray('  ').should.deep.equal([' ', ' ']);
     });
 
   });
 
-  describe(`should return empty array for no iterable non array non object`, () => {
+  describe(`should convert date object to array`, () => {
+
+    it(`new Date() => []`, () => {
+      toArray(new Date()).should.deep.equal([]);
+    });
+
+  });
+
+
+  describe(`should return [] for empty string`, () => {
+
+    it(`'' => []`, () => {
+      toArray('').should.deep.equal([]);
+    });
+
+  });
+
+  describe(`should return [] for number and boolean`, () => {
 
     it(`1 => []`, () => {
-
-      const output: string[] = toArray(1);
-      output.should.have.lengthOf(0);
-      output.should.deep.equal([]);
-
+      toArray(1).should.deep.equal([]);
     });
 
     it(`true => []`, () => {
-
-      const output: string[] = toArray(true);
-      output.should.have.lengthOf(0);
-      output.should.deep.equal([]);
-
+      toArray(true).should.deep.equal([]);
     });
 
   });
 
-  describe(`should return empty array for null and undefined input`, () => {
+  describe(`should return [] for null/undefined/NaN`, () => {
 
     it(`null => []`, () => {
-
-      const orig: string = null;
-      const input: string = orig;
-      const output: string[] = toArray(input);
-      should().equal(input, orig);
-      output.should.have.lengthOf(0);
-      output.should.deep.equal([]);
-
+      toArray(null).should.deep.equal([]);
     });
 
     it(`undefined => []`, () => {
-
-      const orig: string = undefined;
-      const input: string = orig;
-      const output: string[] = toArray(input);
-      should().equal(input, orig);
-      output.should.have.lengthOf(0);
-      output.should.deep.equal([]);
-
+      toArray(undefined).should.deep.equal([]);
     });
 
+    it(`NaN => []`, () => {
+      toArray(NaN).should.deep.equal([]);
+    });
+
+  });
+
+  describe(`should be functional and not mutating any input`, () => {
+
+    it(`{a:1, b:2}=>[1,2]`, () => {
+
+      const orig: object = { a: 1, b: 2 };
+      const input: object = orig;
+      toArray(input).should.deep.equal([1, 2]);
+      orig.should.be.deep.equal(input);
+
+    });
 
   });
 

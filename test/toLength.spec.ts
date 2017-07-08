@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { MAX_ARRAY_LENGTH } from '../src/constant';
 import { toLength } from '../src/toLength';
 
@@ -78,27 +78,29 @@ describe(`toLength() - @category Language`, () => {
 
     });
 
-    it(`null => 0`, () => {
+    /*
+        it(`null => 0`, () => {
 
-      const orig: number = null;
-      const input: number = orig;
-      const output: number = toLength(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(0);
+          const orig: number = null;
+          const input: number = orig;
+          const output: number = toLength(input);
+          should().equal(input, orig);
+          output.should.not.be.equal(input);
+          output.should.deep.equal(0);
 
-    });
+        });
 
-    it(`undefined => 0`, () => {
+        it(`undefined => 0`, () => {
 
-      const orig: number = undefined;
-      const input: number = orig;
-      const output: number = toLength(input);
-      should().equal(input, orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(0);
+          const orig: number = undefined;
+          const input: number = orig;
+          const output: number = toLength(input);
+          should().equal(input, orig);
+          output.should.not.be.equal(input);
+          output.should.deep.equal(0);
 
-    });
+        });
+    */
 
   });
 

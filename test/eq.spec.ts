@@ -1,47 +1,73 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { eq } from '../src/eq';
 
 should();
 
 describe(`eq() - @category Language`, () => {
 
+  /* July 08, 2017 -
+     Taken care of by --StrictNullChecks
+
+    describe(`should return false for different types`, () => {
+
+      it(`0 !== false`, () => {
+        eq(0, false).should.equal(false);
+      });
+
+      it(`"" !== false`, () => {
+        eq('', false).should.equal(false);
+      });
+
+      it(`"" !== 0`, () => {
+        eq('', 0).should.equal(false);
+      });
+
+      it(`"0" !== 0`, () => {
+        eq('0', 0).should.equal(false);
+      });
+
+      it(`"17" !== 17`, () => {
+        eq('17', 17).should.equal(false);
+      });
+
+      it(`[1,2] !== '1,2'`, () => {
+        eq([1, 2], '1,2').should.equal(false);
+      });
+
+      it(`'foo' !== NaN`, () => {
+        eq('foo', NaN).should.equal(false);
+      });
+
+    });
+
+  */
+
   describe(`should do a SameValueZero false comparisons`, () => {
 
-    it(`0 !== false`, () => {
-      eq(0, false).should.equal(false);
-    });
+    /* July 08, 2017 -
+       Taken care of by --StrictNullChecks
 
-    it(`"" !== false`, () => {
-      eq('', false).should.equal(false);
-    });
+      it(`null !== undefined`, () => {
+        eq(null, undefined).should.equal(false);
+      });
 
-    it(`"" !== 0`, () => {
-      eq('', 0).should.equal(false);
-    });
+      it(`null !== false`, () => {
+        eq(null, false).should.equal(false);
+      });
 
-    it(`"0" !== 0`, () => {
-      eq('0', 0).should.equal(false);
-    });
+      it(`undefined !== false`, () => {
+        eq(undefined, false).should.equal(false);
+      });
 
-    it(`"17" !== 17`, () => {
-      eq('17', 17).should.equal(false);
-    });
+      it(`0 !== null`, () => {
+        eq(0, null).should.equal(false);
+      });
 
-    it(`[1,2] !== '1,2'`, () => {
-      eq([1, 2], '1,2').should.equal(false);
-    });
+      it(`0 !== undefined`, () => {
+        eq(0, undefined).should.equal(false);
+      });
 
-    it(`null !== undefined`, () => {
-      eq(null, undefined).should.equal(false);
-    });
-
-    it(`null !== false`, () => {
-      eq(null, false).should.equal(false);
-    });
-
-    it(`undefined !== false`, () => {
-      eq(undefined, false).should.equal(false);
-    });
+    */
 
     it(`{foo:'bar'} !== {foo:'bar'}`, () => {
       eq({ foo: 'bar' }, { foo: 'bar' }).should.equal(false);
@@ -51,21 +77,10 @@ describe(`eq() - @category Language`, () => {
       eq([1, 2, 3], [1, 2, 3]).should.equal(false);
     });
 
-    it(`0 !== null`, () => {
-      eq(0, null).should.equal(false);
-    });
-
-    it(`0 !== undefined`, () => {
-      eq(0, undefined).should.equal(false);
-    });
-
     it(`0 !== NaN`, () => {
       eq(0, NaN).should.equal(false);
     });
 
-    it(`'foo' !== NaN`, () => {
-      eq('foo', NaN).should.equal(false);
-    });
 
   });
 
@@ -108,15 +123,24 @@ describe(`eq() - @category Language`, () => {
 
   });
 
-  describe(`should compare null/undefined/NaN correctly`, () => {
+  /* July 08, 2017 -
+     Taken care of by --StrictNullChecks
 
-    it(`undefined === undefined`, () => {
-      eq(undefined, undefined).should.equal(true);
+    describe(`should compare null/undefined/NaN correctly`, () => {
+
+      it(`undefined === undefined`, () => {
+        eq(undefined, undefined).should.equal(true);
+      });
+
+      it(`null === null`, () => {
+        eq(null, null).should.equal(true);
+      });
+
     });
 
-    it(`null === null`, () => {
-      eq(null, null).should.equal(true);
-    });
+  */
+
+  describe(`should compare NaN correctly`, () => {
 
     it(`NaN === NaN`, () => {
       eq(NaN, NaN).should.equal(true);
