@@ -5,112 +5,39 @@ should();
 
 describe(`toNumber() - @category Language`, () => {
 
-  describe(`should return NaN for all non numeric object`, () => {
+  describe(`should convert a number to number`, () => {
 
-    it(`Symbol() => NaN`, () => {
-
-      const orig: symbol = Symbol();
-      const input: symbol = orig;
-      const output: number = toNumber(input);
-      output.should.not.equal(output);
-
+    it(`Infinity => Infinity`, () => {
+      // while Infinity is printed as 1.7976931348623157e+308, but it can't be compare as equal to the number, hence must use Infinity for comparison.
+      toNumber(Infinity).should.equal(Infinity);
     });
 
-    it(`new Error() => NaN`, () => {
-
-      const orig: Error = new Error();
-      const input: Error = orig;
-      const output: number = toNumber(input);
-      output.should.not.equal(output);
-
+    it(`Number.MAX_VALUE => 1.7976931348623157e+308`, () => {
+      toNumber(Number.MAX_VALUE).should.equal(1.7976931348623157e+308);
     });
 
-    it(`()=>'hello' => NaN`, () => {
-
-      const orig: () => string = () => 'hello';
-      const input: () => string = orig;
-      const output: number = toNumber(input);
-      output.should.not.equal(output);
-
+    it(`Number.MIN_VALUE => 5e-324`, () => {
+      toNumber(Number.MIN_VALUE).should.equal(5e-324);
     });
 
-  });
-
-  describe(`should convert date value to universal time value`, () => {
-
-    it(`new Date() => <big number>`, () => {
-
-      const orig: Date = new Date();
-      const input: Date = orig;
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(new Date(input).getTime());
-
+    it(`Number.MAX_SAFE_INTEGER => 9007199254740991`, () => {
+      toNumber(Number.MAX_SAFE_INTEGER).should.equal(9007199254740991);
     });
 
-  });
-
-  describe(`should convert boolean value to 1 and 0`, () => {
-
-    it(`true => 1`, () => {
-
-      const orig: boolean = true;
-      const input: boolean = orig;
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(1);
-
+    it(`Number.MIN_SAFE_INTEGER => -9007199254740991`, () => {
+      toNumber(Number.MIN_SAFE_INTEGER).should.equal(-9007199254740991);
     });
 
-    it(`false => 0`, () => {
-
-      const orig: boolean = false;
-      const input: boolean = orig;
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(0);
-
+    it(`1e3 => 1e3`, () => {
+      toNumber(1e3).should.equal(1e3);
     });
 
-  });
-
-
-  describe(`should convert a numeric object to number`, () => {
-
-    it(`new Object(123) => 123`, () => {
-
-      const orig: object = new Object(123);
-      const input: object = orig;
-      const output: number = toNumber(input);
-      output.should.equal(123);
-
+    it(`3.2 => 3.2`, () => {
+      toNumber(3.2).should.equal(3.2);
     });
 
-    it(`new Object('456') => 456`, () => {
-
-      const orig: object = new Object('456');
-      const input: object = orig;
-      const output: number = toNumber(input);
-      output.should.equal(456);
-
-    });
-
-    it(`new Object('hello') => NaN`, () => {
-
-      const orig: object = new Object('hello');
-      const input: object = orig;
-      const output: number = toNumber(input);
-      output.should.not.equal(output);
-
-    });
-
-    it(`new Object({a:1}) => NaN`, () => {
-
-      const orig: object = new Object({ a: 1 });
-      const input: object = orig;
-      const output: number = toNumber(input);
-      output.should.not.equal(output);
-
+    it(`3 => 3`, () => {
+      toNumber(3).should.equal(3);
     });
 
   });
@@ -118,202 +45,127 @@ describe(`toNumber() - @category Language`, () => {
   describe(`should convert a numeric string to number`, () => {
 
     it(`'123' => 123`, () => {
-
-      const orig: string = '123';
-      const input: string = orig.slice(0);
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(123);
-
+      toNumber('123').should.equal(123);
     });
 
     it(`'123.456' => 123.456`, () => {
-
-      const orig: string = '123.456';
-      const input: string = orig.slice(0);
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(123.456);
-
+      toNumber('123.456').should.equal(123.456);
     });
 
     it(`'Infinity' => Infinity`, () => {
-
-      const orig: string = 'Infinity';
-      const input: string = orig.slice(0);
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(Infinity);
-
+      toNumber('Infinity').should.equal(Infinity);
     });
 
     it(`'0b1110' => 14`, () => {
-
-      const orig: string = '0b1110';
-      const input: string = orig.slice(0);
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(14);
-
+      toNumber('0b1110').should.equal(14);
     });
 
     it(`'0o17' => 15`, () => {
-
-      const orig: string = '0o17';
-      const input: string = orig.slice(0);
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(15);
-
+      toNumber('0o17').should.equal(15);
     });
 
     it(`'0x1F' => 31`, () => {
-
-      const orig: string = '0x1F';
-      const input: string = orig.slice(0);
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(31);
-
-    });
-
-
-    it(`'hello' => NaN`, () => {
-
-      const orig: string = 'hello';
-      const input: string = orig.slice(0);
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.equal(output);
-
-    });
-
-    it(`'0b23' => NaN`, () => {
-
-      const orig: string = '0b23';
-      const input: string = orig.slice(0);
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.equal(output);
-
-    });
-
-    it(`'0O99' => NaN`, () => {
-
-      const orig: string = '0O99';
-      const input: string = orig.slice(0);
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.equal(output);
-
-    });
-
-    it(`'0XGG' => NaN`, () => {
-
-      const orig: string = '0XGG';
-      const input: string = orig.slice(0);
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.equal(output);
-
-    });
-
-    it(`'NaN' => NaN`, () => {
-
-      const orig: string = 'NaN';
-      const input: string = orig.slice(0);
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.not.equal(output);
-
+      toNumber('0x1F').should.equal(31);
     });
 
   });
 
+  describe(`should convert date value to universal time value`, () => {
 
-  describe(`should convert a number to number`, () => {
-
-    it(`Infinity => Infinity`, () => {
-
-      const orig: number = Infinity;
-      const input: number = orig;
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(Infinity);
-
+    it(`new Date() => time in ms`, () => {
+      const d: Date = new Date();
+      toNumber(d).should.equal(d.getTime());
     });
 
+  });
 
-    it(`Number.MAX_VALUE => 1.7976931348623157e+308`, () => {
+  describe(`should convert boolean value to 1 and 0`, () => {
 
-      const orig: number = Number.MAX_VALUE;
-      const input: number = orig;
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(1.7976931348623157e+308);
-
+    it(`true => 1`, () => {
+      toNumber(true).should.equal(1);
     });
 
-    it(`Number.MIN_VALUE => 5e-324`, () => {
-
-      const orig: number = Number.MIN_VALUE;
-      const input: number = orig;
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(5e-324);
-
+    it(`false => 0`, () => {
+      toNumber(false).should.equal(0);
     });
 
-    it(`Number.MAX_SAFE_INTEGER => 9007199254740991`, () => {
+  });
 
-      const orig: number = Number.MAX_SAFE_INTEGER;
-      const input: number = orig;
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(9007199254740991);
+  describe(`should convert a numeric object to number`, () => {
 
+    it(`new Object(123) => 123`, () => {
+      toNumber(new Object(123)).should.equal(123);
     });
 
-    it(`Number.MIN_SAFE_INTEGER => -9007199254740991`, () => {
-
-      const orig: number = Number.MIN_SAFE_INTEGER;
-      const input: number = orig;
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(-9007199254740991);
-
+    it(`new Object('456') => 456`, () => {
+      toNumber(new Object('456')).should.equal(456);
     });
 
-    it(`1e3 => 1e3`, () => {
+  });
 
-      const orig: number = 1e3;
-      const input: number = orig;
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(1e3);
+  // tslint:disable:no-unused-expression
 
+  describe(`should return NaN for non numeric string`, () => {
+
+
+    it(`'hello' => NaN`, () => {
+      toNumber('hello').should.be.NaN;
     });
 
-    it(`3.2 => 3.2`, () => {
-
-      const orig: number = 3.2;
-      const input: number = orig;
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(3.2);
-
+    it(`'0b23' => NaN`, () => {
+      toNumber('0b23').should.be.NaN;
     });
 
-    it(`3 => 3`, () => {
-
-      const orig: number = 3;
-      const input: number = orig;
-      const output: number = toNumber(input);
-      input.should.be.deep.equal(orig);
-      output.should.equal(3);
-
+    it(`'0O99' => NaN`, () => {
+      toNumber('0O99').should.be.NaN;
     });
 
+    it(`'0XGG' => NaN`, () => {
+      toNumber('0XGG').should.be.NaN;
+    });
+
+    it(`'NaN' => NaN`, () => {
+      toNumber(NaN).should.be.NaN;
+    });
+
+  });
+
+  describe(`should return NaN for all non numeric object`, () => {
+
+    it(`new Object('hello') => NaN`, () => {
+      toNumber(new Object('hello')).should.be.NaN;
+    });
+
+    it(`new Object({a:1}) => NaN`, () => {
+      toNumber(new Object({ a: 1 })).should.be.NaN;
+    });
+
+    it(`Symbol() => NaN`, () => {
+      toNumber(Symbol()).should.be.NaN;
+    });
+
+    it(`new Error() => NaN`, () => {
+      toNumber(new Error()).should.be.NaN;
+    });
+
+    it(`()=>'hello' => NaN`, () => {
+      toNumber(() => 'hello').should.be.NaN;
+    });
+
+  });
+
+  // tslint:enable:no-unused-expression
+
+  describe(`should be functional and not mutating any input`, () => {
+
+    it(`'123' => 123`, () => {
+
+      const orig: string = '123';
+      const input: string = orig.slice(0);
+      toNumber(input).should.equal(123);
+      input.should.be.equal(orig);
+
+    });
 
   });
 
