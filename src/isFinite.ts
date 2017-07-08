@@ -11,6 +11,6 @@
  * @returns {boolean}
  */
 
-export function isFinite(input: number): boolean {
+export function isFinite(input: any): boolean {
   return Number.isFinite(input);
 }

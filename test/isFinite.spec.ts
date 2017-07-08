@@ -33,26 +33,15 @@ describe(`isFinite() - @category Language`, () => {
 
   });
 
-  /*
-  July 08 2017
-  Taken care of by --StrictNullChecks
+  describe(`should return false for null/undefined/NaN`, () => {
 
-    describe(`should return false for null/undefined`, () => {
-
-      it(`null => false`, () => {
-        isFinite(null).should.equal(false);
-      });
-
-
-      it(`undefined => false`, () => {
-        isFinite(undefined).should.equal(false);
-      });
-
+    it(`null => false`, () => {
+      isFinite(null).should.equal(false);
     });
 
-  */
-
-  describe(`should return false for NaN`, () => {
+    it(`undefined => false`, () => {
+      isFinite(undefined).should.equal(false);
+    });
 
     it(`NaN => false`, () => {
       isFinite(NaN).should.equal(false);
