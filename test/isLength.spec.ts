@@ -8,15 +8,15 @@ describe(`isLength() - @category Language`, () => {
   describe(`should return true for valid length`, () => {
 
     it(`0 => true`, () => {
-      isLength(0).should.equal(true);
+      isLength(0).should.be.true;
     });
 
     it(`3 => true`, () => {
-      isLength(0).should.equal(true);
+      isLength(0).should.be.true;
     });
 
     it(`Number.MAX_SAFE_INTEGER => true`, () => {
-      isLength(Number.MAX_SAFE_INTEGER).should.equal(true);
+      isLength(Number.MAX_SAFE_INTEGER).should.be.true;
     });
 
   });
@@ -24,27 +24,27 @@ describe(`isLength() - @category Language`, () => {
   describe(`should return false for invalid length`, () => {
 
     it(`Number.MIN_SAFE_INTEGER => false`, () => {
-      isLength(Number.MIN_SAFE_INTEGER).should.equal(false);
+      isLength(Number.MIN_SAFE_INTEGER).should.be.false;
     });
 
     it(`Number.MIN_VALUE => false`, () => {
-      isLength(Number.MIN_VALUE).should.equal(false);
+      isLength(Number.MIN_VALUE).should.be.false;
     });
 
     it(`Number.MAX_VALUE => false`, () => {
-      isLength(Number.MAX_VALUE).should.equal(false);
+      isLength(Number.MAX_VALUE).should.be.false;
     });
 
     it(`Infinity => false`, () => {
-      isLength(Infinity).should.equal(false);
+      isLength(Infinity).should.be.false;
     });
 
     it(`-1 => false`, () => {
-      isLength(-1).should.equal(false);
+      isLength(-1).should.be.false;
     });
 
     it(`3.3 => false`, () => {
-      isLength(3.3).should.equal(false);
+      isLength(3.3).should.be.false;
     });
 
   });
@@ -52,15 +52,15 @@ describe(`isLength() - @category Language`, () => {
   describe(`should return false for non number`, () => {
 
     it(`'3' => false`, () => {
-      isLength('3').should.equal(false);
+      isLength('3').should.be.false;
     });
 
     it(`true => false`, () => {
-      isLength(true).should.equal(false);
+      isLength(true).should.be.false;
     });
 
     it(`{a:1} => false`, () => {
-      isLength({ a: 1 }).should.equal(false);
+      isLength({ a: 1 }).should.be.false;
     });
 
   });
@@ -68,15 +68,15 @@ describe(`isLength() - @category Language`, () => {
   describe(`should return false for null/undefined/NaN`, () => {
 
     it(`null => false`, () => {
-      isLength(null).should.equal(false);
+      isLength(null).should.be.false;
     });
 
     it(`undefined => false`, () => {
-      isLength(undefined).should.equal(false);
+      isLength(undefined).should.be.false;
     });
 
     it(`NaN => false`, () => {
-      isLength(NaN).should.equal(false);
+      isLength(NaN).should.be.false;
     });
 
   });
@@ -87,7 +87,7 @@ describe(`isLength() - @category Language`, () => {
 
       const orig: any = 123;
       const input: any = orig;
-      isLength(input).should.equal(true);
+      isLength(input).should.be.true;
       input.should.be.deep.equal(orig);
 
     });

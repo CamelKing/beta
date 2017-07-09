@@ -8,15 +8,15 @@ describe(`isNil() - @category Language`, () => {
   describe(`should return true for null, undefined and void 0`, () => {
 
     it(`null => true`, () => {
-      isNil(null).should.equal(true);
+      isNil(null).should.be.true;
     });
 
     it(`undefined => true`, () => {
-      isNil(undefined).should.equal(true);
+      isNil(undefined).should.be.true;
     });
 
     it(`void 0 => true`, () => {
-      isNil(void 0).should.equal(true);
+      isNil(void 0).should.be.true;
     });
 
   });
@@ -24,27 +24,27 @@ describe(`isNil() - @category Language`, () => {
   describe(`should return false for anything non null/undefined/void 0`, () => {
 
     it(`123 => false`, () => {
-      isNil(123).should.equal(false);
+      isNil(123).should.be.false;
     });
 
     it(`0 => false`, () => {
-      isNil(0).should.equal(false);
+      isNil(0).should.be.false;
     });
 
     it(`"hello" => false`, () => {
-      isNil('hello').should.equal(false);
+      isNil('hello').should.be.false;
     });
 
     it(`"" => false`, () => {
-      isNil('').should.equal(false);
+      isNil('').should.be.false;
     });
 
     it(`Infinity => false`, () => {
-      isNil(Infinity).should.equal(false);
+      isNil(Infinity).should.be.false;
     });
 
     it(`NaN => false`, () => {
-      isNil(NaN).should.equal(false);
+      isNil(NaN).should.be.false;
     });
 
   });
@@ -55,7 +55,7 @@ describe(`isNil() - @category Language`, () => {
 
       const orig: any = null;
       const input: any = orig;
-      isNil(input).should.equal(true)
+      isNil(input).should.be.true
       should().equal(input, orig);
 
     });

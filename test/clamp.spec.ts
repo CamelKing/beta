@@ -199,7 +199,7 @@ describe(`clamp() - @category Math`, () => {
   describe(`should return null/undefined/NaN as is`, () => {
 
     it(`(NaN, -1000, 1000) => NaN`, () => {
-      Number.isNaN(clamp(NaN, -1000, 1000)).should.equal(true);
+      clamp(NaN, -1000, 1000).should.be.NaN;
     });
 
     /*

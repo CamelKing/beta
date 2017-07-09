@@ -4,18 +4,19 @@ import { isEmpty } from '../src/isEmpty';
 should();
 
 describe(`isEmpty() - @category Language`, () => {
+
   describe(`should return true if number and boolean`, () => {
 
     it(`123 => true`, () => {
-      isEmpty(123).should.deep.equal(true);
+      isEmpty(123).should.be.true;
     });
 
     it(`false => true`, () => {
-      isEmpty(false).should.deep.equal(true);
+      isEmpty(false).should.be.true;
     });
 
     it(`true => true`, () => {
-      isEmpty(false).should.deep.equal(true);
+      isEmpty(false).should.be.true;
     });
 
   });
@@ -23,11 +24,11 @@ describe(`isEmpty() - @category Language`, () => {
   describe(`should return true only if empty buffer`, () => {
 
     it(`new Buffer('hello') => false`, () => {
-      isEmpty(new Buffer('hello')).should.deep.equal(false);
+      isEmpty(new Buffer('hello')).should.be.false;
     });
 
     it(`new Buffer('') => true`, () => {
-      isEmpty(new Buffer('')).should.deep.equal(true);
+      isEmpty(new Buffer('')).should.be.true;
     });
 
   });
@@ -35,11 +36,11 @@ describe(`isEmpty() - @category Language`, () => {
   describe(`should return true only if empty typed array`, () => {
 
     it(`new Uint16Array(2) => false`, () => {
-      isEmpty(new Uint16Array(2)).should.deep.equal(false);
+      isEmpty(new Uint16Array(2)).should.be.false;
     });
 
     it(`new Uint16Array(0) => true`, () => {
-      isEmpty(new Uint16Array(0)).should.deep.equal(true);
+      isEmpty(new Uint16Array(0)).should.be.true;
     });
 
   });
@@ -47,11 +48,11 @@ describe(`isEmpty() - @category Language`, () => {
   describe(`should return true only if empty string`, () => {
 
     it(`'hello' => false`, () => {
-      isEmpty('hello').should.deep.equal(false);
+      isEmpty('hello').should.be.false;
     });
 
     it(`'' => true`, () => {
-      isEmpty('').should.deep.equal(true);
+      isEmpty('').should.be.true;
     });
 
   });
@@ -59,11 +60,11 @@ describe(`isEmpty() - @category Language`, () => {
   describe(`should return true only if empty array`, () => {
 
     it(`[1,2,3] => false`, () => {
-      isEmpty([1, 2, 3]).should.deep.equal(false);
+      isEmpty([1, 2, 3]).should.be.false;
     });
 
     it(`[] => true`, () => {
-      isEmpty([]).should.deep.equal(true);
+      isEmpty([]).should.be.true;
     });
 
   });
@@ -71,7 +72,7 @@ describe(`isEmpty() - @category Language`, () => {
   describe(`should return true only if empty object/map/set`, () => {
 
     it(`new Map([['a', 1]]) => false`, () => {
-      isEmpty(new Map([['a', 1]])).should.deep.equal(false);
+      isEmpty(new Map([['a', 1]])).should.be.false;
     });
 
     it(`new Map([]) => true`, () => {
@@ -144,15 +145,15 @@ describe(`isEmpty() - @category Language`, () => {
   describe(`should return true for null/undefined/NaN`, () => {
 
     it(`null => true`, () => {
-      isEmpty(null).should.deep.equal(true);
+      isEmpty(null).should.be.true;
     });
 
     it(`undefined => true`, () => {
-      isEmpty(undefined).should.deep.equal(true);
+      isEmpty(undefined).should.be.true;
     });
 
     it(`NaN => true`, () => {
-      isEmpty(NaN).should.deep.equal(true);
+      isEmpty(NaN).should.be.true;
     });
 
   });

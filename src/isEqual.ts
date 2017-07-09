@@ -31,7 +31,8 @@ import { type } from './type';
 // tslint:disable-next-line:cyclomatic-complexity
 export function isEqual(inputA: any, inputB: any): boolean {
 
-  // short circuit for equal primitives and references (array, functions, etc.)
+  // short circuit for equal primitives,
+  // references (array, functions, etc.) and null/undefined
   if (inputA === inputB) return true;
 
   // check if same type tag
@@ -41,8 +42,6 @@ export function isEqual(inputA: any, inputB: any): boolean {
 
   switch (typeA) {
     // the list of types no comparison can be done, false by default
-    case 'Undefined':
-    case 'Null':
     case 'Function':
     case 'Promise':
     case 'AsyncFunction':

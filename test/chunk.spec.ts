@@ -38,7 +38,6 @@ describe('chunk() - @category Array', () => {
 
   });
 
-
   describe(`should handle 'evenly split' chunk size`, () => {
 
     it(`([true,false], 2) => [[true,false]]`, () => {

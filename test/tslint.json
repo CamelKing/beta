@@ -1,0 +1,11 @@
+{
+  "no-unused-expression": true,
+  "max-file-line-count": [
+    true,
+    1000
+  ],
+  "cyclomatic-complexity": [
+    true,
+    30
+  ]
+}

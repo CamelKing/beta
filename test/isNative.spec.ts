@@ -8,11 +8,11 @@ describe(`isNative() - @category Language`, () => {
   describe(`should detect if a function is native JS or user code`, () => {
 
     it(`Math.abs => true`, () => {
-      isNative(Math.abs).should.equal(true);
+      isNative(Math.abs).should.be.true;
     });
 
     it(`()=>123 => false`, () => {
-      isNative(() => 123).should.equal(false);
+      isNative(() => 123).should.be.false;
     });
 
   });
@@ -20,11 +20,11 @@ describe(`isNative() - @category Language`, () => {
   describe(`should return false for promise`, () => {
 
     it(`Promise.resolve(123) => false`, () => {
-      isNative(Promise.resolve(123)).should.equal(false);
+      isNative(Promise.resolve(123)).should.be.false;
     });
 
     it(`Promise.resolve(Math.abs) => false`, () => {
-      isNative(Promise.resolve(Math.abs)).should.equal(false);
+      isNative(Promise.resolve(Math.abs)).should.be.false;
     });
 
   });
@@ -32,11 +32,11 @@ describe(`isNative() - @category Language`, () => {
   describe(`should return false for non functions`, () => {
 
     it(`123 => false`, () => {
-      isNative(123).should.equal(false);
+      isNative(123).should.be.false;
     });
 
     it(`'hello' => false`, () => {
-      isNative('hello').should.equal(false);
+      isNative('hello').should.be.false;
     });
 
   });
@@ -44,15 +44,15 @@ describe(`isNative() - @category Language`, () => {
   describe(`should return false for null and undefined`, () => {
 
     it(`null => false`, () => {
-      isNative(null).should.equal(false);
+      isNative(null).should.be.false;
     });
 
     it(`undefined => false`, () => {
-      isNative(undefined).should.equal(false);
+      isNative(undefined).should.be.false;
     });
 
     it(`NaN => false`, () => {
-      isNative(NaN).should.equal(false);
+      isNative(NaN).should.be.false;
     });
 
   });
@@ -63,7 +63,7 @@ describe(`isNative() - @category Language`, () => {
 
       const orig: any = Math.abs;
       const input: any = orig;
-      isNative(input).should.equal(true);
+      isNative(input).should.be.true;
       input.should.be.deep.equal(orig);
 
     });
