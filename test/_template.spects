@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { should } from 'chai';
 import { __function__ } from '../src/__function__';
 
 should();
@@ -7,17 +7,50 @@ describe(`__function__() - @category __category__`, () => {
 
   describe(`should ...`, () => {
 
-    it(`__the_test_description_here`, () => {
+    it(`__input__ => __expected__ouput1__`, () => {
+      __function__(input).should.deep.equal(__expected__output1__);
+    });
 
-      const orig: any = __original__input__;
-      const input: any = orig;
-      const output: any = __function__(input);
+  });
+
+
+  describe(`should return __expected_NaN__ for NaN`, () => {
+
+    it(`NaN => '__expected_NaN__'`, () => {
+      __function__(NaN).should.deep.equal('__expected_NaN__');
+    });
+
+  });
+
+  describe(`should return __expected_null__ for null`, () => {
+
+    it(`null => '__expected_null__'`, () => {
+      __function__(null).should.deep.equal('__expected_null__');
+    });
+
+  });
+
+  describe(`should return __expected_undefined__ for undefined`, () => {
+
+    it(`undefined => '__expected_undefined__'`, () => {
+      __function__(undefined).should.deep.equal('__expected_undefined__');
+    });
+
+  });
+
+  describe(`should be functional and not mutating any input`, () => {
+
+    it(`__test__`, () => {
+
+      const orig: any = __original__;
+      const input: any = __copy__from__original__;
+      __function__(input).should.deep.equal('__expected__output2__');
       input.should.be.deep.equal(orig);
-      output.should.not.be.equal(input);
-      output.should.deep.equal(__expected__output__);
 
     });
 
   });
 
+
 });
+
