@@ -1,8 +1,8 @@
 /**
  * Clamps number within the inclusive lower and upper bounds.
  *
- * Note: shorthand .min() allow clamping lower bound, and
- *       .max() allows clamping upper bound.
+ * Note: shorthand .low() allow clamping lower bound, and
+ *       .high() allows clamping upper bound.
  *
  * @category Number
  *
@@ -36,11 +36,11 @@ export function clamp(input: number, low?: number, high?: number): number {
 // tslint:disable-next-line:no-namespace
 export namespace clamp {
 
-  export function min(input: number, floor?: number): number {
+  export function low(input: number, floor?: number): number {
     return clamp(input, floor, +Infinity);
   }
 
-  export function max(input: number, ceil?: number): number {
+  export function high(input: number, ceil?: number): number {
     return clamp(input, -Infinity, ceil);
   }
 

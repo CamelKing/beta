@@ -279,9 +279,6 @@ describe(`isEqual() - @category Language`, () => {
       }
     }
 
-    const o: Coord = new Coord([1, 1]);
-    console.log(` ValueOf : ${o.valueOf()}`);
-
     it('user class() user class() => true', () => {
       isEqual(new Coord([1, 2]), new Coord([1, 2])).should.be.true;
     });

@@ -129,19 +129,19 @@ describe(`clamp() - @category Math`, () => {
   describe(`.min() should clamp the low/floor boundary`, () => {
 
     it(`.min(150, 200) => 200`, () => {
-      clamp.min(150, 200).should.equal(200);
+      clamp.low(150, 200).should.equal(200);
     });
 
     it(`.min(150, 100) => 150`, () => {
-      clamp.min(150, 100).should.equal(150);
+      clamp.low(150, 100).should.equal(150);
     });
 
     it(`.min(150) => 150`, () => {
-      clamp.min(150).should.equal(150);
+      clamp.low(150).should.equal(150);
     });
 
     it(`.min(150, NaN) => 150`, () => {
-      clamp.min(150, NaN).should.equal(150);
+      clamp.low(150, NaN).should.equal(150);
     });
 
     /*
@@ -150,11 +150,11 @@ describe(`clamp() - @category Math`, () => {
     Taken care of by --StrictNullChecks
 
     it(`.min(150, null) => 150`, () => {
-      clamp.min(150, null).should.equal(150);
+      clamp.low(150, null).should.equal(150);
     });
 
     it(`.min(150, undefined) => 150`, () => {
-      clamp.min(150, undefined).should.equal(150);
+      clamp.low(150, undefined).should.equal(150);
     });
 
     */
@@ -164,19 +164,19 @@ describe(`clamp() - @category Math`, () => {
   describe(`.max() should clamp the high/ceil boundary`, () => {
 
     it(`.max(150, 100) => 100`, () => {
-      clamp.max(150, 100).should.equal(100);
+      clamp.high(150, 100).should.equal(100);
     });
 
     it(`.max(150, 200) => 150`, () => {
-      clamp.max(150, 200).should.equal(150);
+      clamp.high(150, 200).should.equal(150);
     });
 
     it(`.max(150) => 150`, () => {
-      clamp.max(150).should.equal(150);
+      clamp.high(150).should.equal(150);
     });
 
     it(`.max(150, NaN) => 150`, () => {
-      clamp.max(150, NaN).should.equal(150);
+      clamp.high(150, NaN).should.equal(150);
     });
 
     /*
@@ -185,11 +185,11 @@ describe(`clamp() - @category Math`, () => {
     Taken care of by --StrictNullChecks
 
     it(`.max(150, null) => 150`, () => {
-      clamp.max(150, null).should.equal(150);
+      clamp.high(150, null).should.equal(150);
     });
 
     it(`.max(150, undefined) => 150`, () => {
-      clamp.max(150, undefined).should.equal(150);
+      clamp.high(150, undefined).should.equal(150);
     });
 
     */
