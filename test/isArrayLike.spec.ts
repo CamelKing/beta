@@ -5,7 +5,7 @@ should();
 
 describe(`isArrayLike() - @category Language`, () => {
 
-  describe(`should check for array-like object`, () => {
+  describe(`should check for array-like value`, () => {
 
     it(`[1,2,3] => true`, () => {
       isArrayLike([1, 2, 3]).should.be.true;
