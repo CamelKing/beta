@@ -90,10 +90,19 @@ export function isEqual(inputA: any, inputB: any): boolean {
   // safeguard line, as most non object type should have been filtered above
   if (typeof inputA !== 'object' || typeof inputB !== 'object') return false;
 
-  // in case some primitives are created with Object() method
-  // check if .valueOf() method exist, user defined objects may not have this
-  const valA: any = inputA.valueOf ? inputA.valueOf() : undefined;
-  const valB: any = inputB.valueOf ? inputB.valueOf() : undefined;
+  /*
+    It seems all objects come built-in with .valueOf() method, even user
+    defined class. And since --StrictNullChecks is in effect, there is no
+    way to remove .valueOf ( = null) method from any object. This checking
+    is thus commented off.
+
+    // in case some primitives are created with Object() method
+    // check if .valueOf() method exist, user defined objects may not have this
+    const valA: any = inputA.valueOf ? inputA.valueOf() : undefined;
+    const valB: any = inputB.valueOf ? inputB.valueOf() : undefined;
+  */
+  const valA: any = inputA.valueOf();
+  const valB: any = inputB.valueOf();
 
   if (typeA.search(/String|Number|Boolean|Symbol|Date/) > -1
     && valA !== valB)

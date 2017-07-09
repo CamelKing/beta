@@ -230,15 +230,22 @@ describe(`isEqual() - @category Language`, () => {
 
   });
 
-  describe(`should return true for 2 objects with same key:values`, () => {
+  describe(`should return true if 2 error objects has same message/stack`, () => {
 
-    it('should return true if two error objects has same message and stack', () => {
-
+    it(`error1 error1 => true`, () => {
       const e1: Error = new Error('Error Testing');
       const e2: Error = new Error('Error Testing');
       e1.stack = e2.stack;
       isEqual(e1, e2).should.be.true;
+    });
 
+  });
+
+  describe(`should return false if 2 error objects has diff message/stack`, () => {
+
+    it(`error1 error1 => true`, () => {
+      isEqual(new Error('Error Testing'), new Error('Error Testing'))
+        .should.be.false;
     });
 
   });
@@ -257,6 +264,43 @@ describe(`isEqual() - @category Language`, () => {
     it(`date() date\'() => false`, () => {
       const dt: Date = new Date();
       isEqual(new Date(dt), new Date(dt.getTime() + 1000)).should.be.false;
+    });
+
+  });
+
+  describe('should return true if 2 user class objects has same properties/values', () => {
+
+    class Coord {
+      private x: number = NaN;
+      private y: number = NaN;
+      constructor([x, y]: [number, number]) {
+        this.x = x;
+        this.y = y;
+      }
+    }
+
+    const o: Coord = new Coord([1, 1]);
+    console.log(` ValueOf : ${o.valueOf()}`);
+
+    it('user class() user class() => true', () => {
+      isEqual(new Coord([1, 2]), new Coord([1, 2])).should.be.true;
+    });
+
+  });
+
+  describe('should return false if 2 user class objects has diff properties/values', () => {
+
+    class Coord {
+      private x: number = NaN;
+      private y: number = NaN;
+      constructor([x, y]: [number, number]) {
+        this.x = x;
+        this.y = y;
+      }
+    }
+
+    it('user defined class objects with different data  => false', () => {
+      isEqual(new Coord([1, 2]), new Coord([2, 3])).should.be.false;
     });
 
   });
