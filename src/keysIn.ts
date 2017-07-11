@@ -1,3 +1,5 @@
+import { ObjectOptions } from './constant';
+
 /**
  * Extract all enumerable keys in the object, own and inheritted.
  *
@@ -7,23 +9,27 @@
  * Last updated : July 11, 2017
  *
  * @export
- * @param {object} input
- * @param {boolean} [inclNative=false] - options to include native
- *                                       keys(length, size etc.)
+ * @param {ObjectOptions} { source, noLength, goDeep }
  * @returns {string[]}
  */
 
-export function keysIn(input: object = {}, noLength: boolean = true): string[] {
+export function keysIn({ source, noLength, goDeep }: ObjectOptions): string[] {
+
+  if (source == null) source = {};
+  if (noLength == null) noLength = true;
+  if (goDeep == null) goDeep = true;
 
   // retrieve own keys, including 'length' for array
-  const output: string[] = Object.getOwnPropertyNames(input);
+  const output: string[] = Object.getOwnPropertyNames(source);
 
-  // retrieve keys up in the prototype chain
-  for (const key in input) {
-    if (!output.includes(key)) output.push(key);
+  if (goDeep) {
+    // retrieve keys up in the prototype chain
+    for (const key in source) {
+      if (!output.includes(key)) output.push(key);
+    }
   }
 
-  return (noLength && Array.isArray(input))
+  return (noLength && Array.isArray(source))
     ? output.filter((key: string) => key !== 'length')
     : output;
 
