@@ -122,6 +122,14 @@ describe(`keysIn() - @category Object`, () => {
 
   });
 
+  describe(`should return [] for undefined`, () => {
+
+    it(`undefined => []`, () => {
+      keysIn({ source: undefined }).should.deep.equal([]);
+    });
+
+  });
+
   describe(`should be functional and not mutating any input`, () => {
 
     it(`{a:1, b:2} => ['a','b']`, () => {
