@@ -34,7 +34,7 @@ export function copyProperties({ source, keys, target, goDeep }: ObjectOptions):
 
   // construct keys to copy array
 
-  let keysToCopy: string[] = [];
+  let keysToCopy: PropertyKey[] = [];
 
   if (keys != null) {
 
@@ -50,25 +50,38 @@ export function copyProperties({ source, keys, target, goDeep }: ObjectOptions):
 
   // actual copying process
 
-  keysToCopy.forEach((key: string) => {
+  keysToCopy.forEach((key: PropertyKey) => {
 
-    key = key.trim();
+    // use if...in to check prototype chains as well
+    if (key in (source as object)) {
 
-    // check if key exist in target
-    if (output[key]) {
-      // only overwrite target exisitng key if the new value is not undefined
-      if ((source as object)[key]) output[key] = (source as object)[key];
-    } else {
-      // if new key, only copy if it exists in source
-      if (key in (source as object)) {
-        // if property in prototype chain, only copy if goDeep
-        // while ketsIn(goDeep) would have filter deep property,
-        // this will stop any user passed in deep property
-        if ((source as object).hasOwnProperty(key) || goDeep) {
+      // only proceed if (1) own keys, or (2) proto keys + goDeep=true
+      if ((source as object).hasOwnProperty(key) || goDeep) {
+        // dont copy if existing property on output, 
+        // and source is null/undefined
+        if (!((source as object)[key] == null && Reflect.has(output, key))) {
           output[key] = (source as object)[key];
         }
       }
+
     }
+
+
+    // // check if key exist in target
+    // if (output[key]) {
+    //   // only overwrite target exisitng key if the new value is not undefined
+    //   if ((source as object)[key]) output[key] = (source as object)[key];
+    // } else {
+    //   // if new key, only copy if it exists in source
+    //   if (key in (source as object)) {
+    //     // if property in prototype chain, only copy if goDeep
+    //     // while ketsIn(goDeep) would have filter deep property,
+    //     // this will stop any user passed in deep property
+    //     if ((source as object).hasOwnProperty(key) || goDeep) {
+    //       output[key] = (source as object)[key];
+    //     }
+    //   }
+    // }
 
   });
 

@@ -13,14 +13,19 @@ import { ObjectOptions } from './constant';
  * @returns {string[]}
  */
 
-export function keysIn({ source, noLength, goDeep }: ObjectOptions): string[] {
+export function keysIn({ source, noLength, goDeep }: ObjectOptions): PropertyKey[] {
 
   if (source == null) source = {};
   if (noLength == null) noLength = true;
   if (goDeep == null) goDeep = true;
 
   // retrieve own keys, including 'length' for array
-  const output: string[] = Object.getOwnPropertyNames(source);
+  // Object.keys = own properties (enum only) keys
+  // Object.getOwnPropertyNames = own properties (enum or not) keys
+  // Object.getOwnPropertySymbols = own symbol Properties
+  // Reflect.ownKeys = Object.getOwnPropertyNames + Object.getOwnPropertySymbols
+  const output: PropertyKey[] = Reflect.ownKeys(source);
+  // Object.getOwnPropertyNames(source);
 
   if (goDeep) {
     // retrieve keys up in the prototype chain
@@ -30,7 +35,7 @@ export function keysIn({ source, noLength, goDeep }: ObjectOptions): string[] {
   }
 
   return (noLength && Array.isArray(source))
-    ? output.filter((key: string) => key !== 'length')
+    ? output.filter((key: PropertyKey) => key !== 'length')
     : output;
 
 }

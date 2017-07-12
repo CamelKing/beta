@@ -175,36 +175,32 @@ describe(`copyProperties() - @category Object`, () => {
 
   });
 
-  describe(`should copy the same ignoring lead/trail spaces in keys param`, () => {
+  describe(`should treat keys with lead/trail spaces as is`, () => {
 
-    it(`s:{a:1,b:2}, k:' a', t:{} => {a:1}`, () => {
-      copyProperties({ source: { a: 1, b: 2 }, keys: ' a', target: {} })
-        .should.deep.equal({ a: 1 });
+    it(`s:{a:1,b:2}, k:' a', t:{c:3} => {c:3}`, () => {
+      copyProperties({ source: { a: 1, b: 2 }, keys: ' a', target: { c: 3 } })
+        .should.deep.equal({ c: 3 });
     });
 
-    it(`s:{a:1,b:2}, k:'a ', t:{c:3} => {a:1,c:3}`, () => {
-      copyProperties({ source: { a: 1, b: 2 }, keys: 'a ', target: { c: 3 } })
-        .should.deep.equal({ a: 1, c: 3 });
+    it(`s:{a:1,b:2} + ' a':3, k:' a', t:{} => {' a':3}`, () => {
+      const obj: object = { a: 1, b: 2 };
+      obj[' a'] = 3;
+      copyProperties({ source: obj, keys: ' a', target: {} })
+        .should.deep.equal({ ' a': 3 });
     });
 
-    it(`s:{a:1,b:2}, k:'  a  ,  b  ', t:{c:3} => {a:1,b:2,c:3}`, () => {
-      copyProperties({ source: { a: 1, b: 2 }, keys: '  a  ,  b  ', target: { c: 3 } })
-        .should.deep.equal({ a: 1, b: 2, c: 3 });
+    it(`s:{a:1,b:2} + 'a ':3, k:'a ', t:{c:3} => {'a ':3,c:3}`, () => {
+      const obj: object = { a: 1, b: 2 };
+      obj['a '] = 3;
+      copyProperties({ source: obj, keys: 'a ', target: { c: 3 } })
+        .should.deep.equal({ 'a ': 3, c: 3 });
     });
 
-    it(`s:{a:1,b:2}, k:[' a'], t:{} => {a:1}`, () => {
-      copyProperties({ source: { a: 1, b: 2 }, keys: [' a'], target: {} })
-        .should.deep.equal({ a: 1 });
-    });
-
-    it(`s:{a:1,b:2}, k:['a '], t:{c:3} => {a:1,c:3}`, () => {
-      copyProperties({ source: { a: 1, b: 2 }, keys: ['a '], target: { c: 3 } })
-        .should.deep.equal({ a: 1, c: 3 });
-    });
-
-    it(`s:{a:1,b:2}, k:['  a  ','  b  '], t:{c:3} => {a:1,b:2,c:3}`, () => {
-      copyProperties({ source: { a: 1, b: 2 }, keys: ['  a  ', '  b  '], target: { c: 3 } })
-        .should.deep.equal({ a: 1, b: 2, c: 3 });
+    it(`s:{a:1,b:2} + '  a  ':3 , k:['  a  '], t:{c:3} => {'  a  ':3,c:3}`, () => {
+      const obj: object = { a: 1, b: 2 };
+      obj['  a  '] = 3;
+      copyProperties({ source: obj, keys: ['  a  '], target: { c: 3 } })
+        .should.deep.equal({ '  a  ': 3, c: 3 });
     });
 
   });
