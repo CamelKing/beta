@@ -17,20 +17,24 @@
 
 import { keysIn } from './keysIn';
 import { ObjectOptions } from './constant';
+import { isEmpty } from './isEmpty';
 
 export function copyProperties({ source, keys, target, goDeep }: ObjectOptions): object {
 
-  if (source == null) source = {};
-  // if (target == null) target = {};
+  // initialise parameters
+
+  const output: object = isEmpty(target)
+    ? {}
+    : copyProperties({ source: target });
+
+  if (isEmpty(source)) return output;
+
   if (goDeep == null) goDeep = true;
 
-  const output: object = (target != null && target !== {})
-    ? copyProperties({ source: target })
-    : {};
-
-  let keysToCopy: string[] = [];
 
   // construct keys to copy array
+
+  let keysToCopy: string[] = [];
 
   if (keys != null) {
 
@@ -53,10 +57,17 @@ export function copyProperties({ source, keys, target, goDeep }: ObjectOptions):
     // check if key exist in target
     if (output[key]) {
       // only overwrite target exisitng key if the new value is not undefined
-      if (source[key]) output[key] = source[key];
+      if ((source as object)[key]) output[key] = (source as object)[key];
     } else {
       // if new key, only copy if it exists in source
-      if (key in source) output[key] = source[key];
+      if (key in (source as object)) {
+        // if property in prototype chain, only copy if goDeep
+        // while ketsIn(goDeep) would have filter deep property,
+        // this will stop any user passed in deep property
+        if ((source as object).hasOwnProperty(key) || goDeep) {
+          output[key] = (source as object)[key];
+        }
+      }
     }
 
   });

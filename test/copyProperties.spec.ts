@@ -6,6 +6,15 @@ should();
 
 describe(`copyProperties() - @category Object`, () => {
 
+  describe(`should treat source as {} if undefined`, () => {
+
+    it(`s:undefined, k:['a'], t:{a:1} => {a:1}`, () => {
+      copyProperties({ source: undefined, keys: ['a'], target: { a: 1 } })
+        .should.deep.equal({ a: 1 });
+    });
+
+  });
+
   describe(`should copy selected property from source to taregt`, () => {
 
     it(`s:{a:1,b:2}, k:['a'], t:{} => {a:1}`, () => {
@@ -288,14 +297,11 @@ describe(`copyProperties() - @category Object`, () => {
     it(`s:{a:1} t:{c:3, x:x} => {a:1, c:3, x:{a:1}}`, () => {
       copyProperties({ source: x, target: y })
         .should.deep.equal({ a: 1, c: 3, x: { a: 1 } });
-      console.log(copyProperties({ source: x, target: y }));
     });
 
     it(`s:{c:3, x:x} t:{a:1} => {a:1, c:3, x:{a:1}}`, () => {
       copyProperties({ source: y, target: x })
         .should.deep.equal({ a: 1, c: 3, x: { a: 1 } });
-      console.log(copyProperties({ source: y, target: x }));
-
     });
 
   });
@@ -438,6 +444,13 @@ describe(`copyProperties() - @category Object`, () => {
       BasePlus.prototype['s'] = 'spider'
       const bcp: BasePlus = new BasePlus(4, 5, 6);
       copyProperties({ source: bcp, goDeep: false })
+        .should.deep.equal({ x: 4, y: 5, z: 6 });
+    });
+
+    it(`s:user ext class + user's deep prop !goDeep => {x:1, y:3, z:6}`, () => {
+      BasePlus.prototype['s'] = 'spider'
+      const bcp: BasePlus = new BasePlus(4, 5, 6);
+      copyProperties({ source: bcp, keys: ['s', 'x', 'y', 'z'], goDeep: false })
         .should.deep.equal({ x: 4, y: 5, z: 6 });
     });
 
