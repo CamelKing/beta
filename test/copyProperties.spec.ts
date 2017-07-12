@@ -288,11 +288,14 @@ describe(`copyProperties() - @category Object`, () => {
     it(`s:{a:1} t:{c:3, x:x} => {a:1, c:3, x:{a:1}}`, () => {
       copyProperties({ source: x, target: y })
         .should.deep.equal({ a: 1, c: 3, x: { a: 1 } });
+      console.log(copyProperties({ source: x, target: y }));
     });
 
     it(`s:{c:3, x:x} t:{a:1} => {a:1, c:3, x:{a:1}}`, () => {
       copyProperties({ source: y, target: x })
         .should.deep.equal({ a: 1, c: 3, x: { a: 1 } });
+      console.log(copyProperties({ source: y, target: x }));
+
     });
 
   });
@@ -374,6 +377,68 @@ describe(`copyProperties() - @category Object`, () => {
       const bcp: BasePlus = new BasePlus(4, 5, 6);
       copyProperties({ source: bcp })
         .should.deep.equal({ x: 4, y: 5, z: 6, s: 'spider' });
+    });
+
+  });
+
+  describe(`should copy without prototype property if goDeep=false`, () => {
+
+    class Base {
+      public x: number = 0;
+      public y: number = 0;
+      constructor(a?: number, b?: number) {
+        if (a) this.x = a;
+        if (b) this.y = b;
+        return this;
+      }
+    }
+
+    class BasePlus extends Base {
+      public z: number = 0;
+      constructor(a?: number, b?: number, c?: number) {
+        super(a, b);
+        if (c) this.z = c;
+        return this;
+      }
+
+      public get w(): number {
+        return 99;
+      }
+
+    }
+
+    it(`s:user class !goDeep => {x:1, y:3}`, () => {
+      const bc: Base = new Base(4, 5);
+      copyProperties({ source: bc, goDeep: false })
+        .should.deep.equal({ x: 4, y: 5 });
+    });
+
+    it(`s:user class !goDeep => {x:1, y:3, z:6}`, () => {
+      const bcp: BasePlus = new BasePlus(4, 5, 6);
+      copyProperties({ source: bcp, goDeep: false })
+        .should.deep.equal({ x: 4, y: 5, z: 6 });
+    });
+
+    it(`s:user class !goDeep => {x:1, y:3, z:6, s:'spider'}`, () => {
+      const bcp: BasePlus = new BasePlus(4, 5, 6);
+      bcp['s'] = 'spider';
+      copyProperties({ source: bcp, goDeep: false })
+        .should.deep.equal({ x: 4, y: 5, z: 6, s: 'spider' });
+    });
+
+    it(`s:user base class +prop !goDeep => {x:1, y:3, z:6}`, () => {
+      Base.prototype['t'] = 'thor'
+      const bcp: BasePlus = new BasePlus(4, 5, 6);
+      copyProperties({ source: bcp, goDeep: false })
+        .should.deep.equal({ x: 4, y: 5, z: 6 });
+      delete Base.prototype['t'];
+    });
+
+    it(`s:user ext class + prop !goDeep => {x:1, y:3, z:6}`, () => {
+      BasePlus.prototype['s'] = 'spider'
+      const bcp: BasePlus = new BasePlus(4, 5, 6);
+      copyProperties({ source: bcp, goDeep: false })
+        .should.deep.equal({ x: 4, y: 5, z: 6 });
     });
 
   });

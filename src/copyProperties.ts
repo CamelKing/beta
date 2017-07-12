@@ -11,16 +11,22 @@
  * Last updated : July 11, 2017
  *
  * @export
- * @param {ObjectOptions} { source, keys, target }
+ * @param {ObjectOptions} { source, keys, target, goDeep }
  * @returns {object}
  */
 
 import { keysIn } from './keysIn';
 import { ObjectOptions } from './constant';
 
-export function copyProperties({ source, keys, target }: ObjectOptions): object {
+export function copyProperties({ source, keys, target, goDeep }: ObjectOptions): object {
 
-  const output: object = target ? copyProperties({ source: target }) : {};
+  if (source == null) source = {};
+  // if (target == null) target = {};
+  if (goDeep == null) goDeep = true;
+
+  const output: object = (target != null && target !== {})
+    ? copyProperties({ source: target })
+    : {};
 
   let keysToCopy: string[] = [];
 
@@ -35,7 +41,7 @@ export function copyProperties({ source, keys, target }: ObjectOptions): object 
   }
 
   if (keys == null || keysToCopy.find((key: string) => key.search(/\*/) >= 0)) {
-    keysToCopy = keysIn({ source });
+    keysToCopy = keysIn({ source, goDeep });
   }
 
   // actual copying process
