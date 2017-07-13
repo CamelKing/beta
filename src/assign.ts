@@ -19,19 +19,22 @@
  * @returns {object}
  */
 
+import { ObjectOptions } from './constant';
 import { copyProperties } from './copyProperties';
 
-export function assign(target: object, ...sources: object[]): object {
+function _assign({ target, sources, goDeep }: ObjectOptions): object {
 
   // make a copy of target, using flat copyProperties() as this function
   // only works on own string property names.
   // TODO: should replace this with the object cloning
   // function once it is ready.
 
+  // if (goDeep == null) goDeep = false;
+  goDeep = goDeep || false;
+
   let output: object = copyProperties({
     source: Object(target),
-    target,
-    goDeep: false,
+    goDeep,
     enumOnly: true,
     symbolKeys: false
   });
@@ -43,7 +46,7 @@ export function assign(target: object, ...sources: object[]): object {
       output = copyProperties({
         source,
         target: output,
-        goDeep: false,
+        goDeep,
         enumOnly: true,
         symbolKeys: false
       });
@@ -53,5 +56,18 @@ export function assign(target: object, ...sources: object[]): object {
   }
 
   return output;
+
+}
+
+// tslint:disable-next-line:no-namespace
+export namespace assign {
+
+  export const to: (target: object, ...sources: object[]) => object =
+    (target: object, ...sources: object[]) =>
+      _assign({ target, sources });
+
+  export const into: (target: object, ...sources: object[]) => object =
+    (target: object, ...sources: object[]) =>
+      _assign({ target, sources, goDeep: true });
 
 }

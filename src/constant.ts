@@ -17,6 +17,7 @@ export const objToString: FnToString = Object.prototype.toString;
 
 export interface ObjectOptions {
   source?: object;
+  sources?: object[];
   target?: object;
   keys?: string[] | string;
   goDeep?: boolean;

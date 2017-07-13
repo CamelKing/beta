@@ -1,5 +1,5 @@
 /**
- * Copy enumerable properties of object from source to target,
+ * Copy enumerable properties of object from source to target.
  * both own and inherited.
  *
  * Options to specify which properties to copy across.
