@@ -40,17 +40,13 @@ export function assign(target: object, ...sources: object[]): object {
 
     sources.forEach((source: object) => {
 
-      if (source != null) {
-
-        output = copyProperties({
-          source,
-          target: output,
-          goDeep: false,
-          enumOnly: true,
-          symbolKeys: false
-        });
-
-      }
+      output = copyProperties({
+        source,
+        target: output,
+        goDeep: false,
+        enumOnly: true,
+        symbolKeys: false
+      });
 
     });
 

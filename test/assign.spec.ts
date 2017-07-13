@@ -5,6 +5,7 @@ should();
 
 describe(`assign() - @category object`, () => {
 
+
   describe(`should copy enum prop names from right to left`, () => {
 
     it(`{a:1,b:2} {c:3,d:4} => {a:1,b:2,c:3,d:4}`, () => {
@@ -22,11 +23,28 @@ describe(`assign() - @category object`, () => {
 
   });
 
+  describe(`should return {} if only {} is passed in`, () => {
+
+    it(`{} => {}`, () => {
+      assign({}).should.deep.equal({});
+    });
+
+  });
+
   describe(`should copy enum prop names from multiple source objects`, () => {
 
     it(`{a:1,b:2} {c:3,d:4} {e:5,f:6} => {a:1,b:2,c:3,d:4,e:5,f:6}`, () => {
       assign({ a: 1, b: 2 }, { c: 3, d: 4 }, { e: 5, f: 6 })
         .should.deep.equal({ a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 });
+    });
+
+  });
+
+  describe(`should ignore {} in the sources list`, () => {
+
+    it(`{a:1} {b:2} {} {c:3} => {a:1,b:2,c:3}`, () => {
+      assign({ a: 1 }, { b: 2 }, {}, { c: 3 })
+        .should.deep.equal({ a: 1, b: 2, c: 3 });
     });
 
   });
