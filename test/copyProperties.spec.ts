@@ -369,6 +369,14 @@ describe(`copyProperties() - @category Object`, () => {
     it(`s:user base class +prop => {x:1, y:3, z:6, t:'thor'}`, () => {
       Base.prototype['t'] = 'thor'
       const bcp: BasePlus = new BasePlus(4, 5, 6);
+
+      // console.log(`KEYs : [`, keysIn({ source: bcp, enumOnly: false, goDeep: true }), `]`);
+
+      // console.log(Object.getOwnPropertyNames(Object.getPrototypeOf(Object.getPrototypeOf(bcp))));
+      // console.log(Reflect.ownKeys(Object.getPrototypeOf(bcp)));
+      // for (let key in bcp) console.log(key);
+
+
       copyProperties({ source: bcp })
         .should.deep.equal({ x: 4, y: 5, z: 6, t: 'thor' });
       delete Base.prototype['t'];

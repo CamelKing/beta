@@ -1,0 +1,57 @@
+import { should } from 'chai';
+import { assign } from '../src/assign';
+
+should();
+
+describe(`assign() - @category object`, () => {
+
+  /*
+  describe(`should ...`, () => {
+
+    it(`__input__ => __expected__ouput1__`, () => {
+      assign(input).should.deep.equal(__expected__output1__);
+    });
+
+  });
+
+  describe(`should return __expected_NaN__ for NaN`, () => {
+
+    it(`NaN => '__expected_NaN__'`, () => {
+      assign(NaN).should.deep.equal('__expected_NaN__');
+    });
+
+  });
+
+  describe(`should return __expected_null__ for null`, () => {
+
+    it(`null => '__expected_null__'`, () => {
+      assign(null).should.deep.equal('__expected_null__');
+    });
+
+  });
+
+  describe(`should return __expected_undefined__ for undefined`, () => {
+
+    it(`undefined => '__expected_undefined__'`, () => {
+      assign(undefined).should.deep.equal('__expected_undefined__');
+    });
+
+  });
+
+  */
+
+  describe(`should be functional and not mutating any input`, () => {
+
+    it(`__test__`, () => {
+
+      const orig: any = { a: 1, b: 2 };
+      const input: any = __copy__from__original__;
+      assign(input).should.deep.equal('__expected__output2__');
+      input.should.be.deep.equal(orig);
+
+    });
+
+  });
+
+});
+

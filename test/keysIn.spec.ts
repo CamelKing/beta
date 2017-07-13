@@ -65,8 +65,10 @@ describe(`keysIn() - @category Object`, () => {
 
   describe(`should return keys for array, incl. 'length'`, () => {
 
-    it(`[1,2] false => ['0','1']`, () => {
-      keysIn({ source: [1, 2], noLength: false }).should.deep.equal(['0', '1', 'length']);
+    it(`[1,2] false => ['0','1', 'length']`, () => {
+      keysIn({ source: [1, 2], enumOnly: false }).should.deep.equal(['0', '1', 'length', 'should']);
+      // 'should' object (non enum) was added by chai 
+      // and only exist in test environment
     });
 
   });
@@ -87,6 +89,17 @@ describe(`keysIn() - @category Object`, () => {
 
     it(`new Float64Array(3) => ['0','1','2']`, () => {
       keysIn({ source: new Float64Array(3) }).should.deep.equal(['0', '1', '2']);
+    });
+
+  });
+
+  describe(`should return symbol keys when demanded`, () => {
+
+    it(`{a:1, Symbol():2} => ['a', Symbol()]`, () => {
+      const s: symbol = Symbol('test');
+      const obj: object = { a: 1 };
+      obj[s] = 2;
+      keysIn({ source: obj, symbolKeys: true }).should.deep.equal(['a', s]);
     });
 
   });

@@ -45,7 +45,7 @@ export function copyProperties({ source, keys, target, goDeep }: ObjectOptions):
   }
 
   if (keys == null || keysToCopy.find((key: string) => key.search(/\*/) >= 0)) {
-    keysToCopy = keysIn({ source, goDeep });
+    keysToCopy = keysIn({ source, goDeep, enumOnly: true, symbolKeys: false });
   }
 
   // actual copying process

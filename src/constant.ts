@@ -19,6 +19,7 @@ export interface ObjectOptions {
   source?: object;
   target?: object;
   keys?: string[] | string;
-  noLength?: boolean;
   goDeep?: boolean;
+  symbolKeys?: boolean;
+  enumOnly?: boolean;
 }

@@ -23,7 +23,7 @@
   "typings": "typings/beta.d.ts",
   "scripts": {
     "killlog": "rimraf isolate*.log",
-    "clean": "rimraf isolate*.log lib/ coverage/ .nyc_output/ typings/",
+    "clean": "rimraf isolate*.log lib/ coverage/ .nyc_output/ typings/ sandbox/*",
     "lint": "tslint --force --format verbose \"src/**/*.ts\" \"test/**/*.spec.ts\"",
     "build": "npm run tsc -- --watch",
     "test": "mocha --opts mocha.opts",
