@@ -20,35 +20,33 @@
  */
 
 import { ObjectOptions } from './constant';
-import { copyProperties } from './copyProperties';
+import { copyKeys } from './copyKeys';
 
 function _assign({ target, sources, goDeep }: ObjectOptions): object {
 
-  // make a copy of target, using flat copyProperties() as this function
+  // make a copy of target, using flat copyKeys.all() as this function
   // only works on own string property names.
   // TODO: should replace this with the object cloning
   // function once it is ready.
 
-  // if (goDeep == null) goDeep = false;
+  // goDeep default is false
   goDeep = goDeep || false;
 
-  let output: object = copyProperties({
+  let output: object = copyKeys.select({
     source: Object(target),
     goDeep,
-    enumOnly: true,
-    symbolKeys: false
+    enumOnly: true
   });
 
   if (sources != null && sources.length > 0) {
 
     sources.forEach((source: object) => {
 
-      output = copyProperties({
+      output = copyKeys.select({
         source,
         target: output,
         goDeep,
-        enumOnly: true,
-        symbolKeys: false
+        enumOnly: true
       });
 
     });
