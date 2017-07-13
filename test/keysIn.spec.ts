@@ -93,6 +93,31 @@ describe(`keysIn() - @category Object`, () => {
 
   });
 
+  describe(`should return keys for Error object base on options`, () => {
+
+    it(`new Error() => []`, () => {
+      keysIn({ source: new Error() }).should.deep.equal([]);
+    });
+
+    it(`new Error(), enumOnly:true, goDeep:false => []`, () => {
+      keysIn({ source: new Error(), enumOnly: true, goDeep: false }).should.deep.equal([]);
+    });
+
+    it(`new Error(), enumOnly:false, goDeep:false => ['stack']`, () => {
+      keysIn({ source: new Error(), enumOnly: false, goDeep: false }).should.deep.equal(['stack']);
+    });
+
+    it(`new Error('error msg'), enumOnly:false, goDeep:false => ['stack','message']`, () => {
+      keysIn({ source: new Error('error msg'), enumOnly: false, goDeep: false }).should.deep.equal(['stack', 'message']);
+    });
+
+    it(`new Error(), enumOnly:false, goDeep:true => ['stack','message','name']`, () => {
+      keysIn({ source: new Error(), enumOnly: false, goDeep: true }).should.deep.equal(['stack', 'name', 'message', 'should']);
+      // 'should' was added by chai testing run time
+    });
+
+  });
+
   describe(`should return symbol keys when demanded`, () => {
 
     it(`{a:1, Symbol():2} => ['a', Symbol()]`, () => {
