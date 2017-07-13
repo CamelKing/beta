@@ -66,23 +66,6 @@ export function copyProperties({ source, keys, target, goDeep }: ObjectOptions):
 
     }
 
-
-    // // check if key exist in target
-    // if (output[key]) {
-    //   // only overwrite target exisitng key if the new value is not undefined
-    //   if ((source as object)[key]) output[key] = (source as object)[key];
-    // } else {
-    //   // if new key, only copy if it exists in source
-    //   if (key in (source as object)) {
-    //     // if property in prototype chain, only copy if goDeep
-    //     // while ketsIn(goDeep) would have filter deep property,
-    //     // this will stop any user passed in deep property
-    //     if ((source as object).hasOwnProperty(key) || goDeep) {
-    //       output[key] = (source as object)[key];
-    //     }
-    //   }
-    // }
-
   });
 
   return output;
