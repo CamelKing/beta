@@ -43,11 +43,9 @@ export function isEmpty(input: any): boolean {
     return !input.size;
   }
 
-  // for everything else, check the property chain (constructor does not count)
+  // for everything else,
+  // check for any enumerable string typed property
 
-  const keys: string[]
-    = Object.keys(input).filter((key: string) => key !== 'constructor');
-
-  return !keys.length;
+  return !Object.keys(input).length;
 
 }
