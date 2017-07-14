@@ -146,7 +146,7 @@ describe(`isEqual() - @category Language`, () => {
 
   });
 
-  describe(`should returnfalse if 2 sets do not have the same elements`, () => {
+  describe(`should return false if 2 sets do not have the same elements`, () => {
 
     it(`{1} {1,2} => false`, () => {
       isEqual(new Set([1]), new Set([1, 2])).should.be.false;
@@ -156,7 +156,7 @@ describe(`isEqual() - @category Language`, () => {
       isEqual(new Set([1, 3]), new Set([1, 2])).should.be.false;
     });
 
-    it(`{{a:1}} {{a:2}} => true`, () => {
+    it(`{{a:1}} {{a:2}} => false`, () => {
       isEqual(new Set([{ a: 1 }]), new Set([{ a: 2 }])).should.be.false;
     });
 
@@ -333,6 +333,78 @@ describe(`isEqual() - @category Language`, () => {
 
     it(`pm1() pm1\'() => false`, () => {
       isEqual(Promise.resolve(123), Promise.resolve(123)).should.be.false;
+    });
+
+  });
+
+  describe(`should check object for circular references`, () => {
+
+    it('{a:1,b:2,c:self} new {a:1,b:2,c:self} => false', () => {
+
+      const a: object = { a: 1, b: 2 };
+      a['c'] = a;
+      const b: object = { a: 1, b: 2 };
+      b['c'] = b;
+      isEqual(a, b).should.be.false;
+
+    });
+
+    it('{a:1,b:2,c:self} new {a:1,b:2,c:first self} => true', () => {
+
+      const a: object = { a: 1, b: 2 };
+      a['c'] = a;
+      const b: object = { a: 1, b: 2 };
+      b['c'] = a;
+      isEqual(a, b).should.be.true;
+
+    });
+
+  });
+
+  describe(`should check array for circular references`, () => {
+
+    it('[1,2,self] new [1,2,self] => false', () => {
+
+      const a: any[] = [1, 2];
+      a.push(a);
+      const b: any[] = [1, 2];
+      b.push(b);;
+      isEqual(a, b).should.be.false;
+
+    });
+
+    it('[1,2,self] new [1,2,first self] => true', () => {
+
+      const a: any[] = [1, 2];
+      a.push(a);
+      const b: any[] = [1, 2];
+      b.push(a);;
+      isEqual(a, b).should.be.true;
+
+    });
+
+  });
+
+  describe(`should check set for circular references`, () => {
+
+    it('Set([1,2,self]) new Set([1,2,self]) => false', () => {
+
+      const a: Set<any> = new Set([1, 2]);
+      a.add(a);
+      const b: Set<any> = new Set([1, 2]);
+      b.add(b);;
+      isEqual(a, b).should.be.false;
+
+    });
+
+    it('Set([1,2,self]) new set([1,2,first self]) => true', () => {
+
+      const a: Set<any> = new Set([1, 2]);
+      a.add(a);
+      const b: Set<any> = new Set([1, 2]);
+      b.add(a);
+      isEqual(a, b).should.be.true;
+
     });
 
   });
