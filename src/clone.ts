@@ -102,8 +102,12 @@ function _clone({ source, memory, goDeep }: CloneOptions): any {
 
   }
 
+
   // store object for future reference when recursive call
   memory.set(source, output);
+
+
+  // handle cloning of map, set and keys, option to goDeep
 
   if (deepCloneAction === CloneMap) {
 
@@ -134,16 +138,15 @@ function _clone({ source, memory, goDeep }: CloneOptions): any {
 
   } else if (deepCloneAction === CloneKeys) {
 
+    // setup keys cloning function based on goDeep
     type FnCloneKeys = (k: any) => void;
 
     const fnCloneKeys: FnCloneKeys = goDeep ?
       (k: any) => output[k] = _clone({ source: source[k], memory, goDeep }) :
       (k: any) => output[k] = source[k];
 
-    let key: string;
-    for (key in source) {
-      if (source.hasOwnProperty(key)) fnCloneKeys(key);
-    }
+    // clone own (non inherited) string based, enum keys
+    Object.keys(source).forEach(fnCloneKeys);
 
   }
 
