@@ -24,3 +24,9 @@ export interface ObjectOptions {
   symbolKeys?: boolean;
   enumOnly?: boolean;
 }
+
+export interface CloneOptions {
+  source: any;
+  memory?: Map<any, any>;
+  goDeep?: boolean;
+}
