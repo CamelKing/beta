@@ -29,16 +29,11 @@ function checkType(input: any): string;
 function checkType(input: any, check: string): boolean;
 function checkType(input: any, check?: string): string | boolean {
 
-  // const type: string = input !== input ? 'nan'
-  //   : Buffer.isBuffer(input) ? 'buffer'
-  //     : ({}).toString.call(input).match(/\s([a-zA-Z0-9]+)/)[1].toLowerCase();
-
-  const type: string = input !== input ? 'NaN'
+  const inputType: string = input !== input ? 'NaN'
     : Buffer.isBuffer(input) ? 'Buffer'
       : objToString.call(input).match(/\s([a-zA-Z0-9]+)/)[1];
-  // .toLowerCase();
 
-  return !check ? type : type === check;
+  return !check ? inputType : inputType === check;
 
 }
 
