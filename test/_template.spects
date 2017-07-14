@@ -5,6 +5,8 @@ should();
 
 describe(`__function__() - @category __category__`, () => {
 
+/*
+
   describe(`should ...`, () => {
 
     it(`__input__ => __expected__ouput1__`, () => {
@@ -12,7 +14,6 @@ describe(`__function__() - @category __category__`, () => {
     });
 
   });
-
 
   describe(`should return __expected_NaN__ for NaN`, () => {
 
@@ -37,6 +38,8 @@ describe(`__function__() - @category __category__`, () => {
     });
 
   });
+
+*/
 
   describe(`should be functional and not mutating any input`, () => {
 
