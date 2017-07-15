@@ -5,7 +5,7 @@ should();
 
 describe(`multiply() - @category Math`, () => {
 
-  describe(`should return A - B`, () => {
+  describe(`should return A * B`, () => {
 
     it(`(1,2) => 2`, () => {
       multiply(1, 2).should.equal(2);
@@ -19,8 +19,8 @@ describe(`multiply() - @category Math`, () => {
       multiply(-2, 3).should.equal(-6);
     });
 
-    it(`(-2,-1) => -2`, () => {
-      multiply(-2, -1).should.equal(-2);
+    it(`(-2,-1) => 2`, () => {
+      multiply(-2, -1).should.equal(2);
     });
 
   });
