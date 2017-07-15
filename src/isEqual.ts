@@ -11,9 +11,6 @@
  *
  * Functions and DOM nodes are compared by strict equality, i.e. ===.
  *
- * TODO: add in checking for cyclic references
- *
- *
  * @category Language
  *
  * First version: July 09, 2017
